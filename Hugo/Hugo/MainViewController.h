@@ -9,8 +9,9 @@
 #import "FlipsideViewController.h"
 
 #import <CoreData/CoreData.h>
+#import <Parse/Parse.h>
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, PF_FBRequestDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
