@@ -35,6 +35,12 @@
 		5532BFAD15D07F64001D1AAA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFAC15D07F64001D1AAA /* Security.framework */; };
 		5532BFAF15D07F6A001D1AAA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFAE15D07F6A001D1AAA /* StoreKit.framework */; };
 		5532BFB115D07F6F001D1AAA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFB015D07F6F001D1AAA /* SystemConfiguration.framework */; };
+		5532BFB315D1C2DC001D1AAA /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 5532BFB215D1C2DC001D1AAA /* connect.png */; };
+		5532BFC115D1C8F6001D1AAA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532BFBF15D1C8F6001D1AAA /* MapViewController.m */; };
+		5532BFC215D1C8F6001D1AAA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5532BFC015D1C8F6001D1AAA /* MapViewController.xib */; };
+		5532BFC415D1CB51001D1AAA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFC315D1CB51001D1AAA /* MapKit.framework */; };
+		5532BFC615D1CDD6001D1AAA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */; };
+		5532BFCA15D1D2B1001D1AAA /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +88,14 @@
 		5532BFAC15D07F64001D1AAA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5532BFAE15D07F6A001D1AAA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5532BFB015D07F6F001D1AAA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5532BFB215D1C2DC001D1AAA /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
+		5532BFBE15D1C8F6001D1AAA /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		5532BFBF15D1C8F6001D1AAA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5532BFC015D1C8F6001D1AAA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		5532BFC315D1CB51001D1AAA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5532BFC815D1D2B1001D1AAA /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5532BFC615D1CDD6001D1AAA /* CoreLocation.framework in Frameworks */,
+				5532BFC415D1CB51001D1AAA /* MapKit.framework in Frameworks */,
 				5532BFB115D07F6F001D1AAA /* SystemConfiguration.framework in Frameworks */,
 				5532BFAF15D07F6A001D1AAA /* StoreKit.framework in Frameworks */,
 				5532BFAD15D07F64001D1AAA /* Security.framework in Frameworks */,
@@ -141,6 +157,8 @@
 		5532BF5B15D07EC8001D1AAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */,
+				5532BFC315D1CB51001D1AAA /* MapKit.framework */,
 				5532BFB015D07F6F001D1AAA /* SystemConfiguration.framework */,
 				5532BFAE15D07F6A001D1AAA /* StoreKit.framework */,
 				5532BFAC15D07F64001D1AAA /* Security.framework */,
@@ -162,15 +180,9 @@
 		5532BF6415D07EC8001D1AAA /* Hugo */ = {
 			isa = PBXGroup;
 			children = (
+				5532BFB715D1C774001D1AAA /* Views */,
 				5532BF6D15D07EC9001D1AAA /* AppDelegate.h */,
 				5532BF6E15D07EC9001D1AAA /* AppDelegate.m */,
-				5532BF7315D07EC9001D1AAA /* MainViewController.h */,
-				5532BF7415D07EC9001D1AAA /* MainViewController.m */,
-				5532BF7615D07EC9001D1AAA /* FlipsideViewController.h */,
-				5532BF7715D07EC9001D1AAA /* FlipsideViewController.m */,
-				5532BF7915D07EC9001D1AAA /* MainViewController_iPhone.xib */,
-				5532BF7C15D07EC9001D1AAA /* MainViewController_iPad.xib */,
-				5532BF7F15D07EC9001D1AAA /* FlipsideViewController.xib */,
 				5532BF7015D07EC9001D1AAA /* Hugo.xcdatamodeld */,
 				5532BF6515D07EC8001D1AAA /* Supporting Files */,
 			);
@@ -180,6 +192,7 @@
 		5532BF6515D07EC8001D1AAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5532BFB215D1C2DC001D1AAA /* connect.png */,
 				5532BF6615D07EC8001D1AAA /* Hugo-Info.plist */,
 				5532BF6715D07EC8001D1AAA /* InfoPlist.strings */,
 				5532BF6A15D07EC9001D1AAA /* main.m */,
@@ -205,6 +218,49 @@
 				5532BF9215D07EC9001D1AAA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5532BFB515D1C753001D1AAA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				5532BFBE15D1C8F6001D1AAA /* MapViewController.h */,
+				5532BFBF15D1C8F6001D1AAA /* MapViewController.m */,
+				5532BFC015D1C8F6001D1AAA /* MapViewController.xib */,
+				5532BFC815D1D2B1001D1AAA /* MKMapView+ZoomLevel.h */,
+				5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		5532BFB615D1C765001D1AAA /* Facebook Connect */ = {
+			isa = PBXGroup;
+			children = (
+				5532BF7F15D07EC9001D1AAA /* FlipsideViewController.xib */,
+				5532BF7315D07EC9001D1AAA /* MainViewController.h */,
+				5532BF7615D07EC9001D1AAA /* FlipsideViewController.h */,
+				5532BF7715D07EC9001D1AAA /* FlipsideViewController.m */,
+				5532BF7415D07EC9001D1AAA /* MainViewController.m */,
+				5532BF7915D07EC9001D1AAA /* MainViewController_iPhone.xib */,
+				5532BF7C15D07EC9001D1AAA /* MainViewController_iPad.xib */,
+			);
+			name = "Facebook Connect";
+			sourceTree = "<group>";
+		};
+		5532BFB715D1C774001D1AAA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5532BFB815D1C77E001D1AAA /* Search */,
+				5532BFB515D1C753001D1AAA /* Map */,
+				5532BFB615D1C765001D1AAA /* Facebook Connect */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5532BFB815D1C77E001D1AAA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +338,8 @@
 				5532BF7B15D07EC9001D1AAA /* MainViewController_iPhone.xib in Resources */,
 				5532BF7E15D07EC9001D1AAA /* MainViewController_iPad.xib in Resources */,
 				5532BF8115D07EC9001D1AAA /* FlipsideViewController.xib in Resources */,
+				5532BFB315D1C2DC001D1AAA /* connect.png in Resources */,
+				5532BFC215D1C8F6001D1AAA /* MapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +379,8 @@
 				5532BF7215D07EC9001D1AAA /* Hugo.xcdatamodeld in Sources */,
 				5532BF7515D07EC9001D1AAA /* MainViewController.m in Sources */,
 				5532BF7815D07EC9001D1AAA /* FlipsideViewController.m in Sources */,
+				5532BFC115D1C8F6001D1AAA /* MapViewController.m in Sources */,
+				5532BFCA15D1D2B1001D1AAA /* MKMapView+ZoomLevel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

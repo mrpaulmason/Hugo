@@ -33,6 +33,9 @@
     
     [Parse setFacebookApplicationId:@"469021446449087"];
     
+    // Enable GPS
+    [self startStandardUpdates];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -175,6 +178,49 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - Custom Notifications
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    // If it's a relatively recent event, turn off updates to save power
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0)
+    {
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              newLocation.coordinate.latitude,
+              newLocation.coordinate.longitude);
+        [self setCurrentLocation:newLocation];
+    }
+    // else skip the event and process the next one.
+}
+
+- (void)setCurrentLocation:(CLLocation *)aCurrentLocation
+{
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: aCurrentLocation
+                                                         forKey:@"location"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kHUGOLocationChangeNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+}
+
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    
+    // Set a movement threshold for new events.
+    locationManager.distanceFilter = 500;
+    
+    [locationManager startUpdatingLocation];
 }
 
 @end

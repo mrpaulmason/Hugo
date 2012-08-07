@@ -15,14 +15,16 @@
 
 @implementation MainViewController
 
+@synthesize mapView, mainView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    [testObject setObject:@"bar" forKey:@"foo"];
-    [testObject save];
+//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+  //  [testObject setObject:@"bar" forKey:@"foo"];
+    //[testObject save];
 }
 
 - (void)viewDidUnload
@@ -66,6 +68,14 @@
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
+                                            
+                                            UINavigationController *navController = [[UINavigationController alloc] init];
+                                            MapViewController *controller = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
+                                            controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                                            [navController pushViewController:controller animated:NO];
+                                            [self presentModalViewController:navController animated:YES];
+
+                                            
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
                                             NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
@@ -73,6 +83,12 @@
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
+
+                                            UINavigationController *navController = [[UINavigationController alloc] init];
+                                            MapViewController *controller = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
+                                            controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                                            [navController pushViewController:controller animated:NO];
+                                            [self presentModalViewController:navController animated:YES];
                                         }
                                     }];
 }
@@ -85,11 +101,16 @@
     NSString *gender = [userData objectForKey:@"gender"];
     NSString *birthday = [userData objectForKey:@"birthday"];
     NSString *relationship = [userData objectForKey:@"relationship_status"];
-    NSString *checkins = [userData objectForKey:@"checkins"];
+    NSDictionary *checkins = [userData objectForKey:@"checkins"];
     
     // Now add the data to the UI elements
     
-    NSLog(@"%@ %@ %@ %@ %@::%@", name ,location, gender, birthday, relationship, checkins);
+    NSLog(@"%@ %@ %@ %@ %@::", name ,location, gender, birthday, relationship);
+    int c = 1;
+    
+    for(NSDictionary *aKey in [checkins objectForKey:@"data"]) {
+        NSLog(@"%d. %@ at %@", c++, [[aKey objectForKey:@"place"] objectForKey:@"name"], [aKey objectForKey:@"created_time"]);
+    }
 }
 
 #pragma mark - Flipside View Controller
