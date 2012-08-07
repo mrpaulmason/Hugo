@@ -46,8 +46,9 @@
     // The permissions requested from the user
     NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
                                  @"user_relationships",@"user_birthday",@"user_location",
-                                 @"offline_access", nil];
+                                 @"offline_access", @"friends_status", @"user_status", nil];
     
+        
     // Log in
     [PFFacebookUtils logInWithPermissions:permissionsArray
                                     block:^(PFUser *user, NSError *error) {
@@ -60,14 +61,14 @@
                                         } else if (user.isNew) { // Success - a new user was created
                                             
                                             NSLog(@"User with facebook signed up and logged in!");
-                                            NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture";
+                                            NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
                                             
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
-                                            NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture";
+                                            NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
                                             
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
@@ -84,10 +85,11 @@
     NSString *gender = [userData objectForKey:@"gender"];
     NSString *birthday = [userData objectForKey:@"birthday"];
     NSString *relationship = [userData objectForKey:@"relationship_status"];
+    NSString *checkins = [userData objectForKey:@"checkins"];
     
     // Now add the data to the UI elements
     
-    NSLog(@"%@ %@ %@ %@ %@", name ,location, gender, birthday, relationship);
+    NSLog(@"%@ %@ %@ %@ %@::%@", name ,location, gender, birthday, relationship, checkins);
 }
 
 #pragma mark - Flipside View Controller
