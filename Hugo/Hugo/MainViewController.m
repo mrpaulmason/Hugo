@@ -22,9 +22,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-  //  [testObject setObject:@"bar" forKey:@"foo"];
-    //[testObject save];
+    if ([PFUser currentUser] && // Check if a user is cached
+        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
+    {
+        NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
+        
+        // Send request to facebook
+        [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
+                                             andDelegate:self];
+    }
 }
 
 - (void)viewDidUnload
@@ -69,8 +75,8 @@
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
                                             
-    
-
+                                            
+                                            
                                             
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
@@ -79,7 +85,7 @@
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
-
+                                            
                                         }
                                     }];
 }
