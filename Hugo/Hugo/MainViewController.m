@@ -69,11 +69,7 @@
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
                                             
-                                            UINavigationController *navController = [[UINavigationController alloc] init];
-                                            MapViewController *controller = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
-                                            controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-                                            [navController pushViewController:controller animated:NO];
-                                            [self presentModalViewController:navController animated:YES];
+    
 
                                             
                                         } else { // Success - an existing user logged in
@@ -84,11 +80,6 @@
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
 
-                                            UINavigationController *navController = [[UINavigationController alloc] init];
-                                            MapViewController *controller = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
-                                            controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-                                            [navController pushViewController:controller animated:NO];
-                                            [self presentModalViewController:navController animated:YES];
                                         }
                                     }];
 }
@@ -109,8 +100,17 @@
     int c = 1;
     
     for(NSDictionary *aKey in [checkins objectForKey:@"data"]) {
+        
         NSLog(@"%d. %@ at %@", c++, [[aKey objectForKey:@"place"] objectForKey:@"name"], [aKey objectForKey:@"created_time"]);
     }
+
+    UINavigationController *navController = [[UINavigationController alloc] init];
+    MapViewController *controller = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
+    [controller setCheckins:[checkins objectForKey:@"data"]];
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [navController pushViewController:controller animated:NO];
+    [self presentModalViewController:navController animated:YES];
+
 }
 
 #pragma mark - Flipside View Controller

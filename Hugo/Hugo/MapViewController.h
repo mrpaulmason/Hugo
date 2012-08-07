@@ -12,9 +12,13 @@
 @interface MapViewController : UIViewController
 {
     MKMapView *mapView;
+    UITableView *tableView;
+    NSArray *checkins;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSArray *checkins;
 
 
 
