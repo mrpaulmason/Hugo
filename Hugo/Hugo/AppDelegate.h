@@ -28,6 +28,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)setCurrentLocation:(CLLocation *)aCurrentLocation;
+- (void)startStandardUpdates;
 
 @property (strong, nonatomic) MainViewController *mainViewController;
 

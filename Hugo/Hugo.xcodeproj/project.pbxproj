@@ -41,6 +41,7 @@
 		5532BFC415D1CB51001D1AAA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFC315D1CB51001D1AAA /* MapKit.framework */; };
 		5532BFC615D1CDD6001D1AAA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */; };
 		5532BFCA15D1D2B1001D1AAA /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */; };
+		5532BFCD15D1DB5A001D1AAA /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532BFCC15D1DB5A001D1AAA /* AddressAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5532BFC815D1D2B1001D1AAA /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
 		5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		5532BFCB15D1DB59001D1AAA /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
+		5532BFCC15D1DB5A001D1AAA /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 				5532BFC015D1C8F6001D1AAA /* MapViewController.xib */,
 				5532BFC815D1D2B1001D1AAA /* MKMapView+ZoomLevel.h */,
 				5532BFC915D1D2B1001D1AAA /* MKMapView+ZoomLevel.m */,
+				5532BFCB15D1DB59001D1AAA /* AddressAnnotation.h */,
+				5532BFCC15D1DB5A001D1AAA /* AddressAnnotation.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				5532BF7815D07EC9001D1AAA /* FlipsideViewController.m in Sources */,
 				5532BFC115D1C8F6001D1AAA /* MapViewController.m in Sources */,
 				5532BFCA15D1D2B1001D1AAA /* MKMapView+ZoomLevel.m in Sources */,
+				5532BFCD15D1DB5A001D1AAA /* AddressAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

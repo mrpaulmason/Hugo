@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import "AppDelegate.h"
 #import "MKMapView+ZoomLevel.h"
+#import "AddressAnnotation.h"
 
 @interface MapViewController ()
 
@@ -55,8 +56,19 @@
                                                object:nil];
     
     
-    
     [mapView setShowsUserLocation:YES];
+    for (NSDictionary *item in checkins)
+    {
+        NSDictionary *locationData = [[item objectForKey:@"place"] objectForKey:@"location"];
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[locationData objectForKey:@"latitude"] floatValue], [[locationData objectForKey:@"longitude"] floatValue]);
+        
+        [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:location withTitle:[[item objectForKey:@"place"] objectForKey:@"name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
+        
+    }
+    
+    // Enable GPS
+    id appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate startStandardUpdates];
 
 }
 
@@ -64,7 +76,7 @@
     // Update the table with the new points
     CLLocation *location = [[note userInfo] objectForKey:@"location"];
     
-    [mapView setCenterCoordinate:location.coordinate zoomLevel:13 animated:YES];
+    [mapView setCenterCoordinate:location.coordinate zoomLevel:8 animated:YES];
     NSLog(@"latitude %+.6f, longitude %+.6f\n",
           location.coordinate.latitude,
           location.coordinate.longitude);
