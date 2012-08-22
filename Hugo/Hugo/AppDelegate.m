@@ -209,6 +209,27 @@
                                                       userInfo:userInfo];
 }
 
+- (NSString *)getDeviceID
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *uuid = [defaults objectForKey:@"uniqueUserId"];
+    
+    if(uuid==nil || [uuid isEqualToString:@""])
+    {
+        CFUUIDRef theUUID = CFUUIDCreate(kCFAllocatorDefault);
+        if (theUUID)
+        {
+            uuid = NSMakeCollectable(CFUUIDCreateString(kCFAllocatorDefault, theUUID));
+            [defaults setObject:uuid forKey:@"uniqueUserId"];
+            [defaults synchronize];
+            [uuid autorelease];
+            CFRelease(theUUID);
+        }
+    }
+    return uuid;    
+}
+
 - (void)startStandardUpdates
 {
     // Create the location manager if this object does not

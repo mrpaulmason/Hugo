@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import <Parse/Parse.h>
+#import "HugoUtils.h"
 
 @interface MainViewController ()
 
@@ -71,6 +72,10 @@
                                             NSLog(@"User with facebook signed up and logged in!");
                                             NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
                                             
+                                            // Send request to API
+                                            
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils facebook] accessToken] andExpiration:[[PFFacebookUtils facebook] expirationDate]];
+                                            
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
                                                                                  andDelegate:self];
@@ -81,6 +86,8 @@
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
                                             NSString *requestPath = @"me/?fields=name,location,gender,birthday,relationship_status,picture,checkins";
+
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils facebook] accessToken] andExpiration:[[PFFacebookUtils facebook] expirationDate]];
                                             
                                             // Send request to facebook
                                             [[PFFacebookUtils facebook] requestWithGraphPath:requestPath
