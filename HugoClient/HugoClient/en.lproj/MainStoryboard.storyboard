@@ -90,6 +90,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="BuB-ky-qDY" kind="push" id="vL0-dI-Eme"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -118,12 +121,98 @@
                         <outlet property="delegate" destination="21c-z2-U2S" id="gaC-BC-gzF"/>
                         <outlet property="searchBar" destination="lot-eu-Zva" id="qqD-N4-ZVJ"/>
                         <outlet property="searchContentsController" destination="21c-z2-U2S" id="wOW-Cj-SVb"/>
-                        <outlet property="searchResultsDataSource" destination="21c-z2-U2S" id="Hzz-rj-ftc"/>
                         <outlet property="searchResultsDelegate" destination="21c-z2-U2S" id="ljL-zb-XVL"/>
                     </connections>
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="958" y="-238"/>
+        </scene>
+        <!--Hugo Results List View Controller-->
+        <scene sceneID="JMC-yd-sFh">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTb-Og-JB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="BuB-ky-qDY" customClass="HugoResultsListViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TYG-Zp-ImY">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="GjV-H7-sVX">
+                                <rect key="frame" x="0.0" y="44" width="320" height="136"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                            <searchBar contentMode="redraw" id="YrR-qj-sfs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BuB-ky-qDY" id="BGF-iU-8AE"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y5l-Ve-HQz">
+                                <rect key="frame" x="0.0" y="177" width="320" height="190"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ResultsListCell" rowHeight="92" id="AIS-Ww-ftj">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="92"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" image="icon.jpeg" id="cia-lX-CCc">
+                                                    <rect key="frame" x="12" y="9" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" image="icon.jpeg" id="QVh-AV-HqF">
+                                                    <rect key="frame" x="62" y="9" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" image="icon.jpeg" id="neJ-QR-bsj">
+                                                    <rect key="frame" x="112" y="9" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="200" contentMode="left" text="Nopalito" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tCY-dm-WuN">
+                                                    <rect key="frame" x="12" y="50" width="64" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" text="Mexican - 0.3 mi - $$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JpY-uU-I8D">
+                                                    <rect key="frame" x="12" y="70" width="162" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BuB-ky-qDY" id="YN7-ZP-bc5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="x6A-kz-TP8"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="FY7-aV-8Pd" id="NaD-Kd-VhF"/>
+                    </connections>
+                </viewController>
+                <searchDisplayController id="FY7-aV-8Pd">
+                    <connections>
+                        <outlet property="delegate" destination="BuB-ky-qDY" id="b9x-Fy-LEq"/>
+                        <outlet property="searchBar" destination="YrR-qj-sfs" id="7H8-bg-rDn"/>
+                        <outlet property="searchContentsController" destination="BuB-ky-qDY" id="cpC-Rz-PwI"/>
+                        <outlet property="searchResultsDelegate" destination="BuB-ky-qDY" id="crZ-FB-52m"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1405" y="-238"/>
         </scene>
         <!--Navigation Controller - Profile-->
         <scene sceneID="llI-Cy-UgY">
@@ -243,10 +332,14 @@
     </scenes>
     <resources>
         <image name="facebook.png" width="280" height="47"/>
+        <image name="icon.jpeg" width="180" height="119"/>
     </resources>
     <classes>
         <class className="HugoNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNavigationBar.h"/>
+        </class>
+        <class className="HugoResultsListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoResultsListViewController.h"/>
         </class>
         <class className="HugoSearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSearchViewController.h"/>
