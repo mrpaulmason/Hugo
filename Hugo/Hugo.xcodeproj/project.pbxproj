@@ -26,7 +26,6 @@
 		5532BF8C15D07EC9001D1AAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BF6215D07EC8001D1AAA /* CoreData.framework */; };
 		5532BF9415D07EC9001D1AAA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5532BF9215D07EC9001D1AAA /* InfoPlist.strings */; };
 		5532BF9715D07EC9001D1AAA /* HugoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5532BF9615D07EC9001D1AAA /* HugoTests.m */; };
-		5532BFA115D07EEC001D1AAA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFA015D07EEC001D1AAA /* Parse.framework */; };
 		5532BFA315D07F16001D1AAA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFA215D07F16001D1AAA /* AudioToolbox.framework */; };
 		5532BFA515D07F1B001D1AAA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFA415D07F1B001D1AAA /* CFNetwork.framework */; };
 		5532BFA715D07F50001D1AAA /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5532BFA615D07F50001D1AAA /* libz.1.1.3.dylib */; };
@@ -53,6 +52,7 @@
 		553D9AC715E43F8800989F07 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9ABB15E43F8800989F07 /* AFURLConnectionOperation.m */; };
 		553D9AC815E43F8800989F07 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9ABD15E43F8800989F07 /* AFXMLRequestOperation.m */; };
 		553D9AC915E43F8800989F07 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9ABF15E43F8800989F07 /* UIImageView+AFNetworking.m */; };
+		553D9B7515ED904B00989F07 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B7415ED904B00989F07 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +91,6 @@
 		5532BF9315D07EC9001D1AAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5532BF9515D07EC9001D1AAA /* HugoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HugoTests.h; sourceTree = "<group>"; };
 		5532BF9615D07EC9001D1AAA /* HugoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HugoTests.m; sourceTree = "<group>"; };
-		5532BFA015D07EEC001D1AAA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		5532BFA215D07F16001D1AAA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5532BFA415D07F1B001D1AAA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5532BFA615D07F50001D1AAA /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
@@ -133,6 +132,7 @@
 		553D9ABD15E43F8800989F07 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		553D9ABE15E43F8800989F07 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		553D9ABF15E43F8800989F07 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		553D9B7415ED904B00989F07 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +154,7 @@
 				5532BF5F15D07EC8001D1AAA /* Foundation.framework in Frameworks */,
 				5532BF6115D07EC8001D1AAA /* CoreGraphics.framework in Frameworks */,
 				5532BF6315D07EC8001D1AAA /* CoreData.framework in Frameworks */,
-				5532BFA115D07EEC001D1AAA /* Parse.framework in Frameworks */,
+				553D9B7515ED904B00989F07 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +195,7 @@
 		5532BF5B15D07EC8001D1AAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B7415ED904B00989F07 /* Parse.framework */,
 				5532BFC515D1CDD6001D1AAA /* CoreLocation.framework */,
 				5532BFC315D1CB51001D1AAA /* MapKit.framework */,
 				5532BFB015D07F6F001D1AAA /* SystemConfiguration.framework */,
@@ -205,7 +206,6 @@
 				5532BFA615D07F50001D1AAA /* libz.1.1.3.dylib */,
 				5532BFA415D07F1B001D1AAA /* CFNetwork.framework */,
 				5532BFA215D07F16001D1AAA /* AudioToolbox.framework */,
-				5532BFA015D07EEC001D1AAA /* Parse.framework */,
 				5532BF5C15D07EC8001D1AAA /* UIKit.framework */,
 				5532BF5E15D07EC8001D1AAA /* Foundation.framework */,
 				5532BF6015D07EC8001D1AAA /* CoreGraphics.framework */,

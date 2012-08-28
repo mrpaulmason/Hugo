@@ -45,7 +45,6 @@
 		553D9B5515EC5E3300989F07 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B4815EC5E3300989F07 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		553D9B5615EC5E3300989F07 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B4A15EC5E3300989F07 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		553D9B5715EC5E3300989F07 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B4C15EC5E3300989F07 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		553D9B5815EC5E3300989F07 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B4D15EC5E3300989F07 /* Parse.framework */; };
 		553D9B5A15EC5E8100989F07 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B5915EC5E8100989F07 /* AudioToolbox.framework */; };
 		553D9B5C15EC5E8800989F07 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B5B15EC5E8700989F07 /* CFNetwork.framework */; };
 		553D9B5E15EC5E9300989F07 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B5D15EC5E9300989F07 /* libsqlite3.dylib */; };
@@ -55,6 +54,7 @@
 		553D9B6615EC5EAE00989F07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6515EC5EAE00989F07 /* Security.framework */; };
 		553D9B6815EC5EB400989F07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6715EC5EB400989F07 /* StoreKit.framework */; };
 		553D9B6A15EC5EB900989F07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */; };
+		553D9B7815ED907800989F07 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B7715ED907800989F07 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,7 +117,6 @@
 		553D9B4A15EC5E3300989F07 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		553D9B4B15EC5E3300989F07 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		553D9B4C15EC5E3300989F07 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		553D9B4D15EC5E3300989F07 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		553D9B5915EC5E8100989F07 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		553D9B5B15EC5E8700989F07 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		553D9B5D15EC5E9300989F07 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -127,6 +126,7 @@
 		553D9B6515EC5EAE00989F07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		553D9B6715EC5EB400989F07 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		553D9B7715ED907800989F07 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 				553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */,
 				553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */,
 				553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */,
-				553D9B5815EC5E3300989F07 /* Parse.framework in Frameworks */,
+				553D9B7815ED907800989F07 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +175,7 @@
 		553D9ADC15EC24AD00989F07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B7715ED907800989F07 /* Parse.framework */,
 				553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */,
 				553D9B6715EC5EB400989F07 /* StoreKit.framework */,
 				553D9B6515EC5EAE00989F07 /* Security.framework */,
@@ -184,7 +185,6 @@
 				553D9B5D15EC5E9300989F07 /* libsqlite3.dylib */,
 				553D9B5B15EC5E8700989F07 /* CFNetwork.framework */,
 				553D9B5915EC5E8100989F07 /* AudioToolbox.framework */,
-				553D9B4D15EC5E3300989F07 /* Parse.framework */,
 				553D9B2815EC560B00989F07 /* MapKit.framework */,
 				553D9ADD15EC24AD00989F07 /* UIKit.framework */,
 				553D9ADF15EC24AD00989F07 /* Foundation.framework */,
@@ -559,6 +559,7 @@
 				553D9AF915EC24AD00989F07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
