@@ -157,15 +157,6 @@
 		553D9ACE15EC24AD00989F07 = {
 			isa = PBXGroup;
 			children = (
-				553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */,
-				553D9B6715EC5EB400989F07 /* StoreKit.framework */,
-				553D9B6515EC5EAE00989F07 /* Security.framework */,
-				553D9B6315EC5EA800989F07 /* QuartzCore.framework */,
-				553D9B6115EC5E9F00989F07 /* MobileCoreServices.framework */,
-				553D9B5F15EC5E9A00989F07 /* libz.1.1.3.dylib */,
-				553D9B5D15EC5E9300989F07 /* libsqlite3.dylib */,
-				553D9B5B15EC5E8700989F07 /* CFNetwork.framework */,
-				553D9B5915EC5E8100989F07 /* AudioToolbox.framework */,
 				553D9B3715EC5E3300989F07 /* AFNetworking */,
 				553D9AE315EC24AD00989F07 /* HugoClient */,
 				553D9ADC15EC24AD00989F07 /* Frameworks */,
@@ -184,6 +175,15 @@
 		553D9ADC15EC24AD00989F07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */,
+				553D9B6715EC5EB400989F07 /* StoreKit.framework */,
+				553D9B6515EC5EAE00989F07 /* Security.framework */,
+				553D9B6315EC5EA800989F07 /* QuartzCore.framework */,
+				553D9B6115EC5E9F00989F07 /* MobileCoreServices.framework */,
+				553D9B5F15EC5E9A00989F07 /* libz.1.1.3.dylib */,
+				553D9B5D15EC5E9300989F07 /* libsqlite3.dylib */,
+				553D9B5B15EC5E8700989F07 /* CFNetwork.framework */,
+				553D9B5915EC5E8100989F07 /* AudioToolbox.framework */,
 				553D9B4D15EC5E3300989F07 /* Parse.framework */,
 				553D9B2815EC560B00989F07 /* MapKit.framework */,
 				553D9ADD15EC24AD00989F07 /* UIKit.framework */,
