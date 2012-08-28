@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADD15EC24AD00989F07 /* UIKit.framework */; };
+		553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADF15EC24AD00989F07 /* Foundation.framework */; };
+		553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9AE115EC24AD00989F07 /* CoreGraphics.framework */; };
+		553D9AE815EC24AD00989F07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AE615EC24AD00989F07 /* InfoPlist.strings */; };
+		553D9AEA15EC24AD00989F07 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9AE915EC24AD00989F07 /* main.m */; };
+		553D9AEE15EC24AD00989F07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9AED15EC24AD00989F07 /* AppDelegate.m */; };
+		553D9AF115EC24AD00989F07 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AEF15EC24AD00989F07 /* MainStoryboard.storyboard */; };
+		553D9AF415EC24AD00989F07 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9AF315EC24AD00989F07 /* ViewController.m */; };
+		553D9B0715EC3E8900989F07 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFB15EC3E8900989F07 /* gray.png */; };
+		553D9B0815EC3E8900989F07 /* hugo.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFC15EC3E8900989F07 /* hugo.png */; };
+		553D9B0915EC3E8900989F07 /* homeA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFE15EC3E8900989F07 /* homeA.png */; };
+		553D9B0A15EC3E8900989F07 /* homeB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFF15EC3E8900989F07 /* homeB.png */; };
+		553D9B0B15EC3E8900989F07 /* locationA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0015EC3E8900989F07 /* locationA.png */; };
+		553D9B0C15EC3E8900989F07 /* locationB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0115EC3E8900989F07 /* locationB.png */; };
+		553D9B0D15EC3E8900989F07 /* profileA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0215EC3E8900989F07 /* profileA.png */; };
+		553D9B0E15EC3E8900989F07 /* profileB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0315EC3E8900989F07 /* profileB.png */; };
+		553D9B0F15EC3E8900989F07 /* searchA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0415EC3E8900989F07 /* searchA.png */; };
+		553D9B1015EC3E8900989F07 /* searchB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0515EC3E8900989F07 /* searchB.png */; };
+		553D9B1115EC3E8900989F07 /* headerbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0615EC3E8900989F07 /* headerbar.png */; };
+		553D9B1A15EC3F3F00989F07 /* HugoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1915EC3F3F00989F07 /* HugoViewController.m */; };
+		553D9B2015EC44A300989F07 /* HugoNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		553D9AD915EC24AD00989F07 /* HugoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HugoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		553D9ADD15EC24AD00989F07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		553D9ADF15EC24AD00989F07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		553D9AE115EC24AD00989F07 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		553D9AE515EC24AD00989F07 /* HugoClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HugoClient-Info.plist"; sourceTree = "<group>"; };
+		553D9AE715EC24AD00989F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		553D9AE915EC24AD00989F07 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		553D9AEB15EC24AD00989F07 /* HugoClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HugoClient-Prefix.pch"; sourceTree = "<group>"; };
+		553D9AEC15EC24AD00989F07 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		553D9AED15EC24AD00989F07 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		553D9AF015EC24AD00989F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		553D9AF215EC24AD00989F07 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		553D9AF315EC24AD00989F07 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		553D9AFB15EC3E8900989F07 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
+		553D9AFC15EC3E8900989F07 /* hugo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hugo.png; sourceTree = "<group>"; };
+		553D9AFE15EC3E8900989F07 /* homeA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeA.png; sourceTree = "<group>"; };
+		553D9AFF15EC3E8900989F07 /* homeB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeB.png; sourceTree = "<group>"; };
+		553D9B0015EC3E8900989F07 /* locationA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationA.png; sourceTree = "<group>"; };
+		553D9B0115EC3E8900989F07 /* locationB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationB.png; sourceTree = "<group>"; };
+		553D9B0215EC3E8900989F07 /* profileA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileA.png; sourceTree = "<group>"; };
+		553D9B0315EC3E8900989F07 /* profileB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileB.png; sourceTree = "<group>"; };
+		553D9B0415EC3E8900989F07 /* searchA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchA.png; sourceTree = "<group>"; };
+		553D9B0515EC3E8900989F07 /* searchB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchB.png; sourceTree = "<group>"; };
+		553D9B0615EC3E8900989F07 /* headerbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerbar.png; sourceTree = "<group>"; };
+		553D9B1815EC3F3F00989F07 /* HugoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoViewController.h; path = UserInterface/Shared/HugoViewController.h; sourceTree = "<group>"; };
+		553D9B1915EC3F3F00989F07 /* HugoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoViewController.m; path = UserInterface/Shared/HugoViewController.m; sourceTree = "<group>"; };
+		553D9B1E15EC44A300989F07 /* HugoNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNavigationBar.h; path = UserInterface/Shared/HugoNavigationBar.h; sourceTree = "<group>"; };
+		553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoNavigationBar.m; path = UserInterface/Shared/HugoNavigationBar.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		553D9AD615EC24AD00989F07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */,
+				553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */,
+				553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		553D9ACE15EC24AD00989F07 = {
+			isa = PBXGroup;
+			children = (
+				553D9AE315EC24AD00989F07 /* HugoClient */,
+				553D9ADC15EC24AD00989F07 /* Frameworks */,
+				553D9ADA15EC24AD00989F07 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		553D9ADA15EC24AD00989F07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				553D9AD915EC24AD00989F07 /* HugoClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		553D9ADC15EC24AD00989F07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				553D9ADD15EC24AD00989F07 /* UIKit.framework */,
+				553D9ADF15EC24AD00989F07 /* Foundation.framework */,
+				553D9AE115EC24AD00989F07 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		553D9AE315EC24AD00989F07 /* HugoClient */ = {
+			isa = PBXGroup;
+			children = (
+				553D9B1215EC3EB000989F07 /* Hugo Flow */,
+				553D9AFA15EC3E6500989F07 /* Resources */,
+				553D9AEC15EC24AD00989F07 /* AppDelegate.h */,
+				553D9AED15EC24AD00989F07 /* AppDelegate.m */,
+				553D9AEF15EC24AD00989F07 /* MainStoryboard.storyboard */,
+				553D9AF215EC24AD00989F07 /* ViewController.h */,
+				553D9AF315EC24AD00989F07 /* ViewController.m */,
+				553D9AE415EC24AD00989F07 /* Supporting Files */,
+			);
+			path = HugoClient;
+			sourceTree = "<group>";
+		};
+		553D9AE415EC24AD00989F07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				553D9AE515EC24AD00989F07 /* HugoClient-Info.plist */,
+				553D9AE615EC24AD00989F07 /* InfoPlist.strings */,
+				553D9AE915EC24AD00989F07 /* main.m */,
+				553D9AEB15EC24AD00989F07 /* HugoClient-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		553D9AFA15EC3E6500989F07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				553D9AFB15EC3E8900989F07 /* gray.png */,
+				553D9AFC15EC3E8900989F07 /* hugo.png */,
+				553D9AFD15EC3E8900989F07 /* menu buttons */,
+				553D9B0615EC3E8900989F07 /* headerbar.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		553D9AFD15EC3E8900989F07 /* menu buttons */ = {
+			isa = PBXGroup;
+			children = (
+				553D9AFE15EC3E8900989F07 /* homeA.png */,
+				553D9AFF15EC3E8900989F07 /* homeB.png */,
+				553D9B0015EC3E8900989F07 /* locationA.png */,
+				553D9B0115EC3E8900989F07 /* locationB.png */,
+				553D9B0215EC3E8900989F07 /* profileA.png */,
+				553D9B0315EC3E8900989F07 /* profileB.png */,
+				553D9B0415EC3E8900989F07 /* searchA.png */,
+				553D9B0515EC3E8900989F07 /* searchB.png */,
+			);
+			path = "menu buttons";
+			sourceTree = "<group>";
+		};
+		553D9B1215EC3EB000989F07 /* Hugo Flow */ = {
+			isa = PBXGroup;
+			children = (
+				553D9B1715EC3EDE00989F07 /* Shared */,
+				553D9B1615EC3ED900989F07 /* Profile */,
+				553D9B1515EC3ED400989F07 /* Location */,
+				553D9B1415EC3ECE00989F07 /* Search */,
+				553D9B1315EC3EB900989F07 /* Newsfeed */,
+			);
+			name = "Hugo Flow";
+			sourceTree = "<group>";
+		};
+		553D9B1315EC3EB900989F07 /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Newsfeed;
+			sourceTree = "<group>";
+		};
+		553D9B1415EC3ECE00989F07 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		553D9B1515EC3ED400989F07 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		553D9B1615EC3ED900989F07 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		553D9B1715EC3EDE00989F07 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				553D9B1815EC3F3F00989F07 /* HugoViewController.h */,
+				553D9B1915EC3F3F00989F07 /* HugoViewController.m */,
+				553D9B1E15EC44A300989F07 /* HugoNavigationBar.h */,
+				553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		553D9AD815EC24AD00989F07 /* HugoClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 553D9AF715EC24AD00989F07 /* Build configuration list for PBXNativeTarget "HugoClient" */;
+			buildPhases = (
+				553D9AD515EC24AD00989F07 /* Sources */,
+				553D9AD615EC24AD00989F07 /* Frameworks */,
+				553D9AD715EC24AD00989F07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HugoClient;
+			productName = HugoClient;
+			productReference = 553D9AD915EC24AD00989F07 /* HugoClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		553D9AD015EC24AD00989F07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Hugo, Inc.";
+			};
+			buildConfigurationList = 553D9AD315EC24AD00989F07 /* Build configuration list for PBXProject "HugoClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 553D9ACE15EC24AD00989F07;
+			productRefGroup = 553D9ADA15EC24AD00989F07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				553D9AD815EC24AD00989F07 /* HugoClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		553D9AD715EC24AD00989F07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553D9AE815EC24AD00989F07 /* InfoPlist.strings in Resources */,
+				553D9AF115EC24AD00989F07 /* MainStoryboard.storyboard in Resources */,
+				553D9B0715EC3E8900989F07 /* gray.png in Resources */,
+				553D9B0815EC3E8900989F07 /* hugo.png in Resources */,
+				553D9B0915EC3E8900989F07 /* homeA.png in Resources */,
+				553D9B0A15EC3E8900989F07 /* homeB.png in Resources */,
+				553D9B0B15EC3E8900989F07 /* locationA.png in Resources */,
+				553D9B0C15EC3E8900989F07 /* locationB.png in Resources */,
+				553D9B0D15EC3E8900989F07 /* profileA.png in Resources */,
+				553D9B0E15EC3E8900989F07 /* profileB.png in Resources */,
+				553D9B0F15EC3E8900989F07 /* searchA.png in Resources */,
+				553D9B1015EC3E8900989F07 /* searchB.png in Resources */,
+				553D9B1115EC3E8900989F07 /* headerbar.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		553D9AD515EC24AD00989F07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553D9AEA15EC24AD00989F07 /* main.m in Sources */,
+				553D9AEE15EC24AD00989F07 /* AppDelegate.m in Sources */,
+				553D9AF415EC24AD00989F07 /* ViewController.m in Sources */,
+				553D9B1A15EC3F3F00989F07 /* HugoViewController.m in Sources */,
+				553D9B2015EC44A300989F07 /* HugoNavigationBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		553D9AE615EC24AD00989F07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				553D9AE715EC24AD00989F07 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		553D9AEF15EC24AD00989F07 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				553D9AF015EC24AD00989F07 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		553D9AF515EC24AD00989F07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		553D9AF615EC24AD00989F07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		553D9AF815EC24AD00989F07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HugoClient/HugoClient-Prefix.pch";
+				INFOPLIST_FILE = "HugoClient/HugoClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		553D9AF915EC24AD00989F07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HugoClient/HugoClient-Prefix.pch";
+				INFOPLIST_FILE = "HugoClient/HugoClient-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		553D9AD315EC24AD00989F07 /* Build configuration list for PBXProject "HugoClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				553D9AF515EC24AD00989F07 /* Debug */,
+				553D9AF615EC24AD00989F07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		553D9AF715EC24AD00989F07 /* Build configuration list for PBXNativeTarget "HugoClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				553D9AF815EC24AD00989F07 /* Debug */,
+				553D9AF915EC24AD00989F07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 553D9AD015EC24AD00989F07 /* Project object */;
+}
