@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    [Parse setApplicationId:@"1Vc1VUGNYKnxMv9sTqAaCI4VTuDdQ5DlgMQLvCh7"
+                  clientKey:@"CsU23rZMEWSx0f0dH0G6ggbitZlH2MuJ4D6gxvWr"];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     // Override point for customization after application launch.
     return YES;
