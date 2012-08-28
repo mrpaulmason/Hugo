@@ -28,6 +28,9 @@
 		553D9B1115EC3E8900989F07 /* headerbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0615EC3E8900989F07 /* headerbar.png */; };
 		553D9B1A15EC3F3F00989F07 /* HugoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1915EC3F3F00989F07 /* HugoViewController.m */; };
 		553D9B2015EC44A300989F07 /* HugoNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */; };
+		553D9B2315EC47DF00989F07 /* HugoSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */; };
+		553D9B2615EC546C00989F07 /* facebook_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B2415EC546C00989F07 /* facebook_glowy.png */; };
+		553D9B2715EC546C00989F07 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B2515EC546C00989F07 /* facebook.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,10 @@
 		553D9B1915EC3F3F00989F07 /* HugoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoViewController.m; path = UserInterface/Shared/HugoViewController.m; sourceTree = "<group>"; };
 		553D9B1E15EC44A300989F07 /* HugoNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNavigationBar.h; path = UserInterface/Shared/HugoNavigationBar.h; sourceTree = "<group>"; };
 		553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoNavigationBar.m; path = UserInterface/Shared/HugoNavigationBar.m; sourceTree = "<group>"; };
+		553D9B2115EC47DF00989F07 /* HugoSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSearchViewController.h; path = UserInterface/Search/HugoSearchViewController.h; sourceTree = "<group>"; };
+		553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSearchViewController.m; path = UserInterface/Search/HugoSearchViewController.m; sourceTree = "<group>"; };
+		553D9B2415EC546C00989F07 /* facebook_glowy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_glowy.png; sourceTree = "<group>"; };
+		553D9B2515EC546C00989F07 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +138,8 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B2415EC546C00989F07 /* facebook_glowy.png */,
+				553D9B2515EC546C00989F07 /* facebook.png */,
 				553D9AFB15EC3E8900989F07 /* gray.png */,
 				553D9AFC15EC3E8900989F07 /* hugo.png */,
 				553D9AFD15EC3E8900989F07 /* menu buttons */,
@@ -176,6 +185,8 @@
 		553D9B1415EC3ECE00989F07 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B2115EC47DF00989F07 /* HugoSearchViewController.h */,
+				553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -269,6 +280,8 @@
 				553D9B0F15EC3E8900989F07 /* searchA.png in Resources */,
 				553D9B1015EC3E8900989F07 /* searchB.png in Resources */,
 				553D9B1115EC3E8900989F07 /* headerbar.png in Resources */,
+				553D9B2615EC546C00989F07 /* facebook_glowy.png in Resources */,
+				553D9B2715EC546C00989F07 /* facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +297,7 @@
 				553D9AF415EC24AD00989F07 /* ViewController.m in Sources */,
 				553D9B1A15EC3F3F00989F07 /* HugoViewController.m in Sources */,
 				553D9B2015EC44A300989F07 /* HugoNavigationBar.m in Sources */,
+				553D9B2315EC47DF00989F07 /* HugoSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
