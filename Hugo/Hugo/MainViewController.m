@@ -53,9 +53,8 @@
 - (IBAction)loginButtonTouchHandler:(id)sender
 {
     // The permissions requested from the user
-    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me",
-                                 @"user_relationships",@"user_birthday",@"user_location",
-                                 @"offline_access", @"friends_status", @"user_status", nil];
+    NSArray *permissionsArray = [NSArray arrayWithObjects:@"user_about_me", @"friends_about_me", @"friends_hometown", @"users_hometown"
+                                 @"user_relationships",@"user_birthday",@"user_location", @"friends_location", @"email", @"publish_checkins", @"offline_access", @"friends_status", @"user_status", nil];
     
         
     // Log in

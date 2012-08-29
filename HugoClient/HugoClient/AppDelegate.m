@@ -16,6 +16,9 @@
     [Parse setApplicationId:@"1Vc1VUGNYKnxMv9sTqAaCI4VTuDdQ5DlgMQLvCh7"
                   clientKey:@"CsU23rZMEWSx0f0dH0G6ggbitZlH2MuJ4D6gxvWr"];
     
+    [PFFacebookUtils initializeWithApplicationId:@"469021446449087"];
+    
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 
     // Override point for customization after application launch.
@@ -47,6 +50,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark Facebook
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 @end

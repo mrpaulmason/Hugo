@@ -55,6 +55,7 @@
 		553D9B6815EC5EB400989F07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6715EC5EB400989F07 /* StoreKit.framework */; };
 		553D9B6A15EC5EB900989F07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */; };
 		553D9B7815ED907800989F07 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B7715ED907800989F07 /* Parse.framework */; };
+		553D9B7C15ED922600989F07 /* HugoLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B7B15ED922600989F07 /* HugoLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,8 @@
 		553D9B6715EC5EB400989F07 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		553D9B7715ED907800989F07 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		553D9B7A15ED922600989F07 /* HugoLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoLoginViewController.h; path = Login/HugoLoginViewController.h; sourceTree = "<group>"; };
+		553D9B7B15ED922600989F07 /* HugoLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoLoginViewController.m; path = Login/HugoLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +255,7 @@
 		553D9B1215EC3EB000989F07 /* Hugo Flow */ = {
 			isa = PBXGroup;
 			children = (
+				553D9B7915ED920D00989F07 /* Login */,
 				553D9B1715EC3EDE00989F07 /* Shared */,
 				553D9B1615EC3ED900989F07 /* Profile */,
 				553D9B1515EC3ED400989F07 /* Location */,
@@ -339,6 +343,15 @@
 				553D9B4C15EC5E3300989F07 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		553D9B7915ED920D00989F07 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				553D9B7A15ED922600989F07 /* HugoLoginViewController.h */,
+				553D9B7B15ED922600989F07 /* HugoLoginViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +449,7 @@
 				553D9B5515EC5E3300989F07 /* AFURLConnectionOperation.m in Sources */,
 				553D9B5615EC5E3300989F07 /* AFXMLRequestOperation.m in Sources */,
 				553D9B5715EC5E3300989F07 /* UIImageView+AFNetworking.m in Sources */,
+				553D9B7C15ED922600989F07 /* HugoLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
