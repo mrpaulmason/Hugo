@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#define kHUGOLocationChangeNotification @"kHUGOLocationChangeNotification"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+{
+    CLLocationManager *locationManager;
+    CLLocation *lastLocation;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic, retain) CLLocation *lastLocation;
+
+- (void)setCurrentLocation:(CLLocation *)aCurrentLocation;
+- (void)startStandardUpdates;
 
 @end

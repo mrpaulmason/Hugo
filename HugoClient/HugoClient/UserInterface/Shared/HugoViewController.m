@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Hugo, Inc. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "HugoViewController.h"
 
 @interface HugoViewController ()
@@ -40,6 +41,10 @@
     [item1 setFinishedSelectedImage:selectedImage1 withFinishedUnselectedImage:unselectedImage1];
     [item2 setFinishedSelectedImage:selectedImage2 withFinishedUnselectedImage:unselectedImage2];
     [item3 setFinishedSelectedImage:selectedImage3 withFinishedUnselectedImage:unselectedImage3];
+
+    id appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate startStandardUpdates];
+    
     [super viewDidLoad];
 
 }

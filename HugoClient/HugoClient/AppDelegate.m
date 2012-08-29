@@ -11,6 +11,8 @@
 
 @implementation AppDelegate
 
+@synthesize locationManager, lastLocation;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Parse setApplicationId:@"1Vc1VUGNYKnxMv9sTqAaCI4VTuDdQ5DlgMQLvCh7"
@@ -52,11 +54,61 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark Facebook
+#pragma mark - Facebook
 // For 4.2+ support
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [PFFacebookUtils handleOpenURL:url];
 }
+
+#pragma mark - Location Data
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    // If it's a relatively recent event, turn off updates to save power
+    NSDate* eventDate = newLocation.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0)
+    {
+        NSLog(@"latitude %+.6f, longitude %+.6f\n",
+              newLocation.coordinate.latitude,
+              newLocation.coordinate.longitude);
+        [self setCurrentLocation:newLocation];
+    }
+    // else skip the event and process the next one.
+}
+
+- (void)setCurrentLocation:(CLLocation *)aCurrentLocation
+{
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: aCurrentLocation
+                                                         forKey:@"location"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: kHUGOLocationChangeNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
+    [self setLastLocation:aCurrentLocation];
+}
+
+- (void)dealloc
+{
+    self.locationManager.delegate = nil;
+}
+
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == self.locationManager)
+        self.locationManager = [[CLLocationManager alloc] init];
+    
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    
+    // Set a movement threshold for new events.
+    self.locationManager.distanceFilter = 500;
+    
+    [self.locationManager startUpdatingLocation];
+}
+
 
 @end
