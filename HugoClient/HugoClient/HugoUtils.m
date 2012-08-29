@@ -8,6 +8,7 @@
 
 #import "HugoUtils.h"
 #import "AFNetworking.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation HugoUtils
 
@@ -40,6 +41,7 @@
     [operation start];
     
 }
+
 
 
 @end

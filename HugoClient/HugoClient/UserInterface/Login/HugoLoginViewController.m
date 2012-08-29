@@ -7,6 +7,7 @@
 //
 
 #import "HugoLoginViewController.h"
+#import "HugoUtils.h"
 #import <Parse/Parse.h> 
 
 @interface HugoLoginViewController ()
@@ -60,9 +61,15 @@
                                             }
                                         } else if (user.isNew) { // Success - a new user was created
                                             NSLog(@"User with facebook signed up and logged in!");
+
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate]];
+
                                             [self performSegueWithIdentifier:@"UserLoginSuccess" sender:self];
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
+
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate]];
+                                            
                                             [self performSegueWithIdentifier:@"UserLoginSuccess" sender:self];
                                         }
                                     }];

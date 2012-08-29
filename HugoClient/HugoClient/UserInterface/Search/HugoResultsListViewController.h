@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface HugoResultsListViewController : UIViewController
+{
+    NSArray *results;
+    UITableView *tableView;
+}
+
+@property (nonatomic, retain) NSArray *results;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end
