@@ -203,6 +203,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="x6A-kz-TP8"/>
                     <connections>
+                        <outlet property="mapView" destination="GjV-H7-sVX" id="OVY-RH-rzb"/>
                         <outlet property="searchDisplayController" destination="FY7-aV-8Pd" id="NaD-Kd-VhF"/>
                         <outlet property="tableView" destination="Y5l-Ve-HQz" id="BhG-ZT-vMY"/>
                     </connections>
@@ -460,6 +461,7 @@
         <class className="HugoResultsListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoResultsListViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

@@ -71,6 +71,8 @@
 		553D9BAB15EDBCE000989F07 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B9D15EDBCE000989F07 /* SBJsonTokeniser.m */; };
 		553D9BAC15EDBCE000989F07 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B9F15EDBCE000989F07 /* SBJsonUTF8Stream.m */; };
 		553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BA115EDBCE000989F07 /* SBJsonWriter.m */; };
+		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
+		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +177,10 @@
 		553D9B9F15EDBCE000989F07 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		553D9BA015EDBCE000989F07 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		553D9BA115EDBCE000989F07 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		553D9BB215EDBEEE00989F07 /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
+		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +329,10 @@
 		553D9B1415EC3ECE00989F07 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				553D9BB715EDBFC400989F07 /* AddressAnnotation.h */,
+				553D9BB815EDBFC500989F07 /* AddressAnnotation.m */,
+				553D9BB215EDBEEE00989F07 /* MKMapView+ZoomLevel.h */,
+				553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */,
 				553D9B2115EC47DF00989F07 /* HugoSearchViewController.h */,
 				553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */,
 				553D9B2C15EC581600989F07 /* HugoResultsListViewController.h */,
@@ -548,6 +558,8 @@
 				553D9BAB15EDBCE000989F07 /* SBJsonTokeniser.m in Sources */,
 				553D9BAC15EDBCE000989F07 /* SBJsonUTF8Stream.m in Sources */,
 				553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */,
+				553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */,
+				553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
