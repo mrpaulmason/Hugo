@@ -73,6 +73,7 @@
 		553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BA115EDBCE000989F07 /* SBJsonWriter.m */; };
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
+		5580948F15F40D60009C7D9A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 5580948E15F40D60009C7D9A /* main.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,6 +182,7 @@
 		553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
+		5580948E15F40D60009C7D9A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +282,7 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5580948E15F40D60009C7D9A /* main.png */,
 				553D9B2A15EC57D700989F07 /* icon.jpeg */,
 				553D9B2415EC546C00989F07 /* facebook_glowy.png */,
 				553D9B2515EC546C00989F07 /* facebook.png */,
@@ -515,6 +518,7 @@
 				553D9B2615EC546C00989F07 /* facebook_glowy.png in Resources */,
 				553D9B2715EC546C00989F07 /* facebook.png in Resources */,
 				553D9B2B15EC57D700989F07 /* icon.jpeg in Resources */,
+				5580948F15F40D60009C7D9A /* main.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

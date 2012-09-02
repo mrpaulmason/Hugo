@@ -20,6 +20,9 @@
     
     [PFFacebookUtils initializeWithApplicationId:@"469021446449087"];
     
+    NSArray *timeZones = [NSTimeZone knownTimeZoneNames];
+    
+    NSLog(@"%@", timeZones);
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 

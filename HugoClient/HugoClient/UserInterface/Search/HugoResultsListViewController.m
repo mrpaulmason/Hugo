@@ -46,10 +46,9 @@
 
             for (NSDictionary *item in self.results)
             {
-                NSString *locationS = [[item objectForKey:@"spot_location"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
                 NSError *error = [[NSError alloc] init];
 
-                NSDictionary *locationData = [parser objectWithString:locationS error:&error];
+                NSDictionary *locationData = [parser objectWithString:[item objectForKey:@"spot_location"] error:&error];
                 
                 
                 CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[locationData objectForKey:@"latitude"] floatValue], [[locationData objectForKey:@"longitude"] floatValue]);
@@ -103,9 +102,7 @@
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:200];
     nameLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"];
     
-    NSString *locationS = [[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"] stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
-    
-    NSDictionary *location_dict = [parser objectWithString:locationS error:nil];
+    NSDictionary *location_dict = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]  error:nil];
     
     UILabel *gameLabel = (UILabel *)[cell viewWithTag:201];
     gameLabel.text = [location_dict objectForKey:@"street"];
