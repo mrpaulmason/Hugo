@@ -107,10 +107,16 @@
     UILabel *gameLabel = (UILabel *)[cell viewWithTag:201];
     gameLabel.text = [location_dict objectForKey:@"street"];
     
+    NSArray *pics = [[results objectAtIndex:indexPath.row] objectForKey:@"pics"];
     
-    UIImageView * img1 = (UIImageView *) [cell viewWithTag:100];
-    [img1 setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"person_pic_small"]]];
     
+    int c = 0;
+    for(NSString *imgURL in pics)
+    {
+        UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+c];
+        [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
+        c++;
+    }
     
         
     return cell;
