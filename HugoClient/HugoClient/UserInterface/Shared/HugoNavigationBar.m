@@ -22,7 +22,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    CGSize newSize = CGSizeMake(self.frame.size.width,40);
+    CGSize newSize = CGSizeMake(self.frame.size.width,45);
     return newSize;
 }
 
@@ -32,8 +32,12 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    UIImage *image = [UIImage imageNamed:@"hugo.png"];
+    UIImage *image = [UIImage imageNamed:@"assets/generic/header.png"];
     [image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+
+    UIImage *imageLogo = [UIImage imageNamed:@"assets/generic/logo.png"];
+    [imageLogo drawInRect:CGRectMake(128, 7, imageLogo.size.width, imageLogo.size.height)];
+
 }
 
 

@@ -15,22 +15,9 @@
 		553D9AEE15EC24AD00989F07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9AED15EC24AD00989F07 /* AppDelegate.m */; };
 		553D9AF115EC24AD00989F07 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AEF15EC24AD00989F07 /* MainStoryboard.storyboard */; };
 		553D9AF415EC24AD00989F07 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9AF315EC24AD00989F07 /* ViewController.m */; };
-		553D9B0715EC3E8900989F07 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFB15EC3E8900989F07 /* gray.png */; };
-		553D9B0815EC3E8900989F07 /* hugo.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFC15EC3E8900989F07 /* hugo.png */; };
-		553D9B0915EC3E8900989F07 /* homeA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFE15EC3E8900989F07 /* homeA.png */; };
-		553D9B0A15EC3E8900989F07 /* homeB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9AFF15EC3E8900989F07 /* homeB.png */; };
-		553D9B0B15EC3E8900989F07 /* locationA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0015EC3E8900989F07 /* locationA.png */; };
-		553D9B0C15EC3E8900989F07 /* locationB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0115EC3E8900989F07 /* locationB.png */; };
-		553D9B0D15EC3E8900989F07 /* profileA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0215EC3E8900989F07 /* profileA.png */; };
-		553D9B0E15EC3E8900989F07 /* profileB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0315EC3E8900989F07 /* profileB.png */; };
-		553D9B0F15EC3E8900989F07 /* searchA.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0415EC3E8900989F07 /* searchA.png */; };
-		553D9B1015EC3E8900989F07 /* searchB.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0515EC3E8900989F07 /* searchB.png */; };
-		553D9B1115EC3E8900989F07 /* headerbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B0615EC3E8900989F07 /* headerbar.png */; };
 		553D9B1A15EC3F3F00989F07 /* HugoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1915EC3F3F00989F07 /* HugoViewController.m */; };
 		553D9B2015EC44A300989F07 /* HugoNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */; };
 		553D9B2315EC47DF00989F07 /* HugoSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */; };
-		553D9B2615EC546C00989F07 /* facebook_glowy.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B2415EC546C00989F07 /* facebook_glowy.png */; };
-		553D9B2715EC546C00989F07 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B2515EC546C00989F07 /* facebook.png */; };
 		553D9B2915EC560C00989F07 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B2815EC560B00989F07 /* MapKit.framework */; };
 		553D9B2B15EC57D700989F07 /* icon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 553D9B2A15EC57D700989F07 /* icon.jpeg */; };
 		553D9B2E15EC581600989F07 /* HugoResultsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B2D15EC581600989F07 /* HugoResultsListViewController.m */; };
@@ -73,6 +60,7 @@
 		553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BA115EDBCE000989F07 /* SBJsonWriter.m */; };
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
+		557350AA15FAB6B100EB6A82 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 557350A915FAB6B100EB6A82 /* assets */; };
 		5580948F15F40D60009C7D9A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 5580948E15F40D60009C7D9A /* main.png */; };
 /* End PBXBuildFile section */
 
@@ -90,25 +78,12 @@
 		553D9AF015EC24AD00989F07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		553D9AF215EC24AD00989F07 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		553D9AF315EC24AD00989F07 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		553D9AFB15EC3E8900989F07 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
-		553D9AFC15EC3E8900989F07 /* hugo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hugo.png; sourceTree = "<group>"; };
-		553D9AFE15EC3E8900989F07 /* homeA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeA.png; sourceTree = "<group>"; };
-		553D9AFF15EC3E8900989F07 /* homeB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeB.png; sourceTree = "<group>"; };
-		553D9B0015EC3E8900989F07 /* locationA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationA.png; sourceTree = "<group>"; };
-		553D9B0115EC3E8900989F07 /* locationB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationB.png; sourceTree = "<group>"; };
-		553D9B0215EC3E8900989F07 /* profileA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileA.png; sourceTree = "<group>"; };
-		553D9B0315EC3E8900989F07 /* profileB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileB.png; sourceTree = "<group>"; };
-		553D9B0415EC3E8900989F07 /* searchA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchA.png; sourceTree = "<group>"; };
-		553D9B0515EC3E8900989F07 /* searchB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchB.png; sourceTree = "<group>"; };
-		553D9B0615EC3E8900989F07 /* headerbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerbar.png; sourceTree = "<group>"; };
 		553D9B1815EC3F3F00989F07 /* HugoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoViewController.h; path = UserInterface/Shared/HugoViewController.h; sourceTree = "<group>"; };
 		553D9B1915EC3F3F00989F07 /* HugoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoViewController.m; path = UserInterface/Shared/HugoViewController.m; sourceTree = "<group>"; };
 		553D9B1E15EC44A300989F07 /* HugoNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNavigationBar.h; path = UserInterface/Shared/HugoNavigationBar.h; sourceTree = "<group>"; };
 		553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoNavigationBar.m; path = UserInterface/Shared/HugoNavigationBar.m; sourceTree = "<group>"; };
 		553D9B2115EC47DF00989F07 /* HugoSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSearchViewController.h; path = UserInterface/Search/HugoSearchViewController.h; sourceTree = "<group>"; };
 		553D9B2215EC47DF00989F07 /* HugoSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSearchViewController.m; path = UserInterface/Search/HugoSearchViewController.m; sourceTree = "<group>"; };
-		553D9B2415EC546C00989F07 /* facebook_glowy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_glowy.png; sourceTree = "<group>"; };
-		553D9B2515EC546C00989F07 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		553D9B2815EC560B00989F07 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		553D9B2A15EC57D700989F07 /* icon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon.jpeg; sourceTree = "<group>"; };
 		553D9B2C15EC581600989F07 /* HugoResultsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoResultsListViewController.h; path = UserInterface/Search/HugoResultsListViewController.h; sourceTree = "<group>"; };
@@ -182,6 +157,7 @@
 		553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
+		557350A915FAB6B100EB6A82 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../Dropbox/Hugo/assets; sourceTree = "<group>"; };
 		5580948E15F40D60009C7D9A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,31 +258,11 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				557350A915FAB6B100EB6A82 /* assets */,
 				5580948E15F40D60009C7D9A /* main.png */,
 				553D9B2A15EC57D700989F07 /* icon.jpeg */,
-				553D9B2415EC546C00989F07 /* facebook_glowy.png */,
-				553D9B2515EC546C00989F07 /* facebook.png */,
-				553D9AFB15EC3E8900989F07 /* gray.png */,
-				553D9AFC15EC3E8900989F07 /* hugo.png */,
-				553D9AFD15EC3E8900989F07 /* menu buttons */,
-				553D9B0615EC3E8900989F07 /* headerbar.png */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		553D9AFD15EC3E8900989F07 /* menu buttons */ = {
-			isa = PBXGroup;
-			children = (
-				553D9AFE15EC3E8900989F07 /* homeA.png */,
-				553D9AFF15EC3E8900989F07 /* homeB.png */,
-				553D9B0015EC3E8900989F07 /* locationA.png */,
-				553D9B0115EC3E8900989F07 /* locationB.png */,
-				553D9B0215EC3E8900989F07 /* profileA.png */,
-				553D9B0315EC3E8900989F07 /* profileB.png */,
-				553D9B0415EC3E8900989F07 /* searchA.png */,
-				553D9B0515EC3E8900989F07 /* searchB.png */,
-			);
-			path = "menu buttons";
 			sourceTree = "<group>";
 		};
 		553D9B1215EC3EB000989F07 /* Hugo Flow */ = {
@@ -504,21 +460,9 @@
 			files = (
 				553D9AE815EC24AD00989F07 /* InfoPlist.strings in Resources */,
 				553D9AF115EC24AD00989F07 /* MainStoryboard.storyboard in Resources */,
-				553D9B0715EC3E8900989F07 /* gray.png in Resources */,
-				553D9B0815EC3E8900989F07 /* hugo.png in Resources */,
-				553D9B0915EC3E8900989F07 /* homeA.png in Resources */,
-				553D9B0A15EC3E8900989F07 /* homeB.png in Resources */,
-				553D9B0B15EC3E8900989F07 /* locationA.png in Resources */,
-				553D9B0C15EC3E8900989F07 /* locationB.png in Resources */,
-				553D9B0D15EC3E8900989F07 /* profileA.png in Resources */,
-				553D9B0E15EC3E8900989F07 /* profileB.png in Resources */,
-				553D9B0F15EC3E8900989F07 /* searchA.png in Resources */,
-				553D9B1015EC3E8900989F07 /* searchB.png in Resources */,
-				553D9B1115EC3E8900989F07 /* headerbar.png in Resources */,
-				553D9B2615EC546C00989F07 /* facebook_glowy.png in Resources */,
-				553D9B2715EC546C00989F07 /* facebook.png in Resources */,
 				553D9B2B15EC57D700989F07 /* icon.jpeg in Resources */,
 				5580948F15F40D60009C7D9A /* main.png in Resources */,
+				557350AA15FAB6B100EB6A82 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
