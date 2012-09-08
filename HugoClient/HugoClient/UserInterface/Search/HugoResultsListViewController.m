@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "MKMapView+ZoomLevel.h"
 #import "AddressAnnotation.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface HugoResultsListViewController ()
 
@@ -35,6 +36,8 @@
     CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
     [mapView setCenterCoordinate:coord zoomLevel:11 animated:YES];
     
+    [mapView setShowsUserLocation:YES];
+    
     HQuery *hQuery = [[HQuery alloc] init];
     [hQuery queryResults:coord withCallback:^(id JSON, NSError *error) {
         if (error == nil)
@@ -43,6 +46,12 @@
             self.results = JSON;
             [tableView reloadData];
             SBJsonParser *parser = [[SBJsonParser alloc] init];
+            double minLatitude, maxLatitude;
+            double minLongitude, maxLongitude;
+            double sumLatitude, sumLongitude;
+            int c = 0;
+            bool init = YES;
+                        
 
             for (NSDictionary *item in self.results)
             {
@@ -53,11 +62,30 @@
                 
                 CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[locationData objectForKey:@"latitude"] floatValue], [[locationData objectForKey:@"longitude"] floatValue]);
                 
+                sumLatitude += location.latitude;
+                sumLongitude += location.longitude;
+                c++;
+                
+                if (init)
+                {
+                    init = NO;
+                    minLatitude = location.latitude;
+                    maxLatitude = location.latitude;
+                    minLongitude = location.longitude;
+                    maxLongitude = location.longitude;
+                }
+                minLatitude = MIN(location.latitude, minLatitude);
+                maxLatitude = MAX(location.latitude, maxLatitude);
+
+                minLongitude = MIN(location.longitude, minLongitude);
+                maxLongitude = MAX(location.longitude, minLongitude);
+
+                
                 [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:location withTitle:[item objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
                 
             }
-
-
+            
+            [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(maxLatitude-minLatitude, maxLongitude-minLongitude))];
         
         }
     }];
@@ -114,6 +142,11 @@
     for(NSString *imgURL in pics)
     {
         UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+c];
+        img1.layer.cornerRadius = 5.0;
+        img1.layer.masksToBounds = YES;
+        img1.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        img1.layer.borderWidth = 1.0;
+        
         [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
         c++;
     }
