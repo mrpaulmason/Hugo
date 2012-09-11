@@ -138,6 +138,12 @@
     NSArray *pics = [[results objectAtIndex:indexPath.row] objectForKey:@"pics"];
     
     
+    for (int i = 0; i <= 6; i++)
+    {
+        UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+i];
+        img1.hidden = YES;
+    }
+    
     int c = 0;
     for(NSString *imgURL in pics)
     {
@@ -146,6 +152,7 @@
         img1.layer.masksToBounds = YES;
         img1.layer.borderColor = [UIColor lightGrayColor].CGColor;
         img1.layer.borderWidth = 1.0;
+        img1.hidden = NO;
         
         [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
         c++;
