@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 
-@interface HugoSearchViewController : UIViewController
+@interface HugoSearchViewController : PullRefreshTableViewController
 {
     NSMutableArray *categories;
     UITableView *tableView;

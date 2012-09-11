@@ -61,6 +61,8 @@
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
 		557350AA15FAB6B100EB6A82 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 557350A915FAB6B100EB6A82 /* assets */; };
+		557350AF15FFE48B00EB6A82 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 557350AC15FFE48B00EB6A82 /* arrow.png */; };
+		557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */; };
 		5580948F15F40D60009C7D9A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 5580948E15F40D60009C7D9A /* main.png */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +160,9 @@
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 		557350A915FAB6B100EB6A82 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../Dropbox/Hugo/assets; sourceTree = "<group>"; };
+		557350AC15FFE48B00EB6A82 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		557350AE15FFE48B00EB6A82 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		5580948E15F40D60009C7D9A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +236,7 @@
 		553D9AE315EC24AD00989F07 /* HugoClient */ = {
 			isa = PBXGroup;
 			children = (
+				557350AB15FFE41700EB6A82 /* External */,
 				553D9B3615EC5E0A00989F07 /* Hugo Utils */,
 				553D9B1215EC3EB000989F07 /* Hugo Flow */,
 				553D9AFA15EC3E6500989F07 /* Resources */,
@@ -407,6 +413,16 @@
 			name = SBJSON;
 			sourceTree = "<group>";
 		};
+		557350AB15FFE41700EB6A82 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				557350AC15FFE48B00EB6A82 /* arrow.png */,
+				557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */,
+				557350AE15FFE48B00EB6A82 /* PullRefreshTableViewController.h */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -463,6 +479,7 @@
 				553D9B2B15EC57D700989F07 /* icon.jpeg in Resources */,
 				5580948F15F40D60009C7D9A /* main.png in Resources */,
 				557350AA15FAB6B100EB6A82 /* assets in Resources */,
+				557350AF15FFE48B00EB6A82 /* arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +525,7 @@
 				553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */,
 				553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */,
 				553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */,
+				557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

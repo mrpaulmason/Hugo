@@ -20,6 +20,21 @@
 
 - (void)viewDidLoad
 {
+    [self startLoading];
+
+    [super viewDidLoad];
+    
+    
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)refresh
+{
     id appDelegate = [[UIApplication sharedApplication] delegate];
     CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
 
@@ -31,19 +46,10 @@
             
             self.categories = JSON;
             [tableView reloadData];
+            [self stopLoading];
             
         }
     }];
-
-    [super viewDidLoad];
-    
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload

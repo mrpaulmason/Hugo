@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q0B-01-Ebj">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
@@ -53,80 +54,74 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="21c-z2-U2S" kind="relationship" relationship="rootViewController" id="djx-IX-fzK"/>
+                        <segue destination="C6l-M9-ovU" kind="relationship" relationship="rootViewController" id="WAc-gZ-G46"/>
                     </connections>
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="424" y="-238"/>
         </scene>
         <!--Hugo Search View Controller-->
-        <scene sceneID="u9y-MJ-rvU">
+        <scene sceneID="hBN-JC-SeT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fnh-TE-bxA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="21c-z2-U2S" customClass="HugoSearchViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FfA-ph-aST">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7l-Ge-Av1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="C6l-M9-ovU" customClass="HugoSearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fHL-iF-cyx">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BY6-XI-BvP">
-                                <rect key="frame" x="0.0" y="44" width="320" height="323"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="SearchCell" textLabel="kZe-eq-PR0" style="IBUITableViewCellStyleDefault" id="LjN-Ma-YC6">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ZX2-vh-opB">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="C6l-M9-ovU" id="FCu-BF-4WW"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" textLabel="gAl-Yf-6S2" style="IBUITableViewCellStyleDefault" id="ElT-1b-Kpj">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gAl-Yf-6S2">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kZe-eq-PR0">
-                                                    <rect key="frame" x="10" y="0.0" width="267" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <segue destination="BuB-ky-qDY" kind="push" id="vL0-dI-Eme"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <connections>
-                                    <outlet property="dataSource" destination="21c-z2-U2S" id="BN6-Ox-0LY"/>
+                                    <segue destination="BuB-ky-qDY" kind="push" id="45K-A6-zah"/>
                                 </connections>
-                            </tableView>
-                            <searchBar contentMode="redraw" id="lot-eu-Zva">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="21c-z2-U2S" id="NQw-SM-Bti"/>
-                                </connections>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="d6b-Eg-odR"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="C6l-M9-ovU" id="pDr-lM-VvL"/>
+                            <outlet property="delegate" destination="C6l-M9-ovU" id="Nbs-Mn-nyk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mRv-v7-dci"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="dRv-9T-LgO" id="dhG-zf-RUL"/>
-                        <outlet property="tableView" destination="BY6-XI-BvP" id="xo6-ol-CgC"/>
+                        <outlet property="searchDisplayController" destination="Mly-i8-E6B" id="N3w-Q6-KEm"/>
+                        <outlet property="tableView" destination="fHL-iF-cyx" id="NpS-1S-Osi"/>
                     </connections>
-                </viewController>
-                <searchDisplayController id="dRv-9T-LgO">
+                </tableViewController>
+                <searchDisplayController id="Mly-i8-E6B">
                     <connections>
-                        <outlet property="delegate" destination="21c-z2-U2S" id="gaC-BC-gzF"/>
-                        <outlet property="searchBar" destination="lot-eu-Zva" id="qqD-N4-ZVJ"/>
-                        <outlet property="searchContentsController" destination="21c-z2-U2S" id="wOW-Cj-SVb"/>
-                        <outlet property="searchResultsDelegate" destination="21c-z2-U2S" id="ljL-zb-XVL"/>
+                        <outlet property="delegate" destination="C6l-M9-ovU" id="gV9-ah-ZOO"/>
+                        <outlet property="searchBar" destination="ZX2-vh-opB" id="Pva-Yz-nHI"/>
+                        <outlet property="searchContentsController" destination="C6l-M9-ovU" id="07Q-aQ-2si"/>
+                        <outlet property="searchResultsDataSource" destination="C6l-M9-ovU" id="xY8-F1-dBs"/>
+                        <outlet property="searchResultsDelegate" destination="C6l-M9-ovU" id="tld-eu-ttO"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="958" y="-238"/>
+            <point key="canvasLocation" x="960" y="-241"/>
         </scene>
         <!--Hugo Results List View Controller-->
         <scene sceneID="JMC-yd-sFh">
@@ -454,6 +449,39 @@
         <image name="icon.jpeg" width="180" height="119"/>
         <image name="main.png" width="640" height="920"/>
     </resources>
+    <classes>
+        <class className="HugoLocationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLocationViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="HugoLoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonTouchHandler:"/>
+            </relationships>
+        </class>
+        <class className="HugoNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNavigationBar.h"/>
+        </class>
+        <class className="HugoResultsListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoResultsListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="HugoSearchViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="HugoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

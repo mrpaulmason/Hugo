@@ -48,7 +48,7 @@
             SBJsonParser *parser = [[SBJsonParser alloc] init];
             double minLatitude, maxLatitude;
             double minLongitude, maxLongitude;
-            double sumLatitude, sumLongitude;
+            double sumLatitude = 0, sumLongitude = 0;
             int c = 0;
             bool init = YES;
                         
@@ -85,6 +85,7 @@
                 
             }
             
+            NSLog(@"%f %f", sumLatitude/c, sumLongitude/c);
             [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(maxLatitude-minLatitude, maxLongitude-minLongitude))];
         
         }
