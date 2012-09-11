@@ -72,7 +72,6 @@
                                     searchText];
 
     searchResults = [categories filteredArrayUsingPredicate:resultPredicate];
-    NSLog(@"%@", searchResults);
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
