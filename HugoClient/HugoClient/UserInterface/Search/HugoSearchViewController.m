@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad
 {
-    [self startLoading];
+//    [self startLoading];
 
     [super viewDidLoad];
     
