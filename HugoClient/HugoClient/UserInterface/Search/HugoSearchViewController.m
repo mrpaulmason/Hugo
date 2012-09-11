@@ -7,6 +7,8 @@
 //
 
 #import "HugoSearchViewController.h"
+#import "HQuery.h"
+#import "AppDelegate.h"
 
 @interface HugoSearchViewController ()
 
@@ -14,27 +16,24 @@
 
 @implementation HugoSearchViewController
 
-@synthesize categories;
+@synthesize categories, tableView;
 
 - (void)viewDidLoad
 {
-    self.categories = [NSMutableArray array];
-    [self.categories addObject:@"Restaurants"];
-    [self.categories addObject:@"Bars"];
-    [self.categories addObject:@"Cafes"];
-    [self.categories addObject:@"Hotels"];
-    [self.categories addObject:@"Shops"];
-    [self.categories addObject:@"Venues"];
-    [self.categories addObject:@"Activities"];
-    [self.categories addObject:@"Outdoors"];
-    [self.categories addObject:@"Cafes"];
-    [self.categories addObject:@"Hotels"];
-    [self.categories addObject:@"Shops"];
-    [self.categories addObject:@"Venues"];
-    [self.categories addObject:@"Activities"];
-    [self.categories addObject:@"Outdoors"];
-    
-    NSLog(@"%@", self.categories);
+    id appDelegate = [[UIApplication sharedApplication] delegate];
+    CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+
+    HQuery *hQuery = [[HQuery alloc] init];
+    [hQuery queryCategories:coord withCallback:^(id JSON, NSError *error) {
+        if (error == nil)
+        {
+            NSLog(@"Received results!");
+            
+            self.categories = JSON;
+            [tableView reloadData];
+            
+        }
+    }];
 
     [super viewDidLoad];
     

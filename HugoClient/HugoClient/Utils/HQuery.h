@@ -16,6 +16,6 @@
 }
 
 - (void)queryResults:(CLLocationCoordinate2D)location withCallback:(void (^)(id JSON, NSError* error))callback;
-
+- (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
 
 @end

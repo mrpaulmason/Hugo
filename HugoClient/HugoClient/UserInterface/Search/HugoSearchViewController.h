@@ -11,8 +11,10 @@
 @interface HugoSearchViewController : UIViewController
 {
     NSMutableArray *categories;
+    UITableView *tableView;
 }
 
 @property (nonatomic, strong) NSMutableArray *categories;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end

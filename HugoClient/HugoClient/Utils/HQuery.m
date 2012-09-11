@@ -10,6 +10,41 @@
 
 @implementation HQuery
 
+- (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    _completionHandler = [callback copy];
+    
+    NSURL *url = [NSURL URLWithString:@"http://hurricane.gethugo.com/places/categories"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString *parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[NSData dataWithBytes:[parameters UTF8String] length:strlen([parameters UTF8String])]];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        // Call completion handler.
+        _completionHandler(JSON, nil);
+        
+        // Clean up.
+        _completionHandler = nil;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"HURRICANE: FAILURE");
+        // Call completion handler.
+        _completionHandler(JSON, error);
+        
+        // Clean up.
+        _completionHandler = nil;
+        
+        
+        NSLog(@"HURRICANE: %@", error);
+    }];
+    
+    NSLog(@"Starting POST to hurricane!");
+    [operation start];
+    
+}
 
 - (void)queryResults:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback
 {
