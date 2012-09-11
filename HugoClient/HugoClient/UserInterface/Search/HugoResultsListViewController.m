@@ -85,7 +85,6 @@
                 
             }
             
-            NSLog(@"%f %f", sumLatitude/c, sumLongitude/c);
             [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(maxLatitude-minLatitude, maxLongitude-minLongitude))];
         
         }

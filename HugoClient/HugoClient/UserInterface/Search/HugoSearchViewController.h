@@ -12,6 +12,7 @@
 @interface HugoSearchViewController : PullRefreshTableViewController
 {
     NSMutableArray *categories;
+    NSArray *searchResults;
     UITableView *tableView;
 }
 
