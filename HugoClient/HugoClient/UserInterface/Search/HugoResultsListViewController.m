@@ -36,7 +36,7 @@
 {
     id appDelegate = [[UIApplication sharedApplication] delegate];
     CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
-    [mapView setCenterCoordinate:coord zoomLevel:11 animated:YES];
+    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
     
     [mapView setShowsUserLocation:YES];
     
