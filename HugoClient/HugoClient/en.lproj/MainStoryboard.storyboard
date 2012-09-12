@@ -66,7 +66,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7l-Ge-Av1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="C6l-M9-ovU" customClass="HugoSearchViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fHL-iF-cyx">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="ZX2-vh-opB">
@@ -95,9 +95,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="BuB-ky-qDY" kind="push" id="45K-A6-zah"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -105,7 +102,27 @@
                             <outlet property="delegate" destination="C6l-M9-ovU" id="Nbs-Mn-nyk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mRv-v7-dci"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="mRv-v7-dci">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="XOY-Vn-hfa">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Ga-Hd-vW6">
+                                <rect key="frame" x="244" y="4" width="71" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Push">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <connections>
+                                <segue destination="BuB-ky-qDY" kind="push" identifier="HResults" id="AH0-yL-RIv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="Mly-i8-E6B" id="N3w-Q6-KEm"/>
                         <outlet property="tableView" destination="fHL-iF-cyx" id="NpS-1S-Osi"/>
@@ -127,13 +144,13 @@
         <scene sceneID="JMC-yd-sFh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTb-Og-JB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="BuB-ky-qDY" customClass="HugoResultsListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="BuB-ky-qDY" customClass="HugoResultsListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TYG-Zp-ImY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="GjV-H7-sVX">
-                                <rect key="frame" x="0.0" y="44" width="320" height="136"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="141"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                             <searchBar contentMode="redraw" id="YrR-qj-sfs">
@@ -145,7 +162,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y5l-Ve-HQz">
-                                <rect key="frame" x="0.0" y="177" width="320" height="190"/>
+                                <rect key="frame" x="0.0" y="177" width="320" height="195"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>

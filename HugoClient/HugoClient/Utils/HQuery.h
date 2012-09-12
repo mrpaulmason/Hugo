@@ -15,7 +15,7 @@
     void (^_completionHandler)(id, NSError*);
 }
 
-- (void)queryResults:(CLLocationCoordinate2D)location withCallback:(void (^)(id JSON, NSError* error))callback;
 - (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
+- (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category withCallback:(void (^)(id, NSError*))callback;
 
 @end

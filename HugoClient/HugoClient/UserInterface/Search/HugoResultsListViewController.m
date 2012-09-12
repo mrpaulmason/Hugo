@@ -19,7 +19,7 @@
 @end
 
 @implementation HugoResultsListViewController
-@synthesize results, tableView, mapView;
+@synthesize results, tableView, mapView, categoryFilter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +30,8 @@
     return self;
 }
 
+
+
 - (void)viewDidLoad
 {
     id appDelegate = [[UIApplication sharedApplication] delegate];
@@ -39,18 +41,17 @@
     [mapView setShowsUserLocation:YES];
     
     HQuery *hQuery = [[HQuery alloc] init];
-    [hQuery queryResults:coord withCallback:^(id JSON, NSError *error) {
+    [hQuery queryResults:coord andCategory:categoryFilter withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
             self.results = JSON;
             [tableView reloadData];
             SBJsonParser *parser = [[SBJsonParser alloc] init];
-            double minLatitude, maxLatitude;
-            double minLongitude, maxLongitude;
-            double sumLatitude = 0, sumLongitude = 0;
-            int c = 0;
-            bool init = YES;
+            double minLatitude = coord.latitude, maxLatitude = coord.latitude;
+            double minLongitude = coord.longitude, maxLongitude = coord.longitude;
+            double sumLatitude = coord.latitude, sumLongitude = coord.longitude;
+            int c = 1;
                         
 
             for (NSDictionary *item in self.results)
@@ -66,26 +67,19 @@
                 sumLongitude += location.longitude;
                 c++;
                 
-                if (init)
-                {
-                    init = NO;
-                    minLatitude = location.latitude;
-                    maxLatitude = location.latitude;
-                    minLongitude = location.longitude;
-                    maxLongitude = location.longitude;
-                }
+
                 minLatitude = MIN(location.latitude, minLatitude);
                 maxLatitude = MAX(location.latitude, maxLatitude);
 
                 minLongitude = MIN(location.longitude, minLongitude);
-                maxLongitude = MAX(location.longitude, minLongitude);
+                maxLongitude = MAX(location.longitude, maxLongitude);
 
                 
                 [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:location withTitle:[item objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
                 
             }
             
-            [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(maxLatitude-minLatitude, maxLongitude-minLongitude))];
+            [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(2.5*(maxLatitude-minLatitude), 2.5*(maxLongitude-minLongitude)))];
         
         }
     }];

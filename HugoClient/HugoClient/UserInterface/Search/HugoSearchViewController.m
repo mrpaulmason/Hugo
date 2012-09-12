@@ -9,6 +9,7 @@
 #import "HugoSearchViewController.h"
 #import "HQuery.h"
 #import "AppDelegate.h"
+#import "HugoResultsListViewController.h"
 
 @interface HugoSearchViewController ()
 
@@ -166,7 +167,14 @@ shouldReloadTableForSearchString:(NSString *)searchString
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    HugoResultsListViewController *vc = [segue destinationViewController];
+    [vc setCategoryFilter:sender];
+}
+
+
+- (void)tableView:(UITableView *)sTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
     /*
@@ -175,6 +183,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    if (sTableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier:@"HResults" sender:[searchResults objectAtIndex:indexPath.row]];
+    } else {
+        [self performSegueWithIdentifier:@"HResults" sender:[categories objectAtIndex:indexPath.row]];
+    }
+    
 }
 
 @end

@@ -14,9 +14,11 @@
     NSArray *results;
     UITableView *tableView;
     MKMapView *mapView;
+    NSString *categoryFilter;
 }
 
 @property (nonatomic, retain) NSArray *results;
+@property (nonatomic, retain) NSString *categoryFilter;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 
