@@ -64,6 +64,8 @@
 		557350AF15FFE48B00EB6A82 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 557350AC15FFE48B00EB6A82 /* arrow.png */; };
 		557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */; };
 		5580948F15F40D60009C7D9A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 5580948E15F40D60009C7D9A /* main.png */; };
+		558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83DF1602B9DF00ACDF9A /* Icon@2x.png */; };
+		558D83E31602B9E500ACDF9A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83E21602B9E500ACDF9A /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +166,8 @@
 		557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		557350AE15FFE48B00EB6A82 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		5580948E15F40D60009C7D9A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
+		558D83DF1602B9DF00ACDF9A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		558D83E21602B9E500ACDF9A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 		553D9ACE15EC24AD00989F07 = {
 			isa = PBXGroup;
 			children = (
+				558D83E21602B9E500ACDF9A /* Icon.png */,
+				558D83DF1602B9DF00ACDF9A /* Icon@2x.png */,
 				553D9B8815EDBCAB00989F07 /* SBJSON */,
 				553D9B3715EC5E3300989F07 /* AFNetworking */,
 				553D9AE315EC24AD00989F07 /* HugoClient */,
@@ -480,6 +486,8 @@
 				5580948F15F40D60009C7D9A /* main.png in Resources */,
 				557350AA15FAB6B100EB6A82 /* assets in Resources */,
 				557350AF15FFE48B00EB6A82 /* arrow.png in Resources */,
+				558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */,
+				558D83E31602B9E500ACDF9A /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
