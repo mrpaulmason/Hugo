@@ -354,30 +354,6 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </tableViewCell>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="149" id="Y15-HX-KT8">
-                                                <rect key="frame" x="0.0" y="81" width="320" height="149"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" id="PUR-yy-qLa">
-                                                            <rect key="frame" x="10" y="4" width="300" height="130"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" id="Cwb-yF-qIU">
-                                                                    <rect key="frame" x="0.0" y="105" width="300" height="25"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <color key="backgroundColor" red="0.57016571739999999" green="0.75272229580000005" blue="0.92032523779999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </view>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            </tableViewCell>
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="beN-Vp-P1q" id="fGf-bi-1MV"/>
@@ -440,26 +416,46 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZsA-Hx-fUo" kind="relationship" relationship="rootViewController" id="1os-Eq-2RB"/>
+                        <segue destination="b60-WN-Ea3" kind="relationship" relationship="rootViewController" id="TIO-0a-AM2"/>
                     </connections>
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="424" y="-850"/>
         </scene>
-        <!--Hugo View Controller-->
-        <scene sceneID="QRT-4v-DNl">
+        <!--Hugo Newsfeed View Controller-->
+        <scene sceneID="h4l-lz-3sg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lKy-Zw-cqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="ZsA-Hx-fUo" customClass="HugoViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UmA-4e-9II">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fI-Pg-MO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="b60-WN-Ea3" customClass="HugoNewsfeedViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="DaK-tH-FpM">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="J3U-dp-tS0"/>
-                </viewController>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94236158288043481" green="0.9317076467915909" blue="0.90588514781046769" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="105" id="Xqu-Mh-ydO">
+                                <rect key="frame" x="0.0" y="22" width="320" height="105"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.79149254869998575" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="b60-WN-Ea3" id="5ur-po-dh5"/>
+                            <outlet property="delegate" destination="b60-WN-Ea3" id="KD8-cO-mp8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="tCh-2m-Iu0"/>
+                    <connections>
+                        <outlet property="tableView" destination="DaK-tH-FpM" id="0Rl-YP-YZM"/>
+                    </connections>
+                </tableViewController>
             </objects>
-            <point key="canvasLocation" x="958" y="-850"/>
+            <point key="canvasLocation" x="950" y="-850"/>
         </scene>
         <!--HugoMain-->
         <scene sceneID="iOT-Dz-rJ7">
@@ -506,6 +502,12 @@
         <class className="HugoNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNavigationBar.h"/>
         </class>
+        <class className="HugoNewsfeedViewController" superclassName="PullRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNewsfeedViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
         <class className="HugoResultsListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoResultsListViewController.h"/>
             <relationships>
@@ -518,9 +520,6 @@
             <relationships>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
-        </class>
-        <class className="HugoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoViewController.h"/>
         </class>
         <class className="PullRefreshTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>

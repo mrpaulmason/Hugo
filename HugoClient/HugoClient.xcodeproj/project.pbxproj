@@ -60,6 +60,7 @@
 		553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BA115EDBCE000989F07 /* SBJsonWriter.m */; };
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
+		557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */; };
 		557350AA15FAB6B100EB6A82 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 557350A915FAB6B100EB6A82 /* assets */; };
 		557350AF15FFE48B00EB6A82 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 557350AC15FFE48B00EB6A82 /* arrow.png */; };
 		557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */; };
@@ -161,6 +162,8 @@
 		553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
+		557108BB16067AB30097AE29 /* HugoNewsfeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNewsfeedViewController.h; path = UserInterface/Newsfeed/HugoNewsfeedViewController.h; sourceTree = "<group>"; };
+		557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoNewsfeedViewController.m; path = UserInterface/Newsfeed/HugoNewsfeedViewController.m; sourceTree = "<group>"; };
 		557350A915FAB6B100EB6A82 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../Dropbox/Hugo/assets; sourceTree = "<group>"; };
 		557350AC15FFE48B00EB6A82 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		557350AD15FFE48B00EB6A82 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 		553D9B1315EC3EB900989F07 /* Newsfeed */ = {
 			isa = PBXGroup;
 			children = (
+				557108BB16067AB30097AE29 /* HugoNewsfeedViewController.h */,
+				557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */,
 			);
 			name = Newsfeed;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 				553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */,
 				553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */,
 				557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */,
+				557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
