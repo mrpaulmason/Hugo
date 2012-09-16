@@ -378,8 +378,7 @@
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Nearby"/>
-                                            <segment title="Recent Views"/>
-                                            <segment title="Recent Visits"/>
+                                            <segment title="Recent"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>

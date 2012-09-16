@@ -79,9 +79,8 @@
             self.results = JSON;
             NSLog(@"%@", results);
             [tableView reloadData];
-            [self stopLoading];
-            
         }
+        [self stopLoading];
     }];
 }
 

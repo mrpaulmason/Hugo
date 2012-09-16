@@ -46,10 +46,9 @@
             NSLog(@"Received results!");
             
             self.categories = JSON;
-            [tableView reloadData];
-            [self stopLoading];
-            
+            [tableView reloadData];            
         }
+        [self stopLoading];
     }];
 }
 
