@@ -56,6 +56,8 @@
     
     NSLog(@"Ran viewDidLoad");
     
+    [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+    
     [super viewDidLoad];
         
     
@@ -119,16 +121,32 @@
                 initWithStyle:UITableViewStylePlain
                 reuseIdentifier:CellIdentifier];
     
+    
+    int photo_width = 0;
+    int photo_height = 0;
+    float scale = 0;
+    
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    {
+        photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
+        photo_width = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_width"] integerValue];
+        scale = 320.0f/photo_width;
+        
+        
+        NSLog(@"photo! %f %f", photo_height*scale, photo_width*scale);
+
+    }
+    
     UIView *view = [UIView new];
-    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f)];
+    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
     view.layer.cornerRadius = 5.0f;
-    view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    view.layer.borderColor = [UIColor colorWithWhite:0.85f alpha:1.0].CGColor;
     view.layer.masksToBounds = YES;
     view.layer.borderWidth = 1.0f;
     view.backgroundColor = [UIColor whiteColor];
 
-    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f, 300.0f, 25.f)];
-    bottomBar.backgroundColor = [UIColor colorWithWhite:0.92f alpha:1.0f];
+    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
+    bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,11.f,200.0f,13.f)];
@@ -170,7 +188,7 @@
     CLLocationDistance distance = [locA distanceFromLocation:locB];
     
     double miles = distance * 0.000621371;
-    UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f,200.0f,25.f)];
+    UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f+scale*photo_height,200.0f,25.f)];
     [milesLabel setText:[NSString stringWithFormat:@"%0.1f miles",miles]];
     [milesLabel setFont:[UIFont fontWithName:@"Helvetica" size:10.f]];
     [milesLabel setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
@@ -186,7 +204,20 @@
     img.layer.masksToBounds = YES;
     [img setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"author_image"]]];
     [view addSubview:img];
+    
+    [cell addSubview:view];
+    
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    {
+        UIImageView *imgPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 75.f, 320.f, photo_height*scale)];
+        imgPhoto.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
+        imgPhoto.layer.borderColor = [[UIColor whiteColor] CGColor];
+        imgPhoto.layer.borderWidth = 3.0f;
+        [imgPhoto setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"]]];
+        [cell addSubview:imgPhoto];
+    }
 
+    
                         
     /*
      
@@ -218,7 +249,6 @@
      
 */
     
-    [cell addSubview:view];
     
 //    cell.textLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"];
     
@@ -227,7 +257,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 105;
+    float sz = 105;
+    
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    {
+        int photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
+        int photo_width = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_width"] integerValue];
+        float scale = 320.0f/photo_width;
+        
+        sz += scale*photo_height;        
+    }
+
+    
+    return sz;
 }
 
 /*
