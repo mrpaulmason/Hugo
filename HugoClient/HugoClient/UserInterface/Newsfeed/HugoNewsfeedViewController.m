@@ -9,6 +9,7 @@
 #import "HugoNewsfeedViewController.h"
 #import "HQuery.h"
 #import "AppDelegate.h"
+#import "HugoSocialView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SBJson.h"
 
@@ -58,6 +59,7 @@
     
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
     
+    
     [super viewDidLoad];
         
     
@@ -67,6 +69,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 - (void)refresh
 {
@@ -112,6 +115,7 @@
     return [results count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)sTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"NewsCell";
@@ -122,9 +126,11 @@
                 reuseIdentifier:CellIdentifier];
     
     
+    
     int photo_width = 0;
     int photo_height = 0;
     float scale = 0;
+    
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
@@ -137,6 +143,7 @@
 
     }
     
+    
     UIView *view = [UIView new];
     [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
     view.layer.cornerRadius = 5.0f;
@@ -145,6 +152,7 @@
     view.layer.borderWidth = 1.0f;
     view.backgroundColor = [UIColor whiteColor];
 
+        
     UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
@@ -216,42 +224,10 @@
         [imgPhoto setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"]]];
         [cell addSubview:imgPhoto];
     }
-
     
-                        
-    /*
-     
-#     box-shadow: x: -1px y: 0px, blur: 3px #555
-     
-     
-     
-     gray footer-y area: 50px tall HD, border: 1px #d7d7d7
-     
-     
-     
-     Font for everything: helvetica neue (it's what the new google stock display uses)
-     
-     
-     
-     profile icon: 100px x 100px HD, 20px padding (50px, 10px padding SD)
-     
-     name: 13px bold #333
-     
-     want to go to: 13px normal #888
-     
-     venue: 13px bold #555
-     
-     category: 9px normal #555 uppercase
-     
-     address: 11px normal #999
-     
-     timestamp/distancestamp: 10px normal #888
-     
-*/
-    
-    
-//    cell.textLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"];
-    
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(79, 15, 236, 56)];
+    [cell addSubview:socialView];
+        
     return cell;
 }
 

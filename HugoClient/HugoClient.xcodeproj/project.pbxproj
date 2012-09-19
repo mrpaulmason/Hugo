@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E116092F2D000C15D0 /* HugoProfileViewController.m */; };
+		551D18E5160934F0000C15D0 /* followers.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E4160934F0000C15D0 /* followers.png */; };
+		551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E7160A593B000C15D0 /* HugoSocialView.m */; };
 		553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADD15EC24AD00989F07 /* UIKit.framework */; };
 		553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADF15EC24AD00989F07 /* Foundation.framework */; };
 		553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9AE115EC24AD00989F07 /* CoreGraphics.framework */; };
@@ -70,6 +73,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551D18E016092F2D000C15D0 /* HugoProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoProfileViewController.h; path = UserInterface/Profile/HugoProfileViewController.h; sourceTree = "<group>"; };
+		551D18E116092F2D000C15D0 /* HugoProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoProfileViewController.m; path = UserInterface/Profile/HugoProfileViewController.m; sourceTree = "<group>"; };
+		551D18E4160934F0000C15D0 /* followers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = followers.png; path = ../../../../Desktop/followers.png; sourceTree = "<group>"; };
+		551D18E6160A593B000C15D0 /* HugoSocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSocialView.h; path = UserInterface/Shared/HugoSocialView.h; sourceTree = "<group>"; };
+		551D18E7160A593B000C15D0 /* HugoSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSocialView.m; path = UserInterface/Shared/HugoSocialView.m; sourceTree = "<group>"; };
 		553D9AD915EC24AD00989F07 /* HugoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HugoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553D9ADD15EC24AD00989F07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553D9ADF15EC24AD00989F07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -273,6 +281,7 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				551D18E4160934F0000C15D0 /* followers.png */,
 				557350A915FAB6B100EB6A82 /* assets */,
 				5580948E15F40D60009C7D9A /* main.png */,
 				553D9B2A15EC57D700989F07 /* icon.jpeg */,
@@ -329,6 +338,8 @@
 		553D9B1615EC3ED900989F07 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				551D18E016092F2D000C15D0 /* HugoProfileViewController.h */,
+				551D18E116092F2D000C15D0 /* HugoProfileViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -340,6 +351,8 @@
 				553D9B1915EC3F3F00989F07 /* HugoViewController.m */,
 				553D9B1E15EC44A300989F07 /* HugoNavigationBar.h */,
 				553D9B1F15EC44A300989F07 /* HugoNavigationBar.m */,
+				551D18E6160A593B000C15D0 /* HugoSocialView.h */,
+				551D18E7160A593B000C15D0 /* HugoSocialView.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -493,6 +506,7 @@
 				557350AF15FFE48B00EB6A82 /* arrow.png in Resources */,
 				558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */,
 				558D83E31602B9E500ACDF9A /* Icon.png in Resources */,
+				551D18E5160934F0000C15D0 /* followers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +554,8 @@
 				553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */,
 				557350B015FFE48B00EB6A82 /* PullRefreshTableViewController.m in Sources */,
 				557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */,
+				551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */,
+				551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
