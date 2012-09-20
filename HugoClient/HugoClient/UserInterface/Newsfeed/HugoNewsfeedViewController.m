@@ -115,6 +115,58 @@
     return [results count];
 }
 
+- (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB selector:(SEL) sel andFrame:(CGRect)frame
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor = [UIColor clearColor];
+    UIImage *buttonImageNormal = [UIImage imageNamed:imgA];
+    UIImage *buttonImageDown = [UIImage imageNamed:imgB];
+    [button setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    
+    [button addTarget:self
+               action:sel
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = frame;
+    return button;
+}
+
+- (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB withSelected:(NSString*)imgC selector:(SEL) sel andFrame:(CGRect)frame
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor = [UIColor clearColor];
+    UIImage *buttonImageNormal = [UIImage imageNamed:imgA];
+    UIImage *buttonImageDown = [UIImage imageNamed:imgB];
+    UIImage *buttonImageSelected = [UIImage imageNamed:imgC];
+    [button setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    [button setBackgroundImage:buttonImageSelected forState:UIControlStateSelected];
+    [button setAdjustsImageWhenHighlighted:NO];
+    
+    
+    [button addTarget:self
+               action:sel
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = frame;
+    return button;
+}
+
+
+- (void)comment:(id) sender
+{
+    
+}
+
+- (void)like:(id) sender
+{
+    UIButton *btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+
+    
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)sTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -147,7 +199,7 @@
     UIView *view = [UIView new];
     [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
     view.layer.cornerRadius = 5.0f;
-    view.layer.borderColor = [UIColor colorWithWhite:0.85f alpha:1.0].CGColor;
+    view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
     view.layer.masksToBounds = YES;
     view.layer.borderWidth = 1.0f;
     view.backgroundColor = [UIColor whiteColor];
@@ -156,6 +208,13 @@
     UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
+    
+    UIButton *buttonComment = [self buttonFromImage:@"assets/newsfeed/comment.png" withHighlight:@"assets/newsfeed/commentB.png" selector:@selector(comment:) andFrame:CGRectMake(200, 0, 50, 25)];
+    [bottomBar addSubview:buttonComment];
+    
+    UIButton *buttonLike = [self buttonFromImage:@"assets/newsfeed/like.png" withHighlight:@"assets/newsfeed/likeB.png" withSelected:@"assets/newsfeed/likeC.png" selector:@selector(like:) andFrame:CGRectMake(250, 0, 50, 25)];
+    [bottomBar addSubview:buttonLike];
+        
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,11.f,200.0f,13.f)];
     NSString *name = [[results objectAtIndex:indexPath.row] objectForKey:@"author_name"];
