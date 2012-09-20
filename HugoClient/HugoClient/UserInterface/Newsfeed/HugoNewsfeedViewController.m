@@ -196,14 +196,16 @@
     }
     
     
+
     UIView *view = [UIView new];
     [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
     view.layer.cornerRadius = 5.0f;
     view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
-    view.layer.masksToBounds = YES;
     view.layer.borderWidth = 1.0f;
     view.backgroundColor = [UIColor whiteColor];
-
+    view.layer.masksToBounds = YES;
+    [cell addSubview:view];
+    
         
     UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
@@ -277,15 +279,15 @@
     UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f+scale*photo_height,200.0f,25.f)];
     
     if (yearsAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d year%@ ago, %0.1f miles",yearsAgo,yearsAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"%d year%@ ago, %0.1f miles away",yearsAgo,yearsAgo==1?@"":@"s", miles]];
     else if (monthsAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d month%@ ago, %0.1f miles",monthsAgo,monthsAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"%d month%@ ago, %0.1f miles away",monthsAgo,monthsAgo==1?@"":@"s", miles]];
     else if (daysAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d day%@ ago, %0.1f miles",daysAgo,daysAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"%d day%@ ago, %0.1f miles away",daysAgo,daysAgo==1?@"":@"s", miles]];
     else if (hoursAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d hour%@ ago, %0.1f miles",hoursAgo,hoursAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"%d hour%@ ago, %0.1f miles away",hoursAgo,hoursAgo==1?@"":@"s", miles]];
     else
-        [milesLabel setText:[NSString stringWithFormat:@"%d minute%@ ago, %0.1f miles",minutesAgo,minutesAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"%d minute%@ ago, %0.1f miles away",minutesAgo,minutesAgo==1?@"":@"s", miles]];
 
     [milesLabel setFont:[UIFont fontWithName:@"Helvetica" size:10.f]];
     [milesLabel setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
@@ -302,7 +304,6 @@
     [img setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"author_image"]]];
     [view addSubview:img];
     
-    [cell addSubview:view];
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
@@ -310,6 +311,10 @@
         imgPhoto.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
         imgPhoto.layer.borderColor = [[UIColor whiteColor] CGColor];
         imgPhoto.layer.borderWidth = 3.0f;
+        imgPhoto.layer.shadowOpacity = 0.3f;
+        imgPhoto.layer.shadowOffset = CGSizeMake(0,0.0);
+        imgPhoto.layer.shadowColor = [[UIColor blackColor] CGColor];
+        imgPhoto.layer.shadowRadius = 3.0f;
         [imgPhoto setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"]]];
         [cell addSubview:imgPhoto];
     }
