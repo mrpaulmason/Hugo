@@ -17,6 +17,6 @@
 
 - (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
 - (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category withCallback:(void (^)(id, NSError*))callback;
-- (void)queryNewsfeed:(void (^)(id, NSError*))callback;
+- (void)queryNewsfeed:(NSString*)prefix withCallback:(void (^)(id, NSError*))callback;
 
 @end

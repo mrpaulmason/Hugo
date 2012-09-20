@@ -10,7 +10,7 @@
 
 @implementation HQuery
 
-- (void)queryNewsfeed:(void (^)(id, NSError*))callback
+- (void)queryNewsfeed:(NSString*)prefix withCallback:(void (^)(id, NSError*))callback
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -18,7 +18,7 @@
     
     NSURL *url = [NSURL URLWithString:@"http://hurricane.gethugo.com/news"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString *parameters = [NSString stringWithFormat:@"hugo_id=%@", [defaults objectForKey:@"hugo_id"]];
+    NSString *parameters = [NSString stringWithFormat:@"hugo_id=%@&prefix=%@", [defaults objectForKey:@"hugo_id"], prefix];
     
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[NSData dataWithBytes:[parameters UTF8String] length:strlen([parameters UTF8String])]];

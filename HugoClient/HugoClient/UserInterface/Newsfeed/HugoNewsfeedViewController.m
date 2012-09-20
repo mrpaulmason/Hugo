@@ -76,7 +76,7 @@
     id appDelegate = [[UIApplication sharedApplication] delegate];
     
     HQuery *hQuery = [[HQuery alloc] init];
-    [hQuery queryNewsfeed:^(id JSON, NSError *error) {
+    [hQuery queryNewsfeed:@"newsfeed" withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
@@ -174,16 +174,28 @@
     [label2 sizeToFit];
     [view addSubview:label2];
 
-    UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,30.f,200.0f,13.f)];
+    UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,29.f,200.0f,13.f)];
     [labelVenue setText:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"]];
+    
+    if ([[labelVenue text] length] > 25)
+    {
+        [labelVenue setText:[NSString stringWithFormat:@"%@...",[[labelVenue text] substringToIndex:25]]];
+    }
+    
     [labelVenue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
     [labelVenue setTextColor:[UIColor colorWithWhite:0.33f alpha:1.0]];
     [labelVenue sizeToFit];
     [view addSubview:labelVenue];
 
-    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,49.f,200.0f,13.f)];
+    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,47.f,200.0f,13.f)];
     NSDictionary *locationData = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]];
     [labelStreet setText:[locationData objectForKey:@"street"]];
+
+    if ([[labelStreet text] length] > 30)
+    {
+        [labelStreet setText:[NSString stringWithFormat:@"%@...",[[labelStreet text] substringToIndex:30]]];
+    }
+    
     [labelStreet setFont:[UIFont fontWithName:@"Helvetica" size:11.f]];
     [labelStreet setTextColor:[UIColor colorWithWhite:0.6f alpha:1.0]];
     [labelStreet sizeToFit];
@@ -225,7 +237,7 @@
         [cell addSubview:imgPhoto];
     }
     
-    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(79, 15, 236, 56)];
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55)];
     [cell addSubview:socialView];
         
     return cell;

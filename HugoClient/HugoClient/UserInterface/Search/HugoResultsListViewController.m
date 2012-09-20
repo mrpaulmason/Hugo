@@ -46,6 +46,8 @@
         {
             NSLog(@"Received results!");
             self.results = JSON;
+            
+            NSLog(@"%@", JSON);
             [tableView reloadData];
             SBJsonParser *parser = [[SBJsonParser alloc] init];
             double minLatitude = coord.latitude, maxLatitude = coord.latitude;
