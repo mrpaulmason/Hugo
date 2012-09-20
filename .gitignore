@@ -1,15 +1,10 @@
 # Xcode
 build/*
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-*.xcworkspace
-!default.xcworkspace
-xcuserdata
-profile
-*.moved-aside
+Hugo/Hugo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+Hugo/Hugo.xcodeproj/project.xcworkspace/xcuserdata/rwaliany.xcuserdatad/UserInterfaceState.xcuserstate
+Hugo/Hugo.xcodeproj/xcuserdata/rwaliany.xcuserdatad/xcschemes/Hugo.xcscheme
+Hugo/Hugo.xcodeproj/xcuserdata/rwaliany.xcuserdatad/xcschemes/xcschememanagement.plist
+HugoClient/HugoClient.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+HugoClient/HugoClient.xcodeproj/project.xcworkspace/xcuserdata/rwaliany.xcuserdatad/UserInterfaceState.xcuserstate
+HugoClient/HugoClient.xcodeproj/xcuserdata/rwaliany.xcuserdatad/xcschemes/HugoClient.xcscheme
+HugoClient/HugoClient.xcodeproj/xcuserdata/rwaliany.xcuserdatad/xcschemes/xcschememanagement.plist

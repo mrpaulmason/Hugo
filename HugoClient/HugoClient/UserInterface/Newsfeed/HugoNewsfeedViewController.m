@@ -227,9 +227,21 @@
     [label sizeToFit];
     [view addSubview:label];
     
+    double currentTime = [[NSDate date] timeIntervalSince1970];
+    int minutesAgo = (currentTime - [[[results objectAtIndex:indexPath.row] objectForKey:@"timestamp"] integerValue])/60;
+    int hoursAgo = minutesAgo/60;
+    int daysAgo = hoursAgo/24;
+    int monthsAgo = daysAgo/30;
+    int yearsAgo = daysAgo/365;
+
 
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70.0f+[label frame].size.width,11.f,200.0f,13.f)];
-    [label2 setText:@" has been to"];
+
+    if (daysAgo > 30)
+        [label2 setText:@" has been to"];
+    else
+        [label2 setText:@" was spotted at"];
+        
     [label2 setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
     [label2 setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
     [label2 sizeToFit];
@@ -269,12 +281,6 @@
     CLLocationDistance distance = [locA distanceFromLocation:locB];
     
     double miles = distance * 0.000621371;
-    double currentTime = [[NSDate date] timeIntervalSince1970];
-    int minutesAgo = (currentTime - [[[results objectAtIndex:indexPath.row] objectForKey:@"timestamp"] integerValue])/60;
-    int hoursAgo = minutesAgo/60;
-    int daysAgo = hoursAgo/24;
-    int monthsAgo = daysAgo/30;
-    int yearsAgo = daysAgo/365;
     
     UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f+scale*photo_height,200.0f,25.f)];
     

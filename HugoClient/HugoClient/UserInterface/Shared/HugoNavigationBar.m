@@ -35,8 +35,11 @@
     UIImage *image = [UIImage imageNamed:@"assets/generic/header.png"];
     [image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
 
-    UIImage *imageLogo = [UIImage imageNamed:@"assets/generic/logo.png"];
-    [imageLogo drawInRect:CGRectMake(128, 7, imageLogo.size.width, imageLogo.size.height)];
+    if ([[[self topItem] title] length] == 0)
+    {
+        UIImage *imageLogo = [UIImage imageNamed:@"assets/generic/logo.png"];
+        [imageLogo drawInRect:CGRectMake(128, 7, imageLogo.size.width, imageLogo.size.height)];
+    }
 
 }
 
