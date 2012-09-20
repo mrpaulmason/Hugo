@@ -267,8 +267,26 @@
     CLLocationDistance distance = [locA distanceFromLocation:locB];
     
     double miles = distance * 0.000621371;
+    double currentTime = [[NSDate date] timeIntervalSince1970];
+    int minutesAgo = (currentTime - [[[results objectAtIndex:indexPath.row] objectForKey:@"timestamp"] integerValue])/60;
+    int hoursAgo = minutesAgo/60;
+    int daysAgo = hoursAgo/24;
+    int monthsAgo = daysAgo/30;
+    int yearsAgo = daysAgo/365;
+    
     UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f+scale*photo_height,200.0f,25.f)];
-    [milesLabel setText:[NSString stringWithFormat:@"%0.1f miles",miles]];
+    
+    if (yearsAgo > 0)
+        [milesLabel setText:[NSString stringWithFormat:@"%d year%@ ago, %0.1f miles",yearsAgo,yearsAgo==1?@"":@"s", miles]];
+    else if (monthsAgo > 0)
+        [milesLabel setText:[NSString stringWithFormat:@"%d month%@ ago, %0.1f miles",monthsAgo,monthsAgo==1?@"":@"s", miles]];
+    else if (daysAgo > 0)
+        [milesLabel setText:[NSString stringWithFormat:@"%d day%@ ago, %0.1f miles",daysAgo,daysAgo==1?@"":@"s", miles]];
+    else if (hoursAgo > 0)
+        [milesLabel setText:[NSString stringWithFormat:@"%d hour%@ ago, %0.1f miles",hoursAgo,hoursAgo==1?@"":@"s", miles]];
+    else
+        [milesLabel setText:[NSString stringWithFormat:@"%d minute%@ ago, %0.1f miles",minutesAgo,minutesAgo==1?@"":@"s", miles]];
+
     [milesLabel setFont:[UIFont fontWithName:@"Helvetica" size:10.f]];
     [milesLabel setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
     [milesLabel setBackgroundColor:[UIColor clearColor]];
