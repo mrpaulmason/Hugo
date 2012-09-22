@@ -97,7 +97,12 @@
     {
         UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,260.0f,30.f)];
         NSString *name = [[comments objectAtIndex:indexPath.row] objectForKey:@"name"];
-        [labelName setText:[NSString stringWithFormat:@"%@: ",name]];
+        
+        if ([[[comments objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"chat"])
+            [labelName setText:[NSString stringWithFormat:@"%@: ",name]];
+        else
+            [labelName setText:[NSString stringWithFormat:@"%@ ",name]];
+
         labelName.backgroundColor = [UIColor clearColor];
         [labelName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
         [labelName setTextColor:[UIColor colorWithWhite:0.2f alpha:1.0]];
