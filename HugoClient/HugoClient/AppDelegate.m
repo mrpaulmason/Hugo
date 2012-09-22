@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "TestFlight.h"
 
 @implementation AppDelegate
 
@@ -19,8 +20,12 @@
                   clientKey:@"CsU23rZMEWSx0f0dH0G6ggbitZlH2MuJ4D6gxvWr"];
     
     [PFFacebookUtils initializeWithApplicationId:@"469021446449087"];
-        
+    
+    [TestFlight takeOff:@"f3546c22df22ac707f487b814315fd87_MTM0OTQwMjAxMi0wOS0yMiAwMzowMTo0NS41NjA4MjU"];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+
+    
     NSLog(@"Application started");
 
     // Override point for customization after application launch.

@@ -73,6 +73,8 @@
 		558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83DF1602B9DF00ACDF9A /* Icon@2x.png */; };
 		558D83E31602B9E500ACDF9A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83E21602B9E500ACDF9A /* Icon.png */; };
 		55F353C4160D487500DAC447 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C3160D487500DAC447 /* Parse.framework */; };
+		55F353C8160D9A7500DAC447 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C7160D9A7500DAC447 /* libTestFlight.a */; };
+		55F353CA160D9ACC00DAC447 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C9160D9ACC00DAC447 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +188,9 @@
 		558D83DF1602B9DF00ACDF9A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		558D83E21602B9E500ACDF9A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		55F353C3160D487500DAC447 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		55F353C6160D9A7500DAC447 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		55F353C7160D9A7500DAC447 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		55F353C9160D9ACC00DAC447 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F353CA160D9ACC00DAC447 /* libz.dylib in Frameworks */,
 				553D9B7E15ED990A00989F07 /* CoreLocation.framework in Frameworks */,
 				553D9B6A15EC5EB900989F07 /* SystemConfiguration.framework in Frameworks */,
 				553D9B6815EC5EB400989F07 /* StoreKit.framework in Frameworks */,
@@ -208,6 +214,7 @@
 				553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */,
 				553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */,
 				55F353C4160D487500DAC447 /* Parse.framework in Frameworks */,
+				55F353C8160D9A7500DAC447 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +228,7 @@
 				551D18E9160B070B000C15D0 /* Default.png */,
 				558D83E21602B9E500ACDF9A /* Icon.png */,
 				558D83DF1602B9DF00ACDF9A /* Icon@2x.png */,
+				55F353C5160D9A5E00DAC447 /* Testflight */,
 				553D9B8815EDBCAB00989F07 /* SBJSON */,
 				553D9B3715EC5E3300989F07 /* AFNetworking */,
 				553D9AE315EC24AD00989F07 /* HugoClient */,
@@ -458,6 +466,16 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		55F353C5160D9A5E00DAC447 /* Testflight */ = {
+			isa = PBXGroup;
+			children = (
+				55F353C9160D9ACC00DAC447 /* libz.dylib */,
+				55F353C6160D9A7500DAC447 /* TestFlight.h */,
+				55F353C7160D9A7500DAC447 /* libTestFlight.a */,
+			);
+			name = Testflight;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -654,6 +672,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HugoClient/HugoClient-Prefix.pch";
 				INFOPLIST_FILE = "HugoClient/HugoClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -669,6 +691,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HugoClient/HugoClient-Prefix.pch";
 				INFOPLIST_FILE = "HugoClient/HugoClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

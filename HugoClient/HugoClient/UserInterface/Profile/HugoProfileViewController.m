@@ -105,7 +105,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"profile uh %d", [results count]);
     return [results count];
 }
 
@@ -131,7 +130,6 @@
         scale = 320.0f/photo_width;
         
         
-        NSLog(@"photo! %f %f", photo_height*scale, photo_width*scale);
         
     }
     

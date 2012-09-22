@@ -47,7 +47,6 @@
             NSLog(@"Received results!");
             self.results = JSON;
             
-            NSLog(@"%@", JSON);
             [tableView reloadData];
             SBJsonParser *parser = [[SBJsonParser alloc] init];
             double minLatitude = coord.latitude, maxLatitude = coord.latitude;
@@ -121,7 +120,6 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    NSLog(@"cellFor: %@", [results objectAtIndex:indexPath.row]);
 
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:200];
     nameLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"];

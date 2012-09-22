@@ -82,7 +82,6 @@
             NSLog(@"Received results!");
             
             self.results = JSON;
-            NSLog(@"%@", results);
             [tableView reloadData];
         }
         [self stopLoading];
@@ -111,7 +110,6 @@
 
 - (NSInteger)tableView:(UITableView *)sTableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%d", [results count]);
     return [results count];
 }
 
@@ -203,8 +201,6 @@
         scale = 320.0f/photo_width;
         
         
-        NSLog(@"photo! %f %f", photo_height*scale, photo_width*scale);
-
     }
     
     
@@ -434,7 +430,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    NSLog(@"did select");
     [self performSegueWithIdentifier:@"segueComments" sender:indexPath];
 }
 
