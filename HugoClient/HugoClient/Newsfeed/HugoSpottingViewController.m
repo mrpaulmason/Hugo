@@ -49,7 +49,10 @@
     
     self.comments = items;
     
-    tableView.backgroundColor = [UIColor clearColor];
+    tableView.backgroundColor = [UIColor whiteColor];
+    tableView.layer.cornerRadius = 5.0f;
+    tableView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    tableView.layer.borderWidth = 1.0f;
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -80,7 +83,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIView *messageView = [UIView new];
-    [messageView setFrame:CGRectMake(10.0f, 0, 280.f, 30.0f)];
+    [messageView setFrame:CGRectMake(10.0f, 10.0f, 280.f, 30.0f)];
     messageView.layer.cornerRadius = 5.0f;
     messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
     messageView.layer.masksToBounds = YES;
