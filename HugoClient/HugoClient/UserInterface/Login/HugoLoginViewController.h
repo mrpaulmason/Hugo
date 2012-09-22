@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface HugoLoginViewController : UIViewController
+{
+    UIButton *button;
+}
+
+@property (nonatomic, retain) IBOutlet UIButton *button;
+- (IBAction)helloWorld;
+- (IBAction)facebookConnect:(id)sender;
 
 @end

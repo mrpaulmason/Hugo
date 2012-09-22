@@ -12,9 +12,11 @@
 {
     NSArray *results;
     UITableView *tableView;
+    UIImageView *profile;
     UIView *header;
 }
 
+@property (nonatomic, retain) IBOutlet UIImageView *profile;
 @property (nonatomic, retain) IBOutlet UIView *header;
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

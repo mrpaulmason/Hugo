@@ -153,10 +153,15 @@
     return button;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UIViewController *vc = [segue destinationViewController];
+//    [vc setCategoryFilter:sender];
+}
 
 - (void)comment:(id) sender
 {
-    
+    [self performSegueWithIdentifier:@"segueComments" sender:sender];
 }
 
 - (void)like:(id) sender
@@ -178,10 +183,17 @@
                 reuseIdentifier:CellIdentifier];
     
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     
     int photo_width = 0;
     int photo_height = 0;
     float scale = 0;
+    float commentSize = 0;
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
+    {
+        commentSize = 40;
+    }
     
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
@@ -198,16 +210,16 @@
     
 
     UIView *view = [UIView new];
-    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
+    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale+commentSize)];
     view.layer.cornerRadius = 5.0f;
     view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
-    view.layer.borderWidth = 1.0f;
+    view.layer.borderWidth = 0.5f;
     view.backgroundColor = [UIColor whiteColor];
     view.layer.masksToBounds = YES;
     [cell addSubview:view];
     
         
-    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
+    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height+commentSize, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
     
@@ -310,6 +322,24 @@
     [img setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"author_image"]]];
     [view addSubview:img];
     
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
+    {
+        UIView *messageView = [UIView new];
+        [messageView setFrame:CGRectMake(10.0f, 70.f+photo_height*scale, 280.0f, 30.0f)];
+        messageView.layer.cornerRadius = 2.0f;
+        messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
+        messageView.layer.masksToBounds = YES;
+        UILabel *labelView = [UILabel new];
+        [labelView setFrame:CGRectMake(10.0f,0, 260.0f, 30.0f)];
+        [labelView setText:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"]];
+        labelView.backgroundColor = [UIColor clearColor];
+        labelView.textColor = [UIColor blackColor];
+        labelView.font = [UIFont fontWithName:@"Helvetica" size:13.0f];
+        [messageView addSubview:labelView];
+        
+        [view addSubview:messageView];
+    }
+
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
@@ -334,6 +364,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float sz = 105;
+    
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
+    {
+        sz += 40;
+    }
+    
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
@@ -398,7 +434,8 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-        
+    NSLog(@"did select");
+    [self performSegueWithIdentifier:@"segueComments" sender:indexPath];
 }
 
 @end

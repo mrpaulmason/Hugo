@@ -17,7 +17,7 @@
 @end
 
 @implementation HugoProfileViewController
-@synthesize results, tableView, header;
+@synthesize results, tableView, header, profile;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,12 +29,28 @@
 }
 
 
+- (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB selector:(SEL) sel andFrame:(CGRect)frame
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor = [UIColor clearColor];
+    UIImage *buttonImageNormal = [UIImage imageNamed:imgA];
+    UIImage *buttonImageDown = [UIImage imageNamed:imgB];
+    [button setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    
+    [button addTarget:self
+               action:sel
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = frame;
+    return button;
+}
 
 - (void)viewDidLoad
 {
     header.layer.shadowColor = [UIColor blackColor].CGColor;
     header.layer.shadowRadius = 1.0;
-    header.layer.shadowOffset = CGSizeMake(0, 2.0);
+    header.layer.shadowOffset = CGSizeMake(0, 1.0);
     header.layer.shadowOpacity = 0.3;
     
     HQuery *hQuery = [[HQuery alloc] init];
@@ -48,6 +64,20 @@
     }];
     
     [[self navigationItem] setTitle:@"Serena Wu"];
+
+    UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc]
+                                   initWithCustomView:[self buttonFromImage:@"assets/profile/options.png" withHighlight:@"assets/profile/optionsB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
+    self.navigationItem.leftBarButtonItem = optionsButton;
+
+    UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]
+                                      initWithCustomView:[self buttonFromImage:@"assets/profile/addFriend.png" withHighlight:@"assets/profile/addFriendB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
+    self.navigationItem.rightBarButtonItem = addFriend;
+    
+    profile.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    profile.layer.borderWidth = 1.0f;
+    profile.layer.cornerRadius = 5.0f;
+    profile.layer.masksToBounds = YES;
+
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -93,7 +123,7 @@
     int photo_height = 0;
     float scale = 0;
     
-    
+        
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
         photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
@@ -121,7 +151,7 @@
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,11.f,200.0f,13.f)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.f,200.0f,13.f)];
     NSString *name = [[results objectAtIndex:indexPath.row] objectForKey:@"author_name"];
     NSArray *names = [name componentsSeparatedByString:@" "];
     [label setText:[names objectAtIndex:0]];
@@ -131,21 +161,21 @@
     [view addSubview:label];
     
     
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70.0f+[label frame].size.width,11.f,200.0f,13.f)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10.0f+[label frame].size.width,10.f,200.0f,13.f)];
     [label2 setText:@" has been to"];
     [label2 setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
     [label2 setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
     [label2 sizeToFit];
     [view addSubview:label2];
     
-    UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,30.f,200.0f,13.f)];
+    UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,29.f,200.0f,13.f)];
     [labelVenue setText:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"]];
     [labelVenue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
     [labelVenue setTextColor:[UIColor colorWithWhite:0.33f alpha:1.0]];
     [labelVenue sizeToFit];
     [view addSubview:labelVenue];
     
-    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(70.0f,49.f,200.0f,13.f)];
+    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,48.f,200.0f,13.f)];
     NSDictionary *locationData = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]];
     [labelStreet setText:[locationData objectForKey:@"street"]];
     [labelStreet setFont:[UIFont fontWithName:@"Helvetica" size:11.f]];
@@ -188,14 +218,6 @@
 
     
     
-    
-    
-    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(10.f, 10.f, 50.f, 50.f)];
-    img.layer.cornerRadius = 5.0;
-    img.layer.masksToBounds = YES;
-    [img setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"author_image"]]];
-    [view addSubview:img];
-    
     [cell addSubview:view];
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
@@ -215,6 +237,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float sz = 105;
+    
+    if ([indexPath row] == [results count]-1)
+    {
+        sz += 10;
+    }
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {

@@ -21,6 +21,7 @@
     [PFFacebookUtils initializeWithApplicationId:@"469021446449087"];
         
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+    NSLog(@"Application started");
 
     // Override point for customization after application launch.
     return YES;

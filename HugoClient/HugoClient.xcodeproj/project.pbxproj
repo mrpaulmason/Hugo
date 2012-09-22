@@ -12,6 +12,7 @@
 		551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E7160A593B000C15D0 /* HugoSocialView.m */; };
 		551D18EA160B070B000C15D0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E9160B070B000C15D0 /* Default.png */; };
 		551D18EC160B0710000C15D0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18EB160B0710000C15D0 /* Default@2x.png */; };
+		551D18EF160C0333000C15D0 /* HugoSpottingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18EE160C0333000C15D0 /* HugoSpottingViewController.m */; };
 		553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADD15EC24AD00989F07 /* UIKit.framework */; };
 		553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADF15EC24AD00989F07 /* Foundation.framework */; };
 		553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9AE115EC24AD00989F07 /* CoreGraphics.framework */; };
@@ -46,7 +47,6 @@
 		553D9B6615EC5EAE00989F07 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6515EC5EAE00989F07 /* Security.framework */; };
 		553D9B6815EC5EB400989F07 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6715EC5EB400989F07 /* StoreKit.framework */; };
 		553D9B6A15EC5EB900989F07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */; };
-		553D9B7815ED907800989F07 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B7715ED907800989F07 /* Parse.framework */; };
 		553D9B7E15ED990A00989F07 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9B7D15ED990A00989F07 /* CoreLocation.framework */; };
 		553D9B8115EDA51700989F07 /* HugoLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B8015EDA51700989F07 /* HugoLocationViewController.m */; };
 		553D9B8415EDA52900989F07 /* HugoLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9B8215EDA52900989F07 /* HugoLoginViewController.m */; };
@@ -72,6 +72,7 @@
 		5580948F15F40D60009C7D9A /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = 5580948E15F40D60009C7D9A /* main.png */; };
 		558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83DF1602B9DF00ACDF9A /* Icon@2x.png */; };
 		558D83E31602B9E500ACDF9A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 558D83E21602B9E500ACDF9A /* Icon.png */; };
+		55F353C4160D487500DAC447 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C3160D487500DAC447 /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		551D18E7160A593B000C15D0 /* HugoSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSocialView.m; path = UserInterface/Shared/HugoSocialView.m; sourceTree = "<group>"; };
 		551D18E9160B070B000C15D0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		551D18EB160B0710000C15D0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		551D18ED160C0333000C15D0 /* HugoSpottingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSpottingViewController.h; path = Newsfeed/HugoSpottingViewController.h; sourceTree = "<group>"; };
+		551D18EE160C0333000C15D0 /* HugoSpottingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSpottingViewController.m; path = Newsfeed/HugoSpottingViewController.m; sourceTree = "<group>"; };
 		553D9AD915EC24AD00989F07 /* HugoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HugoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553D9ADD15EC24AD00989F07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553D9ADF15EC24AD00989F07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -137,7 +140,6 @@
 		553D9B6515EC5EAE00989F07 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		553D9B6715EC5EB400989F07 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		553D9B7715ED907800989F07 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		553D9B7D15ED990A00989F07 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		553D9B7F15EDA51700989F07 /* HugoLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoLocationViewController.h; path = UserInterface/Location/HugoLocationViewController.h; sourceTree = "<group>"; };
 		553D9B8015EDA51700989F07 /* HugoLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoLocationViewController.m; path = UserInterface/Location/HugoLocationViewController.m; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		5580948E15F40D60009C7D9A /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main.png; sourceTree = "<group>"; };
 		558D83DF1602B9DF00ACDF9A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		558D83E21602B9E500ACDF9A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		55F353C3160D487500DAC447 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +207,7 @@
 				553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */,
 				553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */,
 				553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */,
-				553D9B7815ED907800989F07 /* Parse.framework in Frameworks */,
+				55F353C4160D487500DAC447 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,8 +240,8 @@
 		553D9ADC15EC24AD00989F07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55F353C3160D487500DAC447 /* Parse.framework */,
 				553D9B7D15ED990A00989F07 /* CoreLocation.framework */,
-				553D9B7715ED907800989F07 /* Parse.framework */,
 				553D9B6915EC5EB900989F07 /* SystemConfiguration.framework */,
 				553D9B6715EC5EB400989F07 /* StoreKit.framework */,
 				553D9B6515EC5EAE00989F07 /* Security.framework */,
@@ -313,6 +316,8 @@
 			children = (
 				557108BB16067AB30097AE29 /* HugoNewsfeedViewController.h */,
 				557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */,
+				551D18ED160C0333000C15D0 /* HugoSpottingViewController.h */,
+				551D18EE160C0333000C15D0 /* HugoSpottingViewController.m */,
 			);
 			name = Newsfeed;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */,
 				551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */,
 				551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */,
+				551D18EF160C0333000C15D0 /* HugoSpottingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

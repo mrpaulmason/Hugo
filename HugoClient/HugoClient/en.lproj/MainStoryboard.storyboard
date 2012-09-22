@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="q0B-01-Ebj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--HugoLogin-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" userLabel="HugoLogin" customClass="HugoLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -31,23 +29,24 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonTouchHandler:" destination="4" eventType="touchUpInside" id="Lbs-sK-VsM"/>
+                                    <action selector="facebookConnect:" destination="4" eventType="touchUpInside" id="Jgh-rY-DAi"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="BXf-4L-E2T" id="STg-nQ-cjy"/>
                         <segue destination="q0B-01-Ebj" kind="modal" identifier="UserLoginSuccess" id="4g4-XN-8MG"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-730" y="-556"/>
         </scene>
         <!--Navigation Controller - Search-->
         <scene sceneID="zNO-gP-msP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="27y-4t-9XH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Search" definesPresentationContext="YES" id="ZMm-kE-FWU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" id="EvZ-f1-sef"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UpY-GK-Ia4" customClass="HugoNavigationBar">
@@ -57,13 +56,13 @@
                         <segue destination="C6l-M9-ovU" kind="relationship" relationship="rootViewController" id="WAc-gZ-G46"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27y-4t-9XH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="424" y="-238"/>
         </scene>
         <!--Hugo Search View Controller-->
         <scene sceneID="hBN-JC-SeT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O7l-Ge-Av1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="C6l-M9-ovU" customClass="HugoSearchViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fHL-iF-cyx">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
@@ -106,7 +105,7 @@
                     <navigationItem key="navigationItem" id="mRv-v7-dci">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="XOY-Vn-hfa">
                             <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Ga-Hd-vW6">
-                                <rect key="frame" x="244" y="4" width="71" height="35"/>
+                                <rect key="frame" x="244" y="5" width="71" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Push">
@@ -128,6 +127,7 @@
                         <outlet property="tableView" destination="fHL-iF-cyx" id="NpS-1S-Osi"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7l-Ge-Av1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="Mly-i8-E6B">
                     <connections>
                         <outlet property="delegate" destination="C6l-M9-ovU" id="gV9-ah-ZOO"/>
@@ -143,7 +143,6 @@
         <!--Hugo Results List View Controller-->
         <scene sceneID="JMC-yd-sFh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DTb-Og-JB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="" id="BuB-ky-qDY" customClass="HugoResultsListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TYG-Zp-ImY">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
@@ -230,6 +229,7 @@
                         <outlet property="tableView" destination="Y5l-Ve-HQz" id="BhG-ZT-vMY"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTb-Og-JB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="FY7-aV-8Pd">
                     <connections>
                         <outlet property="delegate" destination="BuB-ky-qDY" id="b9x-Fy-LEq"/>
@@ -244,7 +244,6 @@
         <!--Navigation Controller - Profile-->
         <scene sceneID="llI-Cy-UgY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-JF-tTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Profile" definesPresentationContext="YES" id="if3-NT-bI4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="ZP1-vw-anc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="meh-Qr-ydC" customClass="HugoNavigationBar">
@@ -254,20 +253,20 @@
                         <segue destination="GCN-yW-l5D" kind="relationship" relationship="rootViewController" id="1vw-Wd-IpX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2Z-JF-tTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="424" y="943"/>
         </scene>
         <!--Hugo Profile View Controller-->
         <scene sceneID="E4I-0p-sfV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xw-Dx-H9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="GCN-yW-l5D" customClass="HugoProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ljx-Dz-thU">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ruR-N5-Oq7">
-                                <rect key="frame" x="0.0" y="67" width="320" height="300"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ruR-N5-Oq7">
+                                <rect key="frame" x="0.0" y="70" width="320" height="297"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -287,40 +286,47 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="Xhx-qB-IK4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="S96-Zp-FYj">
-                                        <rect key="frame" x="6" y="7" width="50" height="50"/>
+                                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Serena Wu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tWv-C4-sh4">
-                                        <rect key="frame" x="64" y="11" width="86" height="21"/>
+                                        <rect key="frame" x="70" y="10" width="176" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Francisco, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="D4p-Oq-X54">
-                                        <rect key="frame" x="64" y="32" width="117" height="21"/>
+                                        <rect key="frame" x="70" y="27" width="176" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="assets/profile/friendsBox.png" id="9w7-1s-ic4">
+                                        <rect key="frame" x="254" y="10" width="56" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hugo member #1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="A4Y-9N-6JN">
+                                        <rect key="frame" x="70" y="44" width="176" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                        <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="bWb-1k-tgE">
+                                        <rect key="frame" x="257" y="5" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="V8K-4e-0Xt">
-                                        <rect key="frame" x="76" y="-12" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="followers.png" id="9w7-1s-ic4">
-                                        <rect key="frame" x="258" y="9" width="54" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -330,16 +336,17 @@
                     <navigationItem key="navigationItem" id="jCL-zA-tht"/>
                     <connections>
                         <outlet property="header" destination="Xhx-qB-IK4" id="5HY-V4-9tC"/>
+                        <outlet property="profile" destination="S96-Zp-FYj" id="jd5-wx-aYF"/>
                         <outlet property="tableView" destination="ruR-N5-Oq7" id="QSD-OT-Zxh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xw-Dx-H9G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="958" y="943"/>
         </scene>
         <!--Navigation Controller - Location-->
         <scene sceneID="beV-9t-bRL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aM8-sA-5hd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Location" definesPresentationContext="YES" id="vjb-E6-Qr4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="WCV-ua-Uq7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tfj-JQ-0Ut" customClass="HugoNavigationBar">
@@ -349,13 +356,13 @@
                         <segue destination="beN-Vp-P1q" kind="relationship" relationship="rootViewController" id="jZe-4t-7rG"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aM8-sA-5hd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="424" y="349"/>
         </scene>
         <!--Hugo Location View Controller-->
         <scene sceneID="2MJ-gW-SaA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qTJ-ZT-yYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="beN-Vp-P1q" customClass="HugoLocationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PMS-7R-pLH">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -457,6 +464,7 @@
                         <outlet property="tableView" destination="FhO-lS-XKx" id="OzJ-oP-3r2"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qTJ-ZT-yYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="wo7-oi-zna">
                     <connections>
                         <outlet property="delegate" destination="beN-Vp-P1q" id="K0o-1M-jUG"/>
@@ -472,7 +480,6 @@
         <!--Navigation Controller - Home-->
         <scene sceneID="Iht-Ws-DE8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mMM-MV-H7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Home" definesPresentationContext="YES" id="PWY-qj-Pbv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Fu7-bE-oWV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sMt-wX-yqm" customClass="HugoNavigationBar">
@@ -482,15 +489,15 @@
                         <segue destination="b60-WN-Ea3" kind="relationship" relationship="rootViewController" id="TIO-0a-AM2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mMM-MV-H7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="424" y="-850"/>
         </scene>
         <!--Hugo Newsfeed View Controller-->
         <scene sceneID="h4l-lz-3sg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3fI-Pg-MO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="b60-WN-Ea3" customClass="HugoNewsfeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="DaK-tH-FpM">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="DaK-tH-FpM">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94236158288043481" green="0.9317076467915909" blue="0.90588514781046769" alpha="1" colorSpace="calibratedRGB"/>
@@ -512,18 +519,96 @@
                             <outlet property="delegate" destination="b60-WN-Ea3" id="KD8-cO-mp8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="tCh-2m-Iu0"/>
+                    <navigationItem key="navigationItem" id="tCh-2m-Iu0">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ytQ-cw-chH">
+                            <connections>
+                                <segue destination="D7i-tQ-aBR" kind="push" identifier="segueComments" id="cHS-hS-BG4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="DaK-tH-FpM" id="0Rl-YP-YZM"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fI-Pg-MO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950" y="-850"/>
+        </scene>
+        <!--Hugo Spotting View Controller-->
+        <scene sceneID="0aB-xB-mwX">
+            <objects>
+                <viewController id="D7i-tQ-aBR" customClass="HugoSpottingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aNn-0F-G6y">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="NqT-5D-IJY" detailTextLabel="CKz-hd-65H" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="IsN-Wc-MQL">
+                                <rect key="frame" x="70" y="10" width="240" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="220" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Cafe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NqT-5D-IJY">
+                                            <rect key="frame" x="10" y="5" width="75" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Valencia St., San Francisco" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CKz-hd-65H">
+                                            <rect key="frame" x="10" y="27" width="200" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="VbE-7p-IZI">
+                                <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ywz-LU-qsq">
+                                <rect key="frame" x="10" y="77" width="300" height="276"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentsCell" id="LZd-sZ-eHB">
+                                        <rect key="frame" x="0.0" y="22" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="D7i-tQ-aBR" id="u7x-Vt-ybl"/>
+                                    <outlet property="delegate" destination="D7i-tQ-aBR" id="pxp-nl-cTy"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.89000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wtw-6i-GPz"/>
+                    <connections>
+                        <outlet property="profilePicture" destination="VbE-7p-IZI" id="3ds-fg-r47"/>
+                        <outlet property="spottingDetails" destination="IsN-Wc-MQL" id="QKR-2p-EvL"/>
+                        <outlet property="tableView" destination="ywz-LU-qsq" id="2yL-aM-628"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HJP-r8-Zs2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1369" y="-850"/>
         </scene>
         <!--HugoMain-->
         <scene sceneID="iOT-Dz-rJ7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L1b-Ze-ShV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="HugoNavigation" title="HugoNavigation" definesPresentationContext="YES" id="q0B-01-Ebj" userLabel="HugoMain" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="kUg-oD-Jtz"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -539,6 +624,7 @@
                         <segue destination="if3-NT-bI4" kind="relationship" relationship="viewControllers" id="xvz-85-RXg"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1b-Ze-ShV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-107" y="-556"/>
         </scene>
@@ -546,7 +632,7 @@
     <resources>
         <image name="assets/login/fbA.png" width="16" height="16"/>
         <image name="assets/login/fbB.png" width="16" height="16"/>
-        <image name="followers.png" width="108" height="88"/>
+        <image name="assets/profile/friendsBox.png" width="16" height="16"/>
         <image name="icon.jpeg" width="180" height="119"/>
         <image name="main.png" width="640" height="920"/>
     </resources>
@@ -559,6 +645,11 @@
         </class>
         <class className="HugoLoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="facebookConnect:"/>
+                <relationship kind="action" name="helloWorld"/>
+                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="HugoNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNavigationBar.h"/>
@@ -573,6 +664,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoProfileViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="header" candidateClass="UIView"/>
+                <relationship kind="outlet" name="profile" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -586,6 +678,14 @@
         <class className="HugoSearchViewController" superclassName="PullRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSearchViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="HugoSpottingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSpottingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="profilePicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="spottingDetails" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
