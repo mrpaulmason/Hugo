@@ -43,7 +43,12 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([defaults doubleForKey:@"fb_expires"] > [[NSDate date] timeIntervalSince1970]) // Check if user is linked to Facebook and their session hasn't expired
+    if ([defaults valueForKey:@"fb_expires"] == nil)
+    {
+        NSLog(@"New FB Auth");
+        // no data exists
+    }
+    else if ([defaults doubleForKey:@"fb_expires"] > [[NSDate date] timeIntervalSince1970]) // Check if user is linked to Facebook and their session hasn't expired
     {
         NSLog(@"Valid FB Auth");
         [self performSegueWithIdentifier:@"UserLoginSuccess" sender:self];
