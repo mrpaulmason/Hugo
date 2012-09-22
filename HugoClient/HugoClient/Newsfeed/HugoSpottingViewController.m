@@ -88,17 +88,30 @@
     messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
     messageView.layer.masksToBounds = YES;
     
+    
+    
+    
     UILabel *labelView = [UILabel new];
-    [labelView setFrame:CGRectMake(25.0f,0, 260.0f, 30.0f)];
     
     if ([[comments objectAtIndex:indexPath.row] objectForKey:@"name"])
     {
-        [labelView setText:[NSString stringWithFormat:@"%@ %@", [[comments objectAtIndex:indexPath.row] objectForKey:@"name"], [[comments objectAtIndex:indexPath.row] objectForKey:@"message"]]];
+        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,260.0f,30.f)];
+        NSString *name = [[comments objectAtIndex:indexPath.row] objectForKey:@"name"];
+        [labelName setText:[NSString stringWithFormat:@"%@: ",name]];
+        labelName.backgroundColor = [UIColor clearColor];
+        [labelName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
+        [labelName setTextColor:[UIColor colorWithWhite:0.2f alpha:1.0]];
+        [labelName sizeToFit];
+        [messageView addSubview:labelName];
+
+        [labelView setFrame:CGRectMake(25.0f+[labelName frame].size.width,0, 260.0f, 30.0f)];
     }
     else
     {
-        [labelView setText:[[comments objectAtIndex:indexPath.row] objectForKey:@"message"]];    
+        [labelView setFrame:CGRectMake(25.0f,0, 260.0f, 30.0f)];
     }
+
+    [labelView setText:[[comments objectAtIndex:indexPath.row] objectForKey:@"message"]];
     labelView.backgroundColor = [UIColor clearColor];
     labelView.textColor = [UIColor blackColor];
     labelView.font = [UIFont fontWithName:@"Helvetica" size:13.0f];
