@@ -7,23 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HugoCommentsView.h"
 
 @interface HugoCommentsViewController : UIViewController <UITextFieldDelegate, UIScrollViewDelegate>
 {
     UIImageView *profilePicture;
     UITableViewCell *spottingDetails;
-    NSArray *comments;
     UIScrollView *scrollView;
     UIToolbar *toolbar;
     UITextField *textInput;
     UIBarButtonItem *barButtonItem;
     UIBarButtonItem *doneButtonItem;
+    HugoCommentsView *commentsView;
     BOOL keyboardIsShown;
 
 }
 
 - (IBAction)comment:(id)sender;
 - (IBAction)closeModal:(id)sender;
+
+@property (nonatomic, retain) HugoCommentsView *commentsView;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButtonItem;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonItem;
@@ -32,7 +35,6 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *profilePicture;
 @property (nonatomic, retain) IBOutlet UITableViewCell *spottingDetails;
-@property (nonatomic, retain) NSArray *comments;
 
 #define kTabBarHeight 44
 #define kKeyboardAnimationDuration 0.25

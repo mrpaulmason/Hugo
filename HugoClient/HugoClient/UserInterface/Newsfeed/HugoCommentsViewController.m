@@ -9,13 +9,14 @@
 #import "HugoCommentsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
+#import "HugoCommentsView.h"
 
 @interface HugoCommentsViewController ()
 
 @end
 
 @implementation HugoCommentsViewController
-@synthesize comments, profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem, doneButtonItem;
+@synthesize profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem, doneButtonItem, commentsView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,11 +27,25 @@
     return self;
 }
 
-- (void)viewDidLoad
++ (NSArray*) staticComments
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSMutableArray *items = [NSMutableArray array];
+    
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"type", @"Lot's of seating w/ outlets and great music!! ",@"message",  nil]];
+    
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Zach Cancio", @"name", @"I'm always there too!",@"message",  nil]];
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"want", @"type", @"Ryan Waliany", @"name", @"also wants to come there.",@"message",  nil]];
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"like", @"type", @"Audrey Wu", @"name", @"liked your spot update.",@"message",  nil]];
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"been", @"type", @"Serena Wu", @"name", @"has been there before.", @"message", nil]];
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"here", @"type", @"Ken Elkabany", @"name", @"is here right now.", @"message",  nil]];
+    
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Paul Mason", @"name", @"Is their food decent? I've always wanted to try this place. heard their cucumber mint lemonade rocks.", @"message",  nil]];
+    
+    return items;
+}
 
+- (void)initializeStyles
+{
     profilePicture.layer.cornerRadius = 5.0f;
     profilePicture.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
     profilePicture.layer.masksToBounds = YES;
@@ -41,38 +56,10 @@
     spottingDetails.layer.borderWidth = 0.5f;
     
     scrollView.backgroundColor = [UIColor colorWithWhite:0.90f alpha:1.0];
-    
-    NSMutableArray *items = [NSMutableArray array];
-    
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"type", @"Lot's of seating w/ outlets and great music!! ",@"message",  nil]];
-    
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Zach Cancio", @"name", @"I'm always there too!",@"message",  nil]];
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"want", @"type", @"Ryan Waliany", @"name", @"also wants to come there.",@"message",  nil]];
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"like", @"type", @"Audrey Wu", @"name", @"liked your spot update.",@"message",  nil]];
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"been", @"type", @"Serena Wu", @"name", @"has been there before.", @"message", nil]];
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"here", @"type", @"Ken Elkabany", @"name", @"is here right now.", @"message",  nil]];
+}
 
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Paul Mason", @"name", @"Is their food decent? I've always wanted to try this place. heard their cucumber mint lemonade rocks.", @"message",  nil]];
-    
-    self.comments = items;
-    
-    int offset = 65;
-    int padding = 5;
-    
-    for (int i = 0; i < comments.count; i++)
-    {
-        UIView *bubble = [self getBubbleForContext:[comments objectAtIndex:i]];
-        CGRect frame = bubble.frame;
-        frame.origin.y = offset;
-        bubble.frame = frame;
-        
-        offset = offset + padding + frame.size.height;
-        [self.scrollView addSubview:bubble];
-    }
-        
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, offset);
-    
+- (void)initializeResponders
+{
     UITapGestureRecognizer *singleTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
@@ -81,7 +68,10 @@
     
     [barButtonItem setAction:@selector(comment:)];
     [doneButtonItem setAction:@selector(closeModal:)];
-    
+}
+
+- (void)initializeNotifications
+{
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -93,93 +83,33 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     keyboardIsShown = NO;
-
 }
 
-- (UIView*)getBubbleForContext:(NSDictionary*)item
+- (void)updateSize
 {
-    UIView *messageView = [UIView new];
-    messageView.layer.cornerRadius = 5.0f;
-    
-    if ([[item objectForKey:@"type"] isEqual:@"comment"])
-    {
-        messageView.backgroundColor = [UIColor whiteColor];
-    }
-    else
-    {
-        messageView.backgroundColor = [UIColor whiteColor];
-    }
-    
-    messageView.layer.masksToBounds = YES;
-    
-    
-    
-    
-    UILabel *labelView = [UILabel new];
-    
-    if ([item objectForKey:@"name"])
-    {
-        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,260.0f,30.f)];
-        NSString *name = [item objectForKey:@"name"];
-        
-        if ([[item objectForKey:@"type"] isEqual:@"chat"])
-        {
-            [labelName setText:[NSString stringWithFormat:@"%@: ",name]];
-        }
-        else
-        {
-            [labelName setText:[NSString stringWithFormat:@"%@ ",name]];
-        }
-        
-        labelName.backgroundColor = [UIColor clearColor];
-        [labelName setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
-        [labelName setTextColor:[UIColor colorWithWhite:0.2f alpha:1.0]];
-        [labelName sizeToFit];
-        [messageView addSubview:labelName];
-        
-        [labelView setFrame:CGRectMake(25.0f,7, 260.0f, 30.0f)];
-        NSString *tmp = @"";
-        
-        while ([tmp sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0f]].width < [labelName frame].size.width)
-        {
-            tmp = [tmp stringByAppendingString:@" "];
-        }
-        
-        [labelView setText:[NSString stringWithFormat:@"%@%@", tmp, [item objectForKey:@"message"]]];
-    }
-    else
-    {
-        [labelView setFrame:CGRectMake(7.5f,7, 260.0f, 30.0f)];
-        [labelView setText:[item objectForKey:@"message"]];
-    }
-    
-    labelView.backgroundColor = [UIColor clearColor];
-    labelView.textColor = [UIColor blackColor];
-    labelView.font = [UIFont fontWithName:@"Helvetica" size:13.0f];
-    labelView.lineBreakMode = UILineBreakModeWordWrap;
-    labelView.numberOfLines = 0;
-    [labelView sizeToFit];
-    [messageView addSubview:labelView];
-    
-    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(5.f, 7.5f, 15.f, 15.f)];
-    if ([[item objectForKey:@"type"] isEqual:@"chat"])
-        [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentBlurb.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"want"])
-        [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentGo.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"like"])
-        [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentLike.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"been"])
-        [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentBeen.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"here"])
-        [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentHere.png"]];
-    [messageView addSubview:img];
-
-    CGSize sz = [labelView sizeThatFits:CGSizeMake(260.0f, 1024.0f)];
-    [messageView setFrame:CGRectMake(10.0f, 0.0f, 300.f, 14.0f+sz.height)];
-    
-    
-    return messageView;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 60+commentsView.frame.size.height);
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+
+    [self initializeStyles];
+    [self initializeResponders];
+    [self initializeNotifications];
+    
+    [[self navigationController] setTitle:@"Spot Update"];
+
+    self.commentsView = [[HugoCommentsView alloc] initWithComments:[HugoCommentsViewController staticComments]];
+    CGRect frame = commentsView.frame;
+    frame.origin.y = 60;
+    commentsView.frame = frame;
+    [self.scrollView addSubview:commentsView];
+    
+    [self updateSize];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -213,7 +143,9 @@
     // get the size of the keyboard
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    
+
+    [[self navigationController] setTitle:@"Spot Update"];
+
     // resize the scrollview
     CGRect viewFrame = self.scrollView.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
@@ -243,6 +175,8 @@
     if (keyboardIsShown) {
         return;
     }
+    
+    [[self navigationController] setTitle:@"Comment"];
     
     NSDictionary* userInfo = [n userInfo];
     
@@ -289,6 +223,13 @@
 
 - (IBAction)comment:(id)sender
 {
+    
+    if ([[textInput text] length] > 0)
+    {
+        [commentsView addComment:[textInput text]];
+        [self updateSize];
+    }
+
     if (keyboardIsShown)
         [textInput resignFirstResponder];
     

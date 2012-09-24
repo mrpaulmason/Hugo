@@ -570,6 +570,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="UAt-VW-LEq" kind="push" id="5RI-RU-f5e"/>
+                                        </connections>
                                     </tableViewCell>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="A6U-yb-aYU">
                                         <rect key="frame" x="10" y="10" width="50" height="50"/>
@@ -620,6 +623,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egI-FP-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1412" y="-850"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="B8E-2K-5cI">
+            <objects>
+                <viewController id="UAt-VW-LEq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X2J-aV-aSe">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bMh-N9-AOa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="utP-C2-asL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1813" y="-850"/>
         </scene>
         <!--HugoMain-->
         <scene sceneID="iOT-Dz-rJ7">

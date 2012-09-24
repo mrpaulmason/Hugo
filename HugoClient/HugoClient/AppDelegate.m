@@ -14,8 +14,15 @@
 
 @synthesize locationManager, lastLocation;
 
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
     [Parse setApplicationId:@"1Vc1VUGNYKnxMv9sTqAaCI4VTuDdQ5DlgMQLvCh7"
                   clientKey:@"CsU23rZMEWSx0f0dH0G6ggbitZlH2MuJ4D6gxvWr"];
     
