@@ -503,15 +503,18 @@
                         <color key="backgroundColor" red="0.94236158288043481" green="0.9317076467915909" blue="0.90588514781046769" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="105" id="Xqu-Mh-ydO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="105" id="Xqu-Mh-ydO">
                                 <rect key="frame" x="0.0" y="22" width="320" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.79149254869998575" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="H2d-WO-Bdw" kind="push" identifier="segueComments2" id="JmS-Qe-koO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -520,11 +523,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="tCh-2m-Iu0">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="ytQ-cw-chH">
-                            <connections>
-                                <segue destination="D7i-tQ-aBR" kind="push" identifier="segueComments" id="cHS-hS-BG4"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ytQ-cw-chH"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="DaK-tH-FpM" id="0Rl-YP-YZM"/>
@@ -534,77 +533,92 @@
             </objects>
             <point key="canvasLocation" x="950" y="-850"/>
         </scene>
-        <!--Hugo Spotting View Controller-->
-        <scene sceneID="0aB-xB-mwX">
+        <!--Hugo Comments View Controller-->
+        <scene sceneID="65W-8X-XuK">
             <objects>
-                <viewController id="D7i-tQ-aBR" customClass="HugoSpottingViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aNn-0F-G6y">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <viewController hidesBottomBarWhenPushed="YES" id="H2d-WO-Bdw" customClass="HugoCommentsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NEV-bA-2ZO">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="NqT-5D-IJY" detailTextLabel="CKz-hd-65H" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="IsN-Wc-MQL">
-                                <rect key="frame" x="70" y="10" width="240" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="220" height="49"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Cafe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NqT-5D-IJY">
-                                            <rect key="frame" x="10" y="5" width="75" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Valencia St., San Francisco" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CKz-hd-65H">
-                                            <rect key="frame" x="10" y="27" width="200" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableViewCell>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="VbE-7p-IZI">
-                                <rect key="frame" x="10" y="10" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ywz-LU-qsq">
-                                <rect key="frame" x="10" y="77" width="300" height="276"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="y9D-5N-RoN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentsCell" id="LZd-sZ-eHB">
-                                        <rect key="frame" x="0.0" y="22" width="300" height="44"/>
+                                <subviews>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cJB-zS-N1R" detailTextLabel="6Ox-FB-Kyz" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="Whv-Sd-Dtw">
+                                        <rect key="frame" x="70" y="10" width="240" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="220" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Cafe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cJB-zS-N1R">
+                                                    <rect key="frame" x="10" y="5" width="75" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="780 Valencia St., San Francisco" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Ox-FB-Kyz">
+                                                    <rect key="frame" x="10" y="27" width="200" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                </prototypes>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="A6U-yb-aYU">
+                                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="D7i-tQ-aBR" id="u7x-Vt-ybl"/>
-                                    <outlet property="delegate" destination="D7i-tQ-aBR" id="pxp-nl-cTy"/>
+                                    <outlet property="delegate" destination="H2d-WO-Bdw" id="zGh-AR-Uf0"/>
                                 </connections>
-                            </tableView>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yFa-fd-akE">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="RLW-ya-JO1">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="i3u-7e-M6I">
+                                            <rect key="frame" x="12" y="7" width="242" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="H2d-WO-Bdw" id="Zqh-it-MPY"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Send" style="done" id="5a1-Bl-YjY">
+                                        <color key="tintColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.89673913039999997" green="0.89673913039999997" blue="0.89673913039999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="0.89000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Wtw-6i-GPz"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jjv-D1-lCn"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="profilePicture" destination="VbE-7p-IZI" id="3ds-fg-r47"/>
-                        <outlet property="spottingDetails" destination="IsN-Wc-MQL" id="QKR-2p-EvL"/>
-                        <outlet property="tableView" destination="ywz-LU-qsq" id="2yL-aM-628"/>
+                        <outlet property="profilePicture" destination="A6U-yb-aYU" id="MYc-V7-fh7"/>
+                        <outlet property="scrollView" destination="y9D-5N-RoN" id="Rz7-pT-QF4"/>
+                        <outlet property="spottingDetails" destination="Whv-Sd-Dtw" id="wml-8Y-5MJ"/>
+                        <outlet property="textInput" destination="i3u-7e-M6I" id="kjo-nE-bbe"/>
+                        <outlet property="toolbar" destination="yFa-fd-akE" id="TIt-EA-KdZ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HJP-r8-Zs2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egI-FP-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="-850"/>
+            <point key="canvasLocation" x="1412" y="-850"/>
         </scene>
         <!--HugoMain-->
         <scene sceneID="iOT-Dz-rJ7">
@@ -637,6 +651,16 @@
         <image name="main.png" width="640" height="920"/>
     </resources>
     <classes>
+        <class className="HugoCommentsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoCommentsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="profilePicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="spottingDetails" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="textInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
         <class className="HugoLocationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLocationViewController.h"/>
             <relationships>
@@ -678,14 +702,6 @@
         <class className="HugoSearchViewController" superclassName="PullRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSearchViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoSpottingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSpottingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="profilePicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="spottingDetails" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

@@ -430,7 +430,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    [self performSegueWithIdentifier:@"segueComments" sender:indexPath];
+    [self performSegueWithIdentifier:@"segueComments2" sender:indexPath];
 }
 
 @end
