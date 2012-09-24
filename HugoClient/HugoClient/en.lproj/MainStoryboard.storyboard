@@ -262,11 +262,11 @@
             <objects>
                 <viewController id="GCN-yW-l5D" customClass="HugoProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ljx-Dz-thU">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ruR-N5-Oq7">
-                                <rect key="frame" x="0.0" y="70" width="320" height="297"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="346"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -571,13 +571,28 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="UAt-VW-LEq" kind="push" id="5RI-RU-f5e"/>
+                                            <segue destination="UAt-VW-LEq" kind="push" identifier="segueVenue" id="vDV-6b-FvK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon.jpeg" id="A6U-yb-aYU">
+                                    <imageView contentMode="scaleToFill" image="icon.jpeg" id="A6U-yb-aYU">
                                         <rect key="frame" x="10" y="10" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uNf-Mt-954">
+                                        <rect key="frame" x="40" y="68" width="70" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="profile">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="GCN-yW-l5D" kind="push" identifier="segueProfile" id="ZZV-Zk-B9S"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -637,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="utP-C2-asL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1813" y="-850"/>
+            <point key="canvasLocation" x="1903" y="-850"/>
         </scene>
         <!--HugoMain-->
         <scene sceneID="iOT-Dz-rJ7">
@@ -737,4 +752,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZZV-Zk-B9S"/>
+    </inferredMetricsTieBreakers>
 </document>

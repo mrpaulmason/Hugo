@@ -65,7 +65,17 @@
                                             action:@selector(handleSingleTap:)];
     singleTap.numberOfTapsRequired = 1;
     [scrollView addGestureRecognizer:singleTap];
-    
+
+    singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapVenue:)];
+    singleTap.numberOfTapsRequired = 1;
+    [spottingDetails addGestureRecognizer:singleTap];
+
+    singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                        action:@selector(tapProfile:)];
+    singleTap.numberOfTapsRequired = 1;
+    [profilePicture addGestureRecognizer:singleTap];
+
     [barButtonItem setAction:@selector(comment:)];
     [doneButtonItem setAction:@selector(closeModal:)];
 }
@@ -220,6 +230,16 @@
 {
     if (keyboardIsShown)
         [textInput resignFirstResponder];
+}
+
+- (void)tapProfile:(id)sender
+{
+    [self performSegueWithIdentifier:@"segueProfile" sender:self];    
+}
+
+- (void)tapVenue:(id)sender
+{
+    [self performSegueWithIdentifier:@"segueVenue" sender:self];
 }
 
 - (IBAction)comment:(id)sender

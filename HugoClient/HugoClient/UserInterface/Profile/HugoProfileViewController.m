@@ -65,9 +65,13 @@
     
     [[self navigationItem] setTitle:@"Serena Wu"];
 
-    UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc]
+    // TODO-HACK: if only 1 viewcontroller, you are viewing your own profile
+    if ([[self.navigationController viewControllers] count] == 1)
+    {
+        UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc]
                                    initWithCustomView:[self buttonFromImage:@"assets/profile/options.png" withHighlight:@"assets/profile/optionsB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
-    self.navigationItem.leftBarButtonItem = optionsButton;
+        self.navigationItem.leftBarButtonItem = optionsButton;
+    }
 
     UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]
                                       initWithCustomView:[self buttonFromImage:@"assets/profile/addFriend.png" withHighlight:@"assets/profile/addFriendB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
