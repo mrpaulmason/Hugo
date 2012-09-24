@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface HugoSocialView : UIView
+{
+    BOOL expanded;
+}
+
+@property (atomic) BOOL expanded;
 
 @end

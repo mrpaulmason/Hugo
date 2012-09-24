@@ -9,6 +9,7 @@
 #import "HugoSocialView.h"
 
 @implementation HugoSocialView
+@synthesize expanded;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,6 +19,7 @@
         self.userInteractionEnabled = YES;
         self.clipsToBounds = YES;
         [self initializeButtons];
+        expanded = NO;
 
     }
     return self;
@@ -52,6 +54,7 @@
     [UIView setAnimationDuration:0.4];
     [tmp setFrame:CGRectMake(0, 5, 235, 50)]; //notice this is ON screen!
     button.hidden = YES;
+    expanded = YES;
     [UIView commitAnimations];
 
     
@@ -118,6 +121,7 @@
 
     UIView *tmp = [[[sender superview] superview] viewWithTag:1];
     tmp.hidden = NO;
+    expanded = NO;
     
 }
 

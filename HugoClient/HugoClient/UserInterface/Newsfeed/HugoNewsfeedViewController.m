@@ -364,6 +364,7 @@
     }
     
     HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55)];
+    [socialView setTag:1];
     [cell addSubview:socialView];
         
     return cell;
@@ -442,6 +443,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+        
     [self performSegueWithIdentifier:@"segueComments2" sender:indexPath];
     
 }
