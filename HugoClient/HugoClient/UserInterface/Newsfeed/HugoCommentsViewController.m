@@ -15,7 +15,7 @@
 @end
 
 @implementation HugoCommentsViewController
-@synthesize comments, profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem;
+@synthesize comments, profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem, doneButtonItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -80,6 +80,7 @@
     [scrollView addGestureRecognizer:singleTap];
     
     [barButtonItem setAction:@selector(comment:)];
+    [doneButtonItem setAction:@selector(closeModal:)];
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -203,6 +204,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];    
+
 }
 
 - (void)keyboardWillHide:(NSNotification *)n
@@ -215,10 +217,10 @@
     // resize the scrollview
     CGRect viewFrame = self.scrollView.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
-    viewFrame.size.height += (keyboardSize.height);
+    viewFrame.size.height += (keyboardSize.height-50);
 
     CGRect toolbarFrame = self.toolbar.frame;
-    toolbarFrame.origin.y += (keyboardSize.height);
+    toolbarFrame.origin.y += (keyboardSize.height-50);
 
     
     [UIView beginAnimations:nil context:NULL];
@@ -227,7 +229,8 @@
     [UIView setAnimationDuration:kKeyboardAnimationDuration];
     [toolbar setFrame:toolbarFrame];
     [self.scrollView setFrame:viewFrame];
-    CGPoint bottomOffset = CGPointMake(0, scrollView.contentSize.height - self.scrollView.bounds.size.height);
+    float offset = scrollView.contentSize.height - self.scrollView.bounds.size.height;
+    CGPoint bottomOffset = CGPointMake(0, offset > 0 ? offset : 0);
     [scrollView setContentOffset:bottomOffset];
     [UIView commitAnimations];
     
@@ -249,13 +252,13 @@
     // resize the noteView
     CGRect viewFrame = self.scrollView.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
-    viewFrame.size.height -= (keyboardSize.height);
+    viewFrame.size.height -= (keyboardSize.height-50);
         
 
     CGRect toolbarFrame = self.toolbar.frame;
     // I'm also subtracting a constant kTabBarHeight because my UIScrollView was offset by the UITabBar so really only the portion of the keyboard that is leftover pass the UITabBar is obscuring my UIScrollView.
     NSLog(@"frame %@", NSStringFromCGRect(toolbarFrame));
-    toolbarFrame.origin.y -= (keyboardSize.height);
+    toolbarFrame.origin.y -= (keyboardSize.height-50);
     NSLog(@"frame %@", NSStringFromCGRect(toolbarFrame));
     
     [UIView beginAnimations:nil context:NULL];
@@ -293,6 +296,11 @@
 
     NSLog(@"comment sent");
     
+}
+
+- (IBAction)closeModal:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

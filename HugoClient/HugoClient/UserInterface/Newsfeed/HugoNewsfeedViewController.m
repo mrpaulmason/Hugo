@@ -57,6 +57,8 @@
     
     NSLog(@"Ran viewDidLoad");
     
+    self.navigationController.delegate = self;
+    
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
     
     
@@ -71,6 +73,16 @@
 }
 
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    NSLog(@"foo");
+    NSLog(@"%@", NSStringFromCGRect(self.tableView.frame));
+    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+    NSLog(@"%@", NSStringFromCGRect(self.view.superview.frame));
+    
+}
+     
+     
 - (void)refresh
 {
     id appDelegate = [[UIApplication sharedApplication] delegate];
@@ -153,13 +165,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    UIViewController *vc = [segue destinationViewController];
+    UIViewController *vc = [segue destinationViewController];   
 //    [vc setCategoryFilter:sender];
 }
 
 - (void)comment:(id) sender
 {
-    [self performSegueWithIdentifier:@"segueComments" sender:sender];
+    [self performSegueWithIdentifier:@"segueComments2" sender:sender];
 }
 
 - (void)like:(id) sender
@@ -431,6 +443,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     [self performSegueWithIdentifier:@"segueComments2" sender:indexPath];
+    
 }
 
 @end

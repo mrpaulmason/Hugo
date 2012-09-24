@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PullRefreshTableViewController.h"
 
-@interface HugoNewsfeedViewController : PullRefreshTableViewController
+@interface HugoNewsfeedViewController : PullRefreshTableViewController <UINavigationControllerDelegate> 
 {
     UITableView *tableView;
     NSArray *results;

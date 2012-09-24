@@ -17,12 +17,15 @@
     UIToolbar *toolbar;
     UITextField *textInput;
     UIBarButtonItem *barButtonItem;
+    UIBarButtonItem *doneButtonItem;
     BOOL keyboardIsShown;
 
 }
 
 - (IBAction)comment:(id)sender;
+- (IBAction)closeModal:(id)sender;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButtonItem;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonItem;
 @property (nonatomic, retain) IBOutlet UITextField *textInput;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
