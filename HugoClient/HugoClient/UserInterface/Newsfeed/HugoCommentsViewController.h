@@ -16,10 +16,14 @@
     UIScrollView *scrollView;
     UIToolbar *toolbar;
     UITextField *textInput;
+    UIBarButtonItem *barButtonItem;
     BOOL keyboardIsShown;
 
 }
 
+- (IBAction)comment:(id)sender;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonItem;
 @property (nonatomic, retain) IBOutlet UITextField *textInput;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

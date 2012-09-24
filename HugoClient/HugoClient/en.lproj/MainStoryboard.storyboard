@@ -609,6 +609,7 @@
                     <navigationItem key="navigationItem" id="jjv-D1-lCn"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="barButtonItem" destination="5a1-Bl-YjY" id="Sl1-dL-76r"/>
                         <outlet property="profilePicture" destination="A6U-yb-aYU" id="MYc-V7-fh7"/>
                         <outlet property="scrollView" destination="y9D-5N-RoN" id="Rz7-pT-QF4"/>
                         <outlet property="spottingDetails" destination="Whv-Sd-Dtw" id="wml-8Y-5MJ"/>
@@ -654,6 +655,8 @@
         <class className="HugoCommentsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoCommentsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="comment:"/>
+                <relationship kind="outlet" name="barButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="profilePicture" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="spottingDetails" candidateClass="UITableViewCell"/>

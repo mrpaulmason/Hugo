@@ -15,7 +15,7 @@
 @end
 
 @implementation HugoCommentsViewController
-@synthesize comments, profilePicture, spottingDetails, scrollView, toolbar, textInput;
+@synthesize comments, profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +44,7 @@
     
     NSMutableArray *items = [NSMutableArray array];
     
-    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"type", @"Lot's of seating w/ outlets and great music!! This should now support multiline text!!!! This should now support multiline text!!!!This should now support multiline text!!!! This should now support multiline text!!!!This should now support multiline text!!!!",@"message",  nil]];
+    [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"type", @"Lot's of seating w/ outlets and great music!! ",@"message",  nil]];
     
     [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Zach Cancio", @"name", @"I'm always there too!",@"message",  nil]];
     [items addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"want", @"type", @"Ryan Waliany", @"name", @"also wants to come there.",@"message",  nil]];
@@ -70,8 +70,6 @@
         [self.scrollView addSubview:bubble];
     }
         
-        
-    NSLog(@"%f %f", self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, offset);
     
@@ -80,6 +78,8 @@
                                             action:@selector(handleSingleTap:)];
     singleTap.numberOfTapsRequired = 1;
     [scrollView addGestureRecognizer:singleTap];
+    
+    [barButtonItem setAction:@selector(comment:)];
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -176,7 +176,6 @@
     CGSize sz = [labelView sizeThatFits:CGSizeMake(260.0f, 1024.0f)];
     [messageView setFrame:CGRectMake(10.0f, 0.0f, 300.f, 14.0f+sz.height)];
     
-    NSLog(@"%f %f", sz.width, sz.height);
     
     return messageView;
 }
@@ -279,11 +278,21 @@
 }
 
 
-
 - (void)handleSingleTap:(UIGestureRecognizer *)sender
 {
     if (keyboardIsShown)
         [textInput resignFirstResponder];
+}
+
+- (IBAction)comment:(id)sender
+{
+    if (keyboardIsShown)
+        [textInput resignFirstResponder];
+    
+    [textInput setText:@""];
+
+    NSLog(@"comment sent");
+    
 }
 
 
