@@ -64,6 +64,8 @@
 		553D9BAD15EDBCE000989F07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BA115EDBCE000989F07 /* SBJsonWriter.m */; };
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
+		554F9361161044A200836B13 /* dash.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 554F9360161044A200836B13 /* dash.jpeg */; };
+		555AC50D161041540064DC59 /* HugoVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AC50C161041540064DC59 /* HugoVenueViewController.m */; };
 		557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */; };
 		557350AA15FAB6B100EB6A82 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 557350A915FAB6B100EB6A82 /* assets */; };
 		557350AF15FFE48B00EB6A82 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 557350AC15FFE48B00EB6A82 /* arrow.png */; };
@@ -177,6 +179,9 @@
 		553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
+		554F9360161044A200836B13 /* dash.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dash.jpeg; sourceTree = "<group>"; };
+		555AC50B161041530064DC59 /* HugoVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoVenueViewController.h; path = UserInterface/Venue/HugoVenueViewController.h; sourceTree = "<group>"; };
+		555AC50C161041540064DC59 /* HugoVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoVenueViewController.m; path = UserInterface/Venue/HugoVenueViewController.m; sourceTree = "<group>"; };
 		557108BB16067AB30097AE29 /* HugoNewsfeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNewsfeedViewController.h; path = UserInterface/Newsfeed/HugoNewsfeedViewController.h; sourceTree = "<group>"; };
 		557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoNewsfeedViewController.m; path = UserInterface/Newsfeed/HugoNewsfeedViewController.m; sourceTree = "<group>"; };
 		557350A915FAB6B100EB6A82 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../../../Dropbox/Hugo/assets; sourceTree = "<group>"; };
@@ -301,6 +306,7 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				554F9360161044A200836B13 /* dash.jpeg */,
 				551D18E4160934F0000C15D0 /* followers.png */,
 				557350A915FAB6B100EB6A82 /* assets */,
 				5580948E15F40D60009C7D9A /* main.png */,
@@ -318,6 +324,7 @@
 				553D9B1515EC3ED400989F07 /* Location */,
 				553D9B1415EC3ECE00989F07 /* Search */,
 				553D9B1315EC3EB900989F07 /* Newsfeed */,
+				555AC511161041A60064DC59 /* Venue */,
 			);
 			name = "Hugo Flow";
 			sourceTree = "<group>";
@@ -461,6 +468,15 @@
 			name = SBJSON;
 			sourceTree = "<group>";
 		};
+		555AC511161041A60064DC59 /* Venue */ = {
+			isa = PBXGroup;
+			children = (
+				555AC50B161041530064DC59 /* HugoVenueViewController.h */,
+				555AC50C161041540064DC59 /* HugoVenueViewController.m */,
+			);
+			name = Venue;
+			sourceTree = "<group>";
+		};
 		557350AB15FFE41700EB6A82 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +559,7 @@
 				551D18E5160934F0000C15D0 /* followers.png in Resources */,
 				551D18EA160B070B000C15D0 /* Default.png in Resources */,
 				551D18EC160B0710000C15D0 /* Default@2x.png in Resources */,
+				554F9361161044A200836B13 /* dash.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +611,7 @@
 				551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */,
 				55B491F4160FD3A1009D6E9F /* HugoCommentsViewController.m in Sources */,
 				55B491FA16102967009D6E9F /* HugoCommentsView.m in Sources */,
+				555AC50D161041540064DC59 /* HugoVenueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
