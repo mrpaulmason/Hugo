@@ -26,6 +26,18 @@
     return newSize;
 }
 
+- (UINavigationItem *)popNavigationItemAnimated:(BOOL)animated
+{
+    [self setNeedsDisplay];
+    return [super popNavigationItemAnimated:animated];
+}
+
+- (void)pushNavigationItem:(UINavigationItem *)item animated:(BOOL)animated
+{
+    [super pushNavigationItem:item animated:animated];
+    [self setNeedsDisplay];
+}
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -39,6 +51,7 @@
     {
         UIImage *imageLogo = [UIImage imageNamed:@"assets/generic/logo.png"];
         [imageLogo drawInRect:CGRectMake(128, 7, imageLogo.size.width, imageLogo.size.height)];
+        NSLog(@"not sure what is happening");
     }
 
 }

@@ -99,7 +99,8 @@
     [self initializeResponders];
     [self initializeNotifications];
     
-    [[self navigationController] setTitle:@"Spot Update"];
+    [[self navigationItem] setTitle:@"Spot Update"];
+    [[[self navigationController] navigationBar] setNeedsDisplay];
 
     self.commentsView = [[HugoCommentsView alloc] initWithComments:[HugoCommentsViewController staticComments]];
     CGRect frame = commentsView.frame;
@@ -144,7 +145,7 @@
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
 
-    [[self navigationController] setTitle:@"Spot Update"];
+    [[self navigationItem] setTitle:@"Spot Update"];
 
     // resize the scrollview
     CGRect viewFrame = self.scrollView.frame;
@@ -176,7 +177,7 @@
         return;
     }
     
-    [[self navigationController] setTitle:@"Comment"];
+    [[self navigationItem] setTitle:@"Comment"];
     
     NSDictionary* userInfo = [n userInfo];
     
