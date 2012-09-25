@@ -303,7 +303,7 @@
     
     double miles = distance * 0.000621371;
     
-    UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,75.f+scale*photo_height,200.0f,25.f)];
+    UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,5.0f,200.0f,25.f)];
     
     if (yearsAgo > 0)
         [milesLabel setText:[NSString stringWithFormat:@"%d year%@ ago, %0.1f miles away",yearsAgo,yearsAgo==1?@"":@"s", miles]];
@@ -315,12 +315,14 @@
         [milesLabel setText:[NSString stringWithFormat:@"%d hour%@ ago, %0.1f miles away",hoursAgo,hoursAgo==1?@"":@"s", miles]];
     else
         [milesLabel setText:[NSString stringWithFormat:@"%d minute%@ ago, %0.1f miles away",minutesAgo,minutesAgo==1?@"":@"s", miles]];
+    
+    NSLog(@"miles: %@, %@ %@", name, [milesLabel text], NSStringFromCGRect(milesLabel.frame));
 
     [milesLabel setFont:[UIFont fontWithName:@"Helvetica" size:10.f]];
     [milesLabel setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
     [milesLabel setBackgroundColor:[UIColor clearColor]];
     [milesLabel sizeToFit];
-    [view addSubview:milesLabel];
+    [bottomBar addSubview:milesLabel];
     
     
     
