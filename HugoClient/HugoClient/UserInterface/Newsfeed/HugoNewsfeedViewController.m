@@ -93,6 +93,7 @@
         {
             NSLog(@"Received results!");
             
+            NSLog(@"%@", JSON);
             self.results = JSON;
             [tableView reloadData];
         }

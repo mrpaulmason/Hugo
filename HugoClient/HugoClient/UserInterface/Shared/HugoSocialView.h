@@ -11,8 +11,12 @@
 @interface HugoSocialView : UIView
 {
     BOOL expanded;
+    UIImageView *expandedBar;
+    UIButton *closedBar;
 }
 
 @property (atomic) BOOL expanded;
+@property (nonatomic, retain) UIImageView *expandedBar;
+@property (nonatomic, retain) UIButton *closedBar;
 
 @end

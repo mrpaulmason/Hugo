@@ -9,7 +9,7 @@
 #import "HugoSocialView.h"
 
 @implementation HugoSocialView
-@synthesize expanded;
+@synthesize expanded, closedBar, expandedBar;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,14 +45,11 @@
 
 - (void)expandButton: (id) selector
 {
-    UIButton *button = (UIButton*)selector;
-    NSLog(@"button tag %d", [selector tag]);
-    UIView *tmp = [[selector superview] viewWithTag:2];
-    
+    UIButton *button = (UIButton*)selector;    
     
     [UIView beginAnimations:@"animateTableView" context:nil];
     [UIView setAnimationDuration:0.4];
-    [tmp setFrame:CGRectMake(0, 5, 235, 50)]; //notice this is ON screen!
+    [self.expandedBar setFrame:CGRectMake(0, 5, 235, 50)]; //notice this is ON screen!
     button.hidden = YES;
     expanded = YES;
     [UIView commitAnimations];
@@ -65,15 +62,14 @@
     NSLog(@"beenThere tab");
     [UIView beginAnimations:@"animateTableView" context:nil];
     [UIView setAnimationDuration:0.4];
-    [[sender superview] setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
+    [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
     
-    UIButton *tmp = (UIButton*)([[[sender superview] superview] viewWithTag:1]);
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/been.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/beenB.png"];
-    [tmp setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
-    [tmp setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
-    tmp.hidden = NO;
+    [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [self.closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    self.closedBar.hidden = NO;
     
 }
 
@@ -82,15 +78,15 @@
     NSLog(@"hereNow tab");
     [UIView beginAnimations:@"animateTableView" context:nil];
     [UIView setAnimationDuration:0.4];
-    [[sender superview] setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
+    [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
     
-    UIButton *tmp = (UIButton*)([[[sender superview] superview] viewWithTag:1]);
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/here.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/hereB.png"];
-    [tmp setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
-    [tmp setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
-    tmp.hidden = NO;
+    [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [self.closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    self.closedBar.hidden = NO;
+    expanded = NO;
     
 }
 
@@ -99,15 +95,15 @@
     NSLog(@"wanaGo tab");
     [UIView beginAnimations:@"animateTableView" context:nil];
     [UIView setAnimationDuration:0.4];
-    [[sender superview] setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
+    [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
     
-    UIButton *tmp = (UIButton*)([[[sender superview] superview] viewWithTag:1]);
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/go.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/goB.png"];
-    [tmp setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
-    [tmp setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
-    tmp.hidden = NO;
+    [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [self.closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    self.closedBar.hidden = NO;
+    expanded = NO;
     
 }
 
@@ -116,49 +112,48 @@
     NSLog(@"close tab");
     [UIView beginAnimations:@"animateTableView" context:nil];
     [UIView setAnimationDuration:0.4];
-    [[sender superview] setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
+    [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
 
-    UIView *tmp = [[[sender superview] superview] viewWithTag:1];
-    tmp.hidden = NO;
+    self.closedBar.hidden = NO;
     expanded = NO;
     
 }
 
 - (void)initializeButtons
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor clearColor];
+    self.closedBar = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.closedBar.backgroundColor = [UIColor clearColor];
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/add.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/addB.png"];
-    [button setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
-    [button setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [self.closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
     
-    [button addTarget:self
+    [self.closedBar addTarget:self
                action:@selector(expandButton:)
      forControlEvents:UIControlEventTouchDown];
     
-    button.tag = 1;
-    button.frame = CGRectMake(180, 5, 55.0, 50.0);
-    [self addSubview:button];
+    self.closedBar.tag = 1;
+    self.closedBar.frame = CGRectMake(180, 5, 55.0, 50.0);
+    [self addSubview:self.closedBar];
     
-    UIImageView *buttonExpanded = [[UIImageView alloc] initWithFrame:CGRectMake(235, 5, 235, 50)];
-    [buttonExpanded setImage:[UIImage imageNamed:@"assets/newsfeed/addOptions.png"]];
-    [buttonExpanded setTag:2];
-    buttonExpanded.userInteractionEnabled = YES;
-    [self addSubview:buttonExpanded];
+    self.expandedBar = [[UIImageView alloc] initWithFrame:CGRectMake(235, 5, 235, 50)];
+    [self.expandedBar setImage:[UIImage imageNamed:@"assets/newsfeed/addOptions.png"]];
+    [self.expandedBar setTag:2];
+    self.expandedBar.userInteractionEnabled = YES;
+    [self addSubview:self.expandedBar];
     
     UIButton *buttonBeenThere = [self buttonFromImage:@"assets/newsfeed/optionsBeen.png" withHighlight:@"assets/newsfeed/optionsBeenB.png" selector:@selector(beenThere:) andFrame:CGRectMake(0, 0, 65, 50)];
-    [buttonExpanded addSubview:buttonBeenThere];
+    [self.expandedBar addSubview:buttonBeenThere];
     
     UIButton *buttonHereNow = [self buttonFromImage:@"assets/newsfeed/optionsHere.png" withHighlight:@"assets/newsfeed/optionsHereB.png" selector:@selector(hereNow:) andFrame:CGRectMake(65, 0, 65, 50)];
-    [buttonExpanded addSubview:buttonHereNow];
+    [self.expandedBar addSubview:buttonHereNow];
     
     UIButton *buttonWanaGo = [self buttonFromImage:@"assets/newsfeed/optionsGo.png" withHighlight:@"assets/newsfeed/optionsGoB.png" selector:@selector(wanaGo:) andFrame:CGRectMake(130, 0, 65, 50)];
-    [buttonExpanded addSubview:buttonWanaGo];
+    [self.expandedBar addSubview:buttonWanaGo];
     
     UIButton *buttonClose = [self buttonFromImage:@"assets/newsfeed/optionsClose.png" withHighlight:@"assets/newsfeed/optionsCloseB.png" selector:@selector(closeTab:) andFrame:CGRectMake(195, 0, 40, 50)];
-    [buttonExpanded addSubview:buttonClose];
+    [self.expandedBar addSubview:buttonClose];
 
     UIImageView *corner = [[UIImageView alloc] initWithFrame:CGRectMake(230, 0, 5, 55)];
     [corner setImage:[UIImage imageNamed:@"assets/newsfeed/corner.png"]];
