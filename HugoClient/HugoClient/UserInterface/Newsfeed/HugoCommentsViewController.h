@@ -18,6 +18,7 @@
     UITextField *textInput;
     UIBarButtonItem *barButtonItem;
     UIBarButtonItem *doneButtonItem;
+    NSMutableDictionary *spotData;
     HugoCommentsView *commentsView;
     BOOL keyboardIsShown;
 
@@ -26,6 +27,7 @@
 - (IBAction)comment:(id)sender;
 - (IBAction)closeModal:(id)sender;
 
+@property (nonatomic, retain) NSMutableDictionary *spotData;
 @property (nonatomic, retain) HugoCommentsView *commentsView;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButtonItem;

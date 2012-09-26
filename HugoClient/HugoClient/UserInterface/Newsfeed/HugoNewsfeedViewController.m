@@ -10,6 +10,7 @@
 #import "HQuery.h"
 #import "AppDelegate.h"
 #import "HugoSocialView.h"
+#import "HugoCommentsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SBJson.h"
 
@@ -184,13 +185,19 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    UIViewController *vc = [segue destinationViewController];   
+    if ([sender isKindOfClass:[NSIndexPath class]])
+    {
+        HugoCommentsViewController *vc = [segue destinationViewController];
+        NSIndexPath *path = (NSIndexPath*)sender;
+        [vc setSpotData:[results objectAtIndex:[path row]]];        
+    }
+    
 //    [vc setCategoryFilter:sender];
 }
 
 - (void)comment:(id) sender
 {
-    [self performSegueWithIdentifier:@"segueComments2" sender:sender];
+//    [self performSegueWithIdentifier:@"segueComments2" sender:sender];
 }
 
 - (void)like:(id) sender

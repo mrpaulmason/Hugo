@@ -10,13 +10,16 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
 #import "HugoCommentsView.h"
+#import "HQuery.h"
+#import "SBJson.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface HugoCommentsViewController ()
 
 @end
 
 @implementation HugoCommentsViewController
-@synthesize profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem, doneButtonItem, commentsView;
+@synthesize profilePicture, spottingDetails, scrollView, toolbar, textInput, barButtonItem, doneButtonItem, commentsView, spotData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -103,16 +106,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@", spotData);
+    
 	// Do any additional setup after loading the view.
 
     [self initializeStyles];
     [self initializeResponders];
     [self initializeNotifications];
     
-    [[self navigationItem] setTitle:@"Spot Update"];
+    [[self navigationItem] setTitle:@"Spot Details"];
     [[[self navigationController] navigationBar] setNeedsDisplay];
 
-    self.commentsView = [[HugoCommentsView alloc] initWithComments:[HugoCommentsViewController staticComments]];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    
+    NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
+    [spottingDetails.textLabel setText:[spotData objectForKey:@"spot_name"]];
+    [spottingDetails.detailTextLabel setText:[NSString stringWithFormat:@"%@, %@, %@", [locationData objectForKey:@"street"],[locationData objectForKey:@"city"], [locationData objectForKey:@"state"]]];
+    
+    [profilePicture setImageWithURL:[NSURL URLWithString:[spotData objectForKey:@"author_image"]]];
+
+    self.commentsView = [[HugoCommentsView alloc] initWithComments:[spotData objectForKey:@"comments"]];
     CGRect frame = commentsView.frame;
     frame.origin.y = 60;
     commentsView.frame = frame;
@@ -155,7 +168,7 @@
     CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
 
-    [[self navigationItem] setTitle:@"Spot Update"];
+    [[self navigationItem] setTitle:@"Spot Details"];
 
     // resize the scrollview
     CGRect viewFrame = self.scrollView.frame;
@@ -248,6 +261,17 @@
     if ([[textInput text] length] > 0)
     {
         [commentsView addComment:[textInput text]];
+        HQuery *hQuery = [[HQuery alloc] init];
+        [hQuery postComment:[spotData objectForKey:@"id"] withType:@"chat" andMessage:[textInput text] withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received comments:");
+                NSLog(@"%@", JSON);
+                
+                // Don't update data yet, should do something here: TODO
+            }
+        }];
+        
         [self updateSize];
     }
 

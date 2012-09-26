@@ -54,7 +54,7 @@
     UIView *messageView = [UIView new];
     messageView.layer.cornerRadius = 5.0f;
     
-    if ([[item objectForKey:@"type"] isEqual:@"comment"])
+    if ([[item objectForKey:@"comment_type"] isEqual:@"comment"])
     {
         messageView.backgroundColor = [UIColor whiteColor];
     }
@@ -75,7 +75,7 @@
         UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,260.0f,30.f)];
         NSString *name = [item objectForKey:@"name"];
         
-        if ([[item objectForKey:@"type"] isEqual:@"chat"])
+        if ([[item objectForKey:@"comment_type"] isEqual:@"chat"])
         {
             [labelName setText:[NSString stringWithFormat:@"%@: ",name]];
         }
@@ -98,12 +98,15 @@
             tmp = [tmp stringByAppendingString:@" "];
         }
         
-        [labelView setText:[NSString stringWithFormat:@"%@%@", tmp, [item objectForKey:@"message"]]];
+        if ([[item objectForKey:@"comment_type"] isEqual:@"like"])
+            [labelView setText:[NSString stringWithFormat:@"%@%@", tmp, @"likes this."]];
+        else
+            [labelView setText:[NSString stringWithFormat:@"%@%@", tmp, [item objectForKey:@"comment_message"]]];
     }
     else
     {
         [labelView setFrame:CGRectMake(7.5f,7, 260.0f, 30.0f)];
-        [labelView setText:[item objectForKey:@"message"]];
+        [labelView setText:[item objectForKey:@"comment_message"]];
     }
     
     labelView.backgroundColor = [UIColor clearColor];
@@ -115,15 +118,15 @@
     [messageView addSubview:labelView];
     
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(5.f, 7.5f, 15.f, 15.f)];
-    if ([[item objectForKey:@"type"] isEqual:@"chat"])
+    if ([[item objectForKey:@"comment_type"] isEqual:@"chat"])
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentBlurb.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"want"])
+    else if ([[item objectForKey:@"comment_type"] isEqual:@"want"])
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentGo.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"like"])
+    else if ([[item objectForKey:@"comment_type"] isEqual:@"like"])
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentLike.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"been"])
+    else if ([[item objectForKey:@"comment_type"] isEqual:@"been"])
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentBeen.png"]];
-    else if ([[item objectForKey:@"type"] isEqual:@"here"])
+    else if ([[item objectForKey:@"comment_type"] isEqual:@"here"])
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentHere.png"]];
     [messageView addSubview:img];
     
@@ -136,7 +139,11 @@
 
 - (void)addComment:(NSString*)text
 {
-    [_comments addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"type", @"Ryan Waliany", @"name", text,@"message",  nil]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = [defaults objectForKey:@"name"];
+
+    [_comments addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"comment_type", name, @"name", text,@"comment_message",  nil]];
+
     
     UIView *bubble = [self getBubbleForContext:[_comments objectAtIndex:[_comments count]-1]];
     CGRect frame = bubble.frame;

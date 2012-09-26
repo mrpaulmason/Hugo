@@ -31,6 +31,7 @@
         [defaults setObject:[JSON objectForKey:@"fb_auth_key"] forKey:@"fb_auth_key"];
         [defaults setObject:[JSON objectForKey:@"fb_expires"] forKey:@"fb_expires"];
         [defaults setObject:[JSON objectForKey:@"user_id"] forKey:@"hugo_id"];
+        [defaults setObject:[JSON objectForKey:@"name"] forKey:@"name"];
         [defaults synchronize];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"HURRICANE: FAILURE");
