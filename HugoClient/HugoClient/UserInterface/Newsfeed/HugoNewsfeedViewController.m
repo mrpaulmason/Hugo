@@ -231,10 +231,7 @@
                 NSLog(@"Received comments:");
                 NSLog(@"%@", JSON);
                 
-                if ([JSON objectForKey:@"results"])
-                    [itemMatch setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
-                else
-                    [itemMatch setNilValueForKey:@"comments"];
+                [itemMatch setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
             }
         }];
     }
