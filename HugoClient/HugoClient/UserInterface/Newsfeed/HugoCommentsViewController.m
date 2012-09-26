@@ -301,13 +301,8 @@
                 int count = [self.navigationController.viewControllers count];
                 HugoNewsfeedViewController* prevController = [self.navigationController.viewControllers objectAtIndex:count-2];
                 
-                for (NSMutableDictionary *item in [prevController results])
-                {
-                    if ([[item objectForKey:@"id"] isEqual:[spotData objectForKey:@"id"]])
-                    {
-                        [item setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
-                    }
-                }
+                
+                [prevController refresh];
 
             }
         }];

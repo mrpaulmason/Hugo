@@ -15,6 +15,8 @@
     NSMutableArray *results;
 }
 
+- (void)refresh;
+
 @property (nonatomic, retain) NSMutableArray *results;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 

@@ -35,7 +35,7 @@
         _offset = _offset + _padding + frame.size.height;
         [self addSubview:bubble];
     }
-    _offset += 5.0f;
+    _offset += 10.0f;
     
     self.frame = CGRectMake(0, 0, 320, _offset);
     
