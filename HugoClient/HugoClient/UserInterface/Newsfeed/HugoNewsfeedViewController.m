@@ -264,11 +264,7 @@
     int photo_width = 0;
     int photo_height = 0;
     float scale = 0;
-    float commentSize = 0;
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
-    {
-        commentSize = 40;
-    }
+    float offset = 0;
     
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
@@ -283,7 +279,7 @@
     
 
     UIView *view = [UIView new];
-    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale+commentSize)];
+    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f+photo_height*scale)];
     view.layer.cornerRadius = 5.0f;
     view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
     view.layer.borderWidth = 0.5f;
@@ -292,7 +288,7 @@
     [cell addSubview:view];
     
         
-    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height+commentSize, 300.0f, 25.f)];
+    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f+scale*photo_height, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
     
@@ -411,23 +407,45 @@
     [img setImageWithURL:[NSURL URLWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"author_image"]]];
     [view addSubview:img];
     
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
+    
+    NSMutableArray *comments = [[[results objectAtIndex:indexPath.row] objectForKey:@"comments"] mutableCopy];
+    
+    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"])
     {
-        UIView *messageView = [UIView new];
-        [messageView setFrame:CGRectMake(10.0f, 70.f+photo_height*scale, 280.0f, 30.0f)];
-        messageView.layer.cornerRadius = 2.0f;
-        messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
-        messageView.layer.masksToBounds = YES;
-        UILabel *labelView = [UILabel new];
-        [labelView setFrame:CGRectMake(10.0f,0, 260.0f, 30.0f)];
-        [labelView setText:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"]];
-        labelView.backgroundColor = [UIColor clearColor];
-        labelView.textColor = [UIColor blackColor];
-        labelView.font = [UIFont fontWithName:@"Helvetica" size:13.0f];
-        [messageView addSubview:labelView];
-        
-        [view addSubview:messageView];
+        [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
     }
+
+    if ([comments count] > 4)
+    {
+        [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"center", @"comment_type", [NSString stringWithFormat:@"%d more comments", [comments count]-4],@"comment_message",  nil] atIndex:4];
+    }
+
+    NSArray *halfArray;
+    NSRange theRange;
+    
+    theRange.location = 0;
+    theRange.length = [comments count] > 5 ? 5 : [comments count];
+    
+    halfArray = [comments subarrayWithRange:theRange];
+        
+    HugoCommentsView *commentsView = [[HugoCommentsView alloc] initWithComments:halfArray andPadding:0 andWidth:280.0f];
+    CGRect frame = commentsView.frame;
+    frame.origin.y = 70.f+photo_height*scale;
+    commentsView.frame = frame;
+    [view addSubview:commentsView];
+    
+    offset = frame.origin.y + frame.size.height;
+    
+    
+    CGRect bFrame = bottomBar.frame;
+    bFrame.origin.y = offset;
+    bottomBar.frame = bFrame;
+
+    offset += 25;
+
+    CGRect vFrame = view.frame;
+    vFrame.size.height = offset;
+    [view setFrame:vFrame];
 
     
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
@@ -454,13 +472,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float sz = 105;
-    
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 3)
-    {
-        sz += 40;
-    }
-    
-    
+        
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {
         int photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
@@ -469,7 +481,30 @@
         
         sz += scale*photo_height;        
     }
+        
 
+    NSMutableArray *comments = [[[results objectAtIndex:indexPath.row] objectForKey:@"comments"] mutableCopy];
+    
+    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"])
+    {
+        [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
+    }
+    
+    if ([comments count] > 4)
+    {
+        [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"center", @"comment_type", [NSString stringWithFormat:@"%d more comments", [comments count]-4],@"comment_message",  nil] atIndex:4];
+    }
+    
+    NSArray *halfArray;
+    NSRange theRange;
+    
+    theRange.location = 0;
+    theRange.length = [comments count] > 5 ? 5 : [comments count];
+    
+    halfArray = [comments subarrayWithRange:theRange];
+    
+    HugoCommentsView *commentsView = [[HugoCommentsView alloc] initWithComments:halfArray andPadding:0 andWidth:280.0f];
+    sz += commentsView.frame.size.height;    
     
     return sz;
 }

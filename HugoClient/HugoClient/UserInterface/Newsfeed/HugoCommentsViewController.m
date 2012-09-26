@@ -154,7 +154,7 @@
         [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [spotData objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
     }
     
-    self.commentsView = [[HugoCommentsView alloc] initWithComments:comments];
+    self.commentsView = [[HugoCommentsView alloc] initWithComments:comments andPadding:10 andWidth:300.0f];
     CGRect frame = commentsView.frame;
     frame.origin.y = offset;
     commentsView.frame = frame;

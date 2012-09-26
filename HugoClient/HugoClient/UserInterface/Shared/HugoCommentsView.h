@@ -12,10 +12,11 @@
 {
     NSMutableArray *_comments;
     int _padding;
+    int _width;
     int _offset;
 }
 
-- (id)initWithComments:(NSArray*)comments;
+- (id)initWithComments:(NSArray*)comments andPadding:(int)padding andWidth:(int)width;
 - (void)addComment:(NSString*)text;
 
 @property(nonatomic, retain) NSMutableArray *_comments;

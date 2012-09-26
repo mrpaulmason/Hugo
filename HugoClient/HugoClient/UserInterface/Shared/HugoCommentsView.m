@@ -12,7 +12,7 @@
 @implementation HugoCommentsView
 @synthesize _comments;
 
-- (id)initWithComments:(NSArray*)comments
+- (id)initWithComments:(NSArray*)comments andPadding:(int)padding andWidth:(int)width
 {
     self = [super init];
     if (self) {
@@ -21,7 +21,8 @@
     
     self._comments = [comments mutableCopy];
 
-    _padding = 10;
+    _width = width;
+    _padding = padding;
     _offset = _padding;
     
     for (int i = 0; i < comments.count; i++)
@@ -34,6 +35,7 @@
         _offset = _offset + _padding + frame.size.height;
         [self addSubview:bubble];
     }
+    _offset += 5.0f;
     
     self.frame = CGRectMake(0, 0, 320, _offset);
     
@@ -58,6 +60,10 @@
     {
         messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
     }
+    else if ([[item objectForKey:@"comment_type"] isEqual:@"center"])
+    {
+        messageView.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
+    }
     else
     {
         messageView.backgroundColor = [UIColor whiteColor];
@@ -71,7 +77,7 @@
     
     if ([item objectForKey:@"name"])
     {
-        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,260.0f,30.f)];
+        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,_width-20.0f,30.f)];
         NSString *name = [item objectForKey:@"name"];
         
         if ([[item objectForKey:@"comment_type"] isEqual:@"chat"])
@@ -89,7 +95,7 @@
         [labelName sizeToFit];
         [messageView addSubview:labelName];
         
-        [labelView setFrame:CGRectMake(25.0f,7, 260.0f, 30.0f)];
+        [labelView setFrame:CGRectMake(25.0f,7, _width-20.0f, 30.0f)];
         NSString *tmp = @"";
         
         while ([tmp sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0f]].width < [labelName frame].size.width)
@@ -104,8 +110,9 @@
     }
     else
     {
-        [labelView setFrame:CGRectMake(7.5f,7, 260.0f, 30.0f)];
+        [labelView setFrame:CGRectMake(7.5f,7, _width-20.0f, 15.0f)];
         [labelView setText:[item objectForKey:@"comment_message"]];
+        
     }
     
     labelView.backgroundColor = [UIColor clearColor];
@@ -113,7 +120,15 @@
     labelView.font = [UIFont fontWithName:@"Helvetica" size:13.0f];
     labelView.lineBreakMode = UILineBreakModeWordWrap;
     labelView.numberOfLines = 0;
-    [labelView sizeToFit];
+    if ([[item objectForKey:@"comment_type"] isEqual:@"center"])
+    {
+        labelView.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0f];
+        [labelView setTextAlignment:NSTextAlignmentCenter];
+    }
+    else
+    {
+        [labelView sizeToFit];
+    }
     [messageView addSubview:labelView];
     
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(5.f, 7.5f, 15.f, 15.f)];
@@ -129,8 +144,8 @@
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentHere.png"]];
     [messageView addSubview:img];
     
-    CGSize sz = [labelView sizeThatFits:CGSizeMake(260.0f, 1024.0f)];
-    [messageView setFrame:CGRectMake(10.0f, 0.0f, 300.f, 14.0f+sz.height)];
+    CGSize sz = [labelView sizeThatFits:CGSizeMake(_width-20.0f, 1024.0f)];
+    [messageView setFrame:CGRectMake(10.0f, 0.0f, _width, 14.0f+sz.height)];
     
     
     return messageView;
