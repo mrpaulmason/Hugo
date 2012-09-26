@@ -13,6 +13,7 @@
 #import "HQuery.h"
 #import "SBJson.h"
 #import "UIImageView+AFNetworking.h"
+#import "HugoNewsfeedViewController.h"
 
 @interface HugoCommentsViewController ()
 
@@ -100,7 +101,7 @@
 
 - (void)updateSize
 {
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 60+commentsView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, commentsView.frame.origin.y+commentsView.frame.size.height);
 }
 
 - (void)viewDidLoad
@@ -119,15 +120,43 @@
 
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     
+    float offset = 60.0f;
+    
+    if ([[spotData objectForKey:@"type"] isEqual:@"photo"])
+    {
+        int photo_height = [[spotData objectForKey:@"photo_height"] integerValue];
+        int photo_width = [[spotData objectForKey:@"photo_width"] integerValue];
+        float scale = 320.0f/photo_width;
+
+        UIImageView *imgPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, offset+10, 320.f, photo_height*scale)];
+        imgPhoto.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
+        imgPhoto.layer.borderColor = [[UIColor whiteColor] CGColor];
+        imgPhoto.layer.borderWidth = 3.0f;
+        imgPhoto.layer.shadowOpacity = 0.3f;
+        imgPhoto.layer.shadowOffset = CGSizeMake(0,0.0);
+        imgPhoto.layer.shadowColor = [[UIColor blackColor] CGColor];
+        imgPhoto.layer.shadowRadius = 3.0f;
+        [imgPhoto setImageWithURL:[NSURL URLWithString:[spotData objectForKey:@"photo_src"]]];
+        [self.scrollView addSubview:imgPhoto];
+        offset += photo_height*scale + 10;
+    }
+    
     NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
     [spottingDetails.textLabel setText:[spotData objectForKey:@"spot_name"]];
     [spottingDetails.detailTextLabel setText:[NSString stringWithFormat:@"%@, %@, %@", [locationData objectForKey:@"street"],[locationData objectForKey:@"city"], [locationData objectForKey:@"state"]]];
     
     [profilePicture setImageWithURL:[NSURL URLWithString:[spotData objectForKey:@"author_image"]]];
-
-    self.commentsView = [[HugoCommentsView alloc] initWithComments:[spotData objectForKey:@"comments"]];
+    
+    NSMutableArray *comments = [[spotData objectForKey:@"comments"] mutableCopy];
+        
+    if ([spotData objectForKey:@"spot_message"])
+    {
+        [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [spotData objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
+    }
+    
+    self.commentsView = [[HugoCommentsView alloc] initWithComments:comments];
     CGRect frame = commentsView.frame;
-    frame.origin.y = 60;
+    frame.origin.y = offset;
     commentsView.frame = frame;
     [self.scrollView addSubview:commentsView];
     
@@ -268,9 +297,24 @@
                 NSLog(@"Received comments:");
                 NSLog(@"%@", JSON);
                 
-                // Don't update data yet, should do something here: TODO
+                // Generalize this to other classes
+                int count = [self.navigationController.viewControllers count];
+                HugoNewsfeedViewController* prevController = [self.navigationController.viewControllers objectAtIndex:count-2];
+                
+                for (NSMutableDictionary *item in [prevController results])
+                {
+                    if ([[item objectForKey:@"id"] isEqual:[spotData objectForKey:@"id"]])
+                    {
+                        [item setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
+                    }
+                }
+
             }
         }];
+        
+        
+        
+        
         
         [self updateSize];
     }

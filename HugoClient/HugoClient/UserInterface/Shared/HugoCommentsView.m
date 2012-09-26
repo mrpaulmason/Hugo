@@ -56,7 +56,7 @@
     
     if ([[item objectForKey:@"comment_type"] isEqual:@"comment"])
     {
-        messageView.backgroundColor = [UIColor whiteColor];
+        messageView.backgroundColor = [UIColor colorWithRed:238/255.0 green:246/255.0 blue:250/255.0 alpha:1.0];
     }
     else
     {
@@ -64,7 +64,6 @@
     }
     
     messageView.layer.masksToBounds = YES;
-    
     
     
     
@@ -141,9 +140,15 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [defaults objectForKey:@"name"];
+    
+    if (_comments == nil)
+    {
+        self._comments = [NSMutableArray array];
+    }
+    
+    NSLog(@"s: %@", _comments);
 
     [_comments addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"chat", @"comment_type", name, @"name", text,@"comment_message",  nil]];
-
     
     UIView *bubble = [self getBubbleForContext:[_comments objectAtIndex:[_comments count]-1]];
     CGRect frame = bubble.frame;
