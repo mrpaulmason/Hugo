@@ -15,6 +15,8 @@
     void (^_completionHandler)(id, NSError*);
 }
 
+- (void)postComment:(id)post_id withType:(NSString*)type andMessage:(NSString*)message withCallback:(void (^)(id, NSError*))callback;
+- (void)queryComments:(id)post_id withCallback:(void (^)(id, NSError*))callback;
 - (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
 - (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category withCallback:(void (^)(id, NSError*))callback;
 - (void)queryNewsfeed:(NSString*)prefix withCallback:(void (^)(id, NSError*))callback;

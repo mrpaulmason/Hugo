@@ -81,20 +81,38 @@
     NSLog(@"%@", NSStringFromCGRect(self.view.superview.frame));
     
 }
-     
+
+- (void)pullAllComments
+{
+    for (NSMutableDictionary *item in results)
+    {
+        HQuery *hQuery = [[HQuery alloc] init];
+        [hQuery queryComments:[item objectForKey:@"id"] withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received comments:");
+                NSLog(@"%@", JSON);
+                
+                [item setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
+                // Maybe check if its in view only
+                [tableView reloadData];
+            }
+        }];
+        
+    }
+    
+}
      
 - (void)refresh
-{
-    id appDelegate = [[UIApplication sharedApplication] delegate];
-    
+{    
     HQuery *hQuery = [[HQuery alloc] init];
     [hQuery queryNewsfeed:@"newsfeed" withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
             
-            NSLog(@"%@", JSON);
-            self.results = JSON;
+            self.results = [JSON mutableCopy];
+            [self pullAllComments];
             [tableView reloadData];
         }
         [self stopLoading];
@@ -179,7 +197,47 @@
 {
     UIButton *btn = (UIButton*)sender;
     btn.selected = !btn.selected;
+    
+    NSString *post_id = [btn titleForState:UIControlStateDisabled];
+    NSMutableDictionary *itemMatch = nil;
+    
+    for (NSMutableDictionary *item in results)
+    {
+        if ([[[item objectForKey:@"id"] stringValue] isEqualToString:post_id])
+            itemMatch = item;
+    }
 
+    
+    if (btn.selected)
+    {
+        HQuery *hQuery = [[HQuery alloc] init];
+        [hQuery postComment:post_id withType:@"like" andMessage:@"" withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received comments:");
+                NSLog(@"%@", JSON);
+                
+                [itemMatch setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
+            }
+        }];
+
+    }
+    else
+    {
+        HQuery *hQuery = [[HQuery alloc] init];
+        [hQuery postComment:post_id withType:@"unlike" andMessage:@"" withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received comments:");
+                NSLog(@"%@", JSON);
+                
+                if ([JSON objectForKey:@"results"])
+                    [itemMatch setObject:[JSON objectForKey:@"results"] forKey:@"comments"];
+                else
+                    [itemMatch setNilValueForKey:@"comments"];
+            }
+        }];
+    }
     
 }
 
@@ -196,6 +254,8 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
+    NSLog(@"%@", [results objectAtIndex:indexPath.row]);
     
     int photo_width = 0;
     int photo_height = 0;
@@ -236,6 +296,20 @@
     [bottomBar addSubview:buttonComment];
     
     UIButton *buttonLike = [self buttonFromImage:@"assets/newsfeed/like.png" withHighlight:@"assets/newsfeed/likeB.png" withSelected:@"assets/newsfeed/likeC.png" selector:@selector(like:) andFrame:CGRectMake(250, 0, 50, 25)];
+    [buttonLike setTitle:[NSString stringWithFormat:@"%@", [[results objectAtIndex:indexPath.row] objectForKey:@"id"]] forState:UIControlStateDisabled];
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
+    NSNumber *hugo_id = [defaults objectForKey:@"hugo_id"];
+    
+    for (NSDictionary *comments in [[results objectAtIndex:indexPath.row] objectForKey:@"comments"])
+    {
+        if ([[comments objectForKey:@"comment_type"] isEqualToString:@"like"] && [[comments objectForKey:@"user_id"] isEqualToNumber:hugo_id])
+        {
+            [buttonLike setSelected:YES];
+        }
+    }
+    
     [bottomBar addSubview:buttonLike];
         
     

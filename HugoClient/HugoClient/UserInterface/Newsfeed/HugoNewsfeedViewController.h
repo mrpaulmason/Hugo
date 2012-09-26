@@ -12,10 +12,10 @@
 @interface HugoNewsfeedViewController : PullRefreshTableViewController <UINavigationControllerDelegate> 
 {
     UITableView *tableView;
-    NSArray *results;
+    NSMutableArray *results;
 }
 
-@property (nonatomic, retain) NSArray *results;
+@property (nonatomic, retain) NSMutableArray *results;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @end
