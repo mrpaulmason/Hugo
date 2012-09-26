@@ -112,7 +112,7 @@
             NSLog(@"Received results!");
             
             self.results = [JSON mutableCopy];
-            [self pullAllComments];
+//            [self pullAllComments];
             [tableView reloadData];
         }
         [self stopLoading];
