@@ -410,7 +410,7 @@
     
     NSMutableArray *comments = [[[results objectAtIndex:indexPath.row] objectForKey:@"comments"] mutableCopy];
     
-    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"])
+    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] && [[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 0)
     {
         [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
     }
