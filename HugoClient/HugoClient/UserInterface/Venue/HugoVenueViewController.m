@@ -44,7 +44,7 @@
     CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[locationData objectForKey:@"latitude"] doubleValue] longitude:[[locationData objectForKey:@"longitude"] doubleValue]];
 
     CLLocationCoordinate2D coord = [locA coordinate];
-    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
+    [mapView setCenterCoordinate:coord zoomLevel:12 animated:NO];
     
     [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:coord withTitle:[spotData objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
     
