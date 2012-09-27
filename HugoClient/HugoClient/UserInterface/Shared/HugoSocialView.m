@@ -10,9 +10,9 @@
 #import "HQuery.h"
 
 @implementation HugoSocialView
-@synthesize expanded, closedBar, expandedBar, statuses, placeId;
+@synthesize expanded, closedBar, expandedBar, statuses, placeId, delegate;
 
-- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place
+- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place withDelegate:(id)delegate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -23,6 +23,7 @@
         self.placeId = place;
         [self initializeButtons];
         expanded = NO;
+        _delegate = delegate;
 
     }
     return self;
@@ -76,6 +77,7 @@
             NSLog(@"%@", JSON);
             
             //[prevController refresh];
+            [_delegate refresh];
             
         }
     }];
@@ -104,7 +106,8 @@
             NSLog(@"%@", JSON);
             
             //[prevController refresh];
-            
+            [_delegate refresh];
+
         }
     }];
     
@@ -133,7 +136,8 @@
             NSLog(@"%@", JSON);
             
             //[prevController refresh];
-            
+            [_delegate refresh];
+
         }
     }];
     
