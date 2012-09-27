@@ -462,7 +462,7 @@
         [cell addSubview:imgPhoto];
     }
     
-    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55)];
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55) andStatuses:[[results objectAtIndex:indexPath.row] objectForKey:@"statuses"] andPlace:[[results objectAtIndex:indexPath.row] objectForKey:@"fb_place_id"]];
     [socialView setTag:1];
     [cell addSubview:socialView];
         
@@ -485,7 +485,7 @@
 
     NSMutableArray *comments = [[[results objectAtIndex:indexPath.row] objectForKey:@"comments"] mutableCopy];
     
-    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"])
+    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] && [[[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"] length] > 0)
     {
         [comments insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"comment", @"comment_type", [[results objectAtIndex:indexPath.row] objectForKey:@"spot_message"],@"comment_message",  nil] atIndex:0];
     }

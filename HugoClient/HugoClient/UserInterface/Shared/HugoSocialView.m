@@ -7,17 +7,20 @@
 //
 
 #import "HugoSocialView.h"
+#import "HQuery.h"
 
 @implementation HugoSocialView
-@synthesize expanded, closedBar, expandedBar;
+@synthesize expanded, closedBar, expandedBar, statuses, placeId;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         self.userInteractionEnabled = YES;
         self.clipsToBounds = YES;
+        self.statuses = [aStatuses mutableCopy];
+        self.placeId = place;
         [self initializeButtons];
         expanded = NO;
 
@@ -65,6 +68,18 @@
     [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
     
+    HQuery *hQuery = [[HQuery alloc] init];
+    [hQuery postComment:placeId withType:@"spot_status" andMessage:@"been" withCallback:^(id JSON, NSError *error) {
+        if (error == nil)
+        {
+            NSLog(@"Received comments:");
+            NSLog(@"%@", JSON);
+            
+            //[prevController refresh];
+            
+        }
+    }];
+    
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/been.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/beenB.png"];
     [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
@@ -80,6 +95,18 @@
     [UIView setAnimationDuration:0.4];
     [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
+    
+    HQuery *hQuery = [[HQuery alloc] init];
+    [hQuery postComment:placeId withType:@"spot_status" andMessage:@"here" withCallback:^(id JSON, NSError *error) {
+        if (error == nil)
+        {
+            NSLog(@"Received comments:");
+            NSLog(@"%@", JSON);
+            
+            //[prevController refresh];
+            
+        }
+    }];
     
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/here.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/hereB.png"];
@@ -97,6 +124,18 @@
     [UIView setAnimationDuration:0.4];
     [self.expandedBar setFrame:CGRectMake(235, 5, 235, 50)]; //notice this is ON screen!
     [UIView commitAnimations];
+    
+    HQuery *hQuery = [[HQuery alloc] init];
+    [hQuery postComment:placeId withType:@"spot_status" andMessage:@"go" withCallback:^(id JSON, NSError *error) {
+        if (error == nil)
+        {
+            NSLog(@"Received comments:");
+            NSLog(@"%@", JSON);
+            
+            //[prevController refresh];
+            
+        }
+    }];
     
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/go.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/goB.png"];
@@ -124,8 +163,43 @@
 {
     self.closedBar = [UIButton buttonWithType:UIButtonTypeCustom];
     self.closedBar.backgroundColor = [UIColor clearColor];
-    UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/add.png"];
-    UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/addB.png"];
+    
+    int timestamp = 0;
+    NSString *sMax;
+        
+    for (NSDictionary *item in statuses)
+    {
+        if ([[item objectForKey:@"timestamp"] intValue] > timestamp)
+        {
+            timestamp = [[item objectForKey:@"timestamp"] intValue];
+            sMax = [item objectForKey:@"comment_message"];
+        }
+    }
+
+    UIImage *buttonImageNormal;
+    UIImage *buttonImageDown;
+    
+    if ([sMax isEqualToString:@"go"])
+    {
+        buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/go.png"];
+        buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/goB.png"];
+    }
+    else if ([sMax isEqualToString:@"been"])
+    {
+        buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/been.png"];
+        buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/beenB.png"];
+    }
+    else if ([sMax isEqualToString:@"here"])
+    {
+        buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/here.png"];
+        buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/hereB.png"];
+    }
+    else
+    {
+        buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/add.png"];
+        buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/addB.png"];
+    }
+
     [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
     [self.closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
     
