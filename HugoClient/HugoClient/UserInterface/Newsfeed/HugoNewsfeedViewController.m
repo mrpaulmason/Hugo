@@ -191,13 +191,19 @@
         NSIndexPath *path = (NSIndexPath*)sender;
         [vc setSpotData:[results objectAtIndex:[path row]]];        
     }
+    else if ([sender isKindOfClass:[UIButton class]])
+    {
+        HugoCommentsViewController *vc = [segue destinationViewController];
+        UIButton *button = (UIButton*)sender;
+        [vc setSpotData:[results objectAtIndex:[button tag]]];
+    }
     
 //    [vc setCategoryFilter:sender];
 }
 
 - (void)comment:(id) sender
 {
-//    [self performSegueWithIdentifier:@"segueComments2" sender:sender];
+    [self performSegueWithIdentifier:@"segueComments2" sender:sender];
 }
 
 - (void)like:(id) sender
@@ -295,6 +301,7 @@
     [view addSubview:bottomBar];
     
     UIButton *buttonComment = [self buttonFromImage:@"assets/newsfeed/comment.png" withHighlight:@"assets/newsfeed/commentB.png" selector:@selector(comment:) andFrame:CGRectMake(200, 0, 50, 25)];
+    buttonComment.tag = indexPath.row;
     [bottomBar addSubview:buttonComment];
     
     UIButton *buttonLike = [self buttonFromImage:@"assets/newsfeed/like.png" withHighlight:@"assets/newsfeed/likeB.png" withSelected:@"assets/newsfeed/likeC.png" selector:@selector(like:) andFrame:CGRectMake(250, 0, 50, 25)];
