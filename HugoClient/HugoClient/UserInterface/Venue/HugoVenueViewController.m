@@ -47,7 +47,12 @@
     [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
     
     [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:coord withTitle:[spotData objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
-
+    
+    mapView.clipsToBounds = NO;
+    mapView.layer.shadowOpacity = 0.8f;
+    mapView.layer.shadowOffset = CGSizeMake(0,0.0);
+    mapView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    mapView.layer.shadowRadius = 3.0f;
     
     [self.scrollView addSubview:mapView];
     
