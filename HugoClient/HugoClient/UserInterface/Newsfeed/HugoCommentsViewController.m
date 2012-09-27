@@ -274,14 +274,24 @@
         [textInput resignFirstResponder];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueVenue"])
+    {
+        NSLog(@"Segue to venue page");
+        HugoCommentsViewController *vc = [segue destinationViewController];
+        [vc setSpotData:spotData];
+    }
+}
+
 - (void)tapProfile:(id)sender
 {
-    [self performSegueWithIdentifier:@"segueProfile" sender:self];    
+    [self performSegueWithIdentifier:@"segueProfile" sender:@"profile"];
 }
 
 - (void)tapVenue:(id)sender
 {
-    [self performSegueWithIdentifier:@"segueVenue" sender:self];
+    [self performSegueWithIdentifier:@"segueVenue" sender:@"venue"];
 }
 
 - (IBAction)comment:(id)sender

@@ -10,11 +10,12 @@
 
 @interface HugoVenueViewController : UIViewController
 {
-    UILabel *lbl1, *lbl2;
-    UITableViewCell *cellHeader;
+    UIScrollView *scrollView;
+    NSMutableDictionary *spotData;
+    int _offset;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *lbl1, *lbl2;
-@property (nonatomic, retain) IBOutlet UITableViewCell *cellHeader;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) NSMutableDictionary *spotData;
 
 @end
