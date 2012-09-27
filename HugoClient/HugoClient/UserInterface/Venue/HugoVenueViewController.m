@@ -185,7 +185,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    [[self navigationItem] setTitle:@"Venue Details"];
+    
     [self initializeMap];
     [self initializeHeader];
     [self initializeAddress];
