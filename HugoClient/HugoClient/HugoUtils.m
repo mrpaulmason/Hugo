@@ -9,11 +9,12 @@
 #import "HugoUtils.h"
 #import "AFNetworking.h"
 #import <CoreLocation/CoreLocation.h>
+#import "HugoLoginViewController.h"
 
 @implementation HugoUtils
 
 
-+ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date withDelegate:(id)delegate
++ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date withDelegate:(HugoLoginViewController*)delegate
 {
     // Query our web server
     NSLog(@"HAuthRequest: %@ %.0f", access_token, [date timeIntervalSince1970]);
@@ -37,6 +38,7 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"HURRICANE: FAILURE");
         NSLog(@"HURRICANE: %@ %@ %@", error, response, JSON);
+        [[delegate button] setEnabled:YES];
     }];
     
     NSLog(@"Starting POST to hurricane!");
