@@ -16,7 +16,10 @@
     MKMapView *mapView;
     NSString *categoryFilter;
     CLLocation *desiredLocation;
+    int precision;
 }
+
+- (void) setDesiredPrecision:(int)_precision;
 
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, retain) NSString *categoryFilter;

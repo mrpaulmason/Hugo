@@ -19,6 +19,7 @@
 - (void)queryComments:(id)post_id withCallback:(void (^)(id, NSError*))callback;
 - (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
 - (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback;
+- (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPrecision:(int)precision andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback;
 - (void)queryNewsfeed:(NSString*)prefix withCallback:(void (^)(id, NSError*))callback;
 
 @end

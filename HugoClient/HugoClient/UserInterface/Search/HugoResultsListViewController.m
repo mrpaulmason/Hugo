@@ -49,7 +49,7 @@
 
     
     HQuery *hQuery = [[HQuery alloc] init];
-    [hQuery queryResults:coord andCategory:categoryFilter andPlace:nil withCallback:^(id JSON, NSError *error) {
+    [hQuery queryResults:coord andCategory:categoryFilter andPrecision:precision andPlace:nil withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
@@ -95,6 +95,11 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void) setDesiredPrecision:(int)_precision
+{
+    precision = _precision;
 }
 
 - (void)viewDidUnload

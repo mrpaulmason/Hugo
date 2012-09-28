@@ -17,6 +17,7 @@
     UITableView *tableView;
     CLLocation *desiredLocation;
     NSString *currentText;
+    int precision;
 }
 
 @property (nonatomic, strong) NSMutableArray *categories;

@@ -26,6 +26,8 @@
 
     [super viewDidLoad];
     
+    precision = 6;
+    
     [self.navigationItem setTitle:@"Categories"];
     
     NSMutableArray *tmp = [NSMutableArray array];
@@ -63,7 +65,8 @@
         {
             NSLog(@"Received results!");
             
-            self.categories = JSON;
+            precision = [[JSON objectForKey:@"precision"] intValue];
+            self.categories = [JSON objectForKey:@"categories"];
             [tableView reloadData];            
         }
         [self stopLoading];
@@ -273,6 +276,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     HugoResultsListViewController *vc = [segue destinationViewController];
     [vc setCategoryFilter:sender];
     [vc setDesiredLocation:desiredLocation];
+    [vc setDesiredPrecision:precision];
 }
 
 

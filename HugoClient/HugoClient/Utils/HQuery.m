@@ -156,6 +156,11 @@
 
 - (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback
 {
+    [self queryResults:location andCategory:category andPrecision:6 andPlace:place withCallback:callback];
+}
+
+- (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPrecision:(int)precision andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     _completionHandler = [callback copy];
@@ -165,9 +170,9 @@
     NSString *parameters;
     
     if (place == nil)
-        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category];
+        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@&precision=%d", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category, precision];
     else
-        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@&fb_place_id=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category, place];
+        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@&fb_place_id=%@&precision=%d", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category, place, precision];
     
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[NSData dataWithBytes:[parameters UTF8String] length:strlen([parameters UTF8String])]];
