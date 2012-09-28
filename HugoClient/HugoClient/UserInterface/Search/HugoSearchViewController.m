@@ -272,6 +272,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     HugoResultsListViewController *vc = [segue destinationViewController];
     [vc setCategoryFilter:sender];
+    [vc setDesiredLocation:desiredLocation];
 }
 
 

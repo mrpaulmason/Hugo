@@ -19,7 +19,7 @@
 @end
 
 @implementation HugoResultsListViewController
-@synthesize results, tableView, mapView, categoryFilter;
+@synthesize results, tableView, mapView, categoryFilter, desiredLocation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,8 +34,7 @@
 
 - (void)viewDidLoad
 {
-    id appDelegate = [[UIApplication sharedApplication] delegate];
-    CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+    CLLocationCoordinate2D coord = [desiredLocation coordinate];
     [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
     
     [mapView setShowsUserLocation:YES];

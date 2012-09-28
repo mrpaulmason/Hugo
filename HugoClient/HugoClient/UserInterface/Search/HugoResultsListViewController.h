@@ -15,11 +15,13 @@
     UITableView *tableView;
     MKMapView *mapView;
     NSString *categoryFilter;
+    CLLocation *desiredLocation;
 }
 
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, retain) NSString *categoryFilter;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) CLLocation *desiredLocation;
 
 @end
