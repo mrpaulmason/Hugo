@@ -301,8 +301,16 @@ shouldReloadTableForSearchString:(NSString *)searchString
         @try {
             NSDictionary *latlng = [[[searchResults objectAtIndex:indexPath.row] objectForKey:@"geometry"] objectForKey:@"location"];
             NSLog(@"%@", latlng);
-            CLLocation *cl = [[CLLocation alloc] initWithLatitude:[[latlng objectForKey:@"lat"] doubleValue] longitude:[[latlng objectForKey:@"lng"] doubleValue]];
-            self.desiredLocation = cl;
+            if ([[[searchResults objectAtIndex:indexPath.row] objectForKey:@"formatted_address"] isEqualToString:@"Current Location"])
+            {
+                id appDelegate = [[UIApplication sharedApplication] delegate];
+                self.desiredLocation = [appDelegate lastLocation];                
+            }
+            else
+            {               
+                CLLocation *cl = [[CLLocation alloc] initWithLatitude:[[latlng objectForKey:@"lat"] doubleValue] longitude:[[latlng objectForKey:@"lng"] doubleValue]];
+                self.desiredLocation = cl;
+            }
             NSLog(@"desired location updated %@", desiredLocation);
         }
         @catch (NSException *exception) {
