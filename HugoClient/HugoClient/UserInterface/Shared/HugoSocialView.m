@@ -10,9 +10,9 @@
 #import "HQuery.h"
 
 @implementation HugoSocialView
-@synthesize expanded, closedBar, expandedBar, statuses, placeId, delegate;
+@synthesize expanded, closedBar, expandedBar, statuses, placeId, _delegate;
 
-- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place withDelegate:(id)delegate
+- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray *)aStatuses andPlace:(NSString *)place andSentiment:(BOOL)bSentiment withDelegate:(id)delegate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -21,12 +21,18 @@
         self.clipsToBounds = YES;
         self.statuses = [aStatuses mutableCopy];
         self.placeId = place;
+        sentiment = bSentiment;
         [self initializeButtons];
         expanded = NO;
         _delegate = delegate;
-
+        
     }
     return self;
+}
+
+- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place withDelegate:(id)delegate
+{
+    return [self initWithFrame:frame andStatuses:aStatuses andPlace:place andSentiment:false withDelegate:delegate];
 }
 
 - (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB selector:(SEL) sel andFrame:(CGRect)frame

@@ -67,7 +67,7 @@
             
             precision = [[JSON objectForKey:@"precision"] intValue];
             self.categories = [JSON objectForKey:@"categories"];
-            [tableView reloadData];            
+            [tableView reloadData];
         }
         [self stopLoading];
     }];

@@ -85,12 +85,16 @@
 - (void)queryNewsfeed:(NSString*)prefix withCallback:(void (^)(id, NSError*))callback
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+    [self queryNewsfeed:prefix andHugoId:[defaults objectForKey:@"hugo_id"] withCallback:callback];
+}
+
+- (void)queryNewsfeed:(NSString*)prefix andHugoId:(NSString *)hugo_id withCallback:(void (^)(id, NSError*))callback
+{
     _completionHandler = [callback copy];
     
     NSURL *url = [NSURL URLWithString:@"http://hurricane.gethugo.com/news"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString *parameters = [NSString stringWithFormat:@"hugo_id=%@&prefix=%@", [defaults objectForKey:@"hugo_id"], prefix];
+    NSString *parameters = [NSString stringWithFormat:@"hugo_id=%@&prefix=%@", hugo_id, prefix];
     
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[NSData dataWithBytes:[parameters UTF8String] length:strlen([parameters UTF8String])]];

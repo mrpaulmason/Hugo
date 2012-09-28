@@ -14,6 +14,7 @@
 #import "SBJson.h"
 #import "UIImageView+AFNetworking.h"
 #import "HugoNewsfeedViewController.h"
+#import "HugoProfileViewController.h"
 
 @interface HugoCommentsViewController ()
 
@@ -281,6 +282,22 @@
         NSLog(@"Segue to venue page");
         HugoCommentsViewController *vc = [segue destinationViewController];
         [vc setSpotData:spotData];
+    }
+    else if ([[segue identifier] isEqualToString:@"segueProfile"])
+    {
+        NSLog(@"Segue to venue page");
+        HugoProfileViewController *vc = [segue destinationViewController];
+        
+        if ([spotData objectForKey:@"author_hugo_id"])
+        {
+            [vc setSource:@"hugo"];
+            [vc setProfileId:[spotData objectForKey:@"author_hugo_id"]];
+        }
+        else
+        {
+            [vc setSource:@"facebook"];
+            [vc setProfileId:[spotData objectForKey:@"author_uid"]];
+        }
     }
 }
 

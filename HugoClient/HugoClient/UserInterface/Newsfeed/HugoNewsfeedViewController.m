@@ -481,6 +481,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float sz = 105;
+    
+    if (indexPath.row == [results count]-1)
+        sz += 10;
         
     if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
     {

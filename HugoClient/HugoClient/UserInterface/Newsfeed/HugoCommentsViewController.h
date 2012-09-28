@@ -21,7 +21,6 @@
     NSMutableDictionary *spotData;
     HugoCommentsView *commentsView;
     BOOL keyboardIsShown;
-
 }
 
 - (IBAction)comment:(id)sender;

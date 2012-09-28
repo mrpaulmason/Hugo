@@ -12,6 +12,8 @@
 #import "SBJson.h"
 #import "MKMapView+ZoomLevel.h"
 #import "AddressAnnotation.h"
+#import "HugoSocialView.h"
+#import "HugoVenueViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface HugoResultsListViewController ()
@@ -40,14 +42,10 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)refresh
 {
     CLLocationCoordinate2D coord = [desiredLocation coordinate];
-    [mapView setShowsUserLocation:YES];
-    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
-    [mapView setHidden:NO];
 
-    
     HQuery *hQuery = [[HQuery alloc] init];
     [hQuery queryResults:coord andCategory:categoryFilter andPrecision:precision andPlace:nil withCallback:^(id JSON, NSError *error) {
         if (error == nil)
@@ -61,12 +59,12 @@
             double minLongitude = coord.longitude, maxLongitude = coord.longitude;
             double sumLatitude = coord.latitude, sumLongitude = coord.longitude;
             int c = 1;
-                        
-
+            
+            
             for (NSDictionary *item in self.results)
             {
                 NSError *error = [[NSError alloc] init];
-
+                
                 NSDictionary *locationData = [parser objectWithString:[item objectForKey:@"spot_location"] error:&error];
                 
                 
@@ -76,22 +74,47 @@
                 sumLongitude += location.longitude;
                 c++;
                 
-
+                
                 minLatitude = MIN(location.latitude, minLatitude);
                 maxLatitude = MAX(location.latitude, maxLatitude);
-
+                
                 minLongitude = MIN(location.longitude, minLongitude);
                 maxLongitude = MAX(location.longitude, maxLongitude);
-
+                
                 
                 [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:location withTitle:[item objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
                 
             }
             
             [mapView setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake(sumLatitude/c, sumLongitude/c), MKCoordinateSpanMake(2.5*(maxLatitude-minLatitude), 2.5*(maxLongitude-minLongitude)))];
-        
+            
         }
     }];
+
+}
+
+- (void)viewDidLoad
+{
+    CLLocationCoordinate2D coord = [desiredLocation coordinate];
+    [mapView setShowsUserLocation:YES];
+    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
+    [mapView setHidden:NO];
+    
+    mapView.clipsToBounds = NO;
+    mapView.layer.shadowOpacity = 0.8f;
+    mapView.layer.shadowOffset = CGSizeMake(0,0.0);
+    mapView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    mapView.layer.shadowRadius = 3.0f;
+
+    
+    [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+//    [mapView setFrame:CGRectMake(0, 0, 320, 160)];
+
+    NSLog(@"%@ %@", NSStringFromCGRect([tableView frame]), NSStringFromCGRect([mapView frame]));
+
+    [self.navigationItem setTitle:categoryFilter];
+    
+    [self refresh];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -127,48 +150,161 @@
     return [results count];
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segueVenue"])
+    {
+        NSLog(@"Segue to venue page");
+        HugoVenueViewController *vc = [segue destinationViewController];
+        [vc setSpotData:sender];
+    }
+}
+
+- (void)tableView:(UITableView *)sTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
+    
+    [self performSegueWithIdentifier:@"segueVenue" sender:[results objectAtIndex:indexPath.row]];
+    
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ResultsListCell";
+    id appDelegate = [[UIApplication sharedApplication] delegate];
     SBJsonParser *parser = [[SBJsonParser alloc] init];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    UITableViewCell *cell = [[UITableViewCell alloc]
+                             initWithStyle:UITableViewStylePlain
+                             reuseIdentifier:CellIdentifier];
 
-    UILabel *nameLabel = (UILabel *)[cell viewWithTag:200];
-    nameLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"spot_name"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    NSDictionary *spotData = [results objectAtIndex:indexPath.row];
     
-    NSDictionary *location_dict = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]  error:nil];
+    UIView *view = [UIView new];
+    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f)];
+    view.layer.cornerRadius = 5.0f;
+    view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
+    view.layer.borderWidth = 0.5f;
+    view.backgroundColor = [UIColor whiteColor];
+    view.layer.masksToBounds = YES;
+    [cell addSubview:view];
     
-    UILabel *gameLabel = (UILabel *)[cell viewWithTag:201];
-    gameLabel.text = [location_dict objectForKey:@"street"];
     
     NSArray *pics = [[results objectAtIndex:indexPath.row] objectForKey:@"pics"];
     
-    
-    for (int i = 0; i <= 6; i++)
+    int i = 0;
+    for(NSString *imgURL in pics)
     {
-        UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+i];
-        img1.hidden = YES;
-    }
-    
-    int c = 0;
-    NSSet *imageSet = [NSSet setWithArray:pics];
-
-    for(NSString *imgURL in imageSet)
-    {
-        UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+c];
+        if (i > 7) break;
+        
+        
+        UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 10.0f, 25, 25)];
         img1.layer.cornerRadius = 5.0;
         img1.layer.masksToBounds = YES;
-        img1.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        img1.layer.borderWidth = 1.0;
         img1.hidden = NO;
         
         [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
-        c++;
+        [view addSubview:img1];
+        
+        NSString *author_id = [[[spotData objectForKey:@"authors"] objectAtIndex:i] stringValue];
+        NSDictionary *spot_statuses = [spotData objectForKey:@"spot_statuses"];
+        UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+12.5+i*35, 10.0f+12.5, 15, 15)];
+        
+        if ([spot_statuses objectForKey:author_id])
+        {
+            NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+            
+            if ([status isEqualToString:@"here"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeHere.png"]];
+            else if ([status isEqualToString:@"been"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+            else if ([status isEqualToString:@"go"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeGo.png"]];
+            else if ([status isEqualToString:@"like"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeLike.png"]];
+            else if ([status isEqualToString:@"meh"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeMeh.png"]];
+            else if ([status isEqualToString:@"nah"])
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeNah.png"]];
+            else
+                [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+            
+        }
+        else
+        {
+            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+        }
+        [view addSubview:imgStatus];
+        
+        i++;
+        
     }
+
+
+    UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,45.0f,235.0f,13.f)];
+    
+    [labelVenue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
+    [labelVenue setTextColor:[UIColor blackColor]];
+    NSString *currentString = [spotData objectForKey:@"spot_name"];
+    NSArray *firstWords = [currentString componentsSeparatedByString:@" "];
+    int numWords = [firstWords count];
+    
+    do {
+        [labelVenue setText:[[firstWords subarrayWithRange:NSMakeRange(0,numWords)] componentsJoinedByString:@" "]];
+        [labelVenue sizeToFit];
+        numWords--;
+    } while (labelVenue.frame.size.width > 235.0f);
+    
+    [view addSubview:labelVenue];
+    
+    NSDictionary *locationData = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]  error:nil];
+    
+    CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[locationData objectForKey:@"latitude"] doubleValue] longitude:[[locationData objectForKey:@"longitude"] doubleValue]];
+    CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+    CLLocation *locB = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    
+    CLLocationDistance distance = [locA distanceFromLocation:locB];
+    
+    double miles = distance * 0.000621371;
+    
+    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,68.0f,235.0f,13.f)];
+    
+    if ([[locationData objectForKey:@"street"] isEqualToString:@""])
+    {
+        [labelStreet setText:[NSString stringWithFormat:@"%@ (%.1f mi)",[locationData objectForKey:@"city"], miles]];
+    }
+    else
+        [labelStreet setText:[NSString stringWithFormat:@"%@ (%.1f mi)",[locationData objectForKey:@"street"], miles]];
+    
+    [labelStreet setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
+    [labelStreet setTextColor:[UIColor blackColor]];
+    [labelStreet sizeToFit];
+    [view addSubview:labelStreet];
+    
+    
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55) andStatuses:[spotData objectForKey:@"statuses"] andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:self];
+    [socialView setTag:1];
+    [cell addSubview:socialView];
+
     
         
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float sz = 105.f;
+    return sz;
+}
+
 
 @end

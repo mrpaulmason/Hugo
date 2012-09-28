@@ -148,87 +148,43 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="GjV-H7-sVX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y5l-Ve-HQz">
-                                <rect key="frame" x="0.0" y="140" width="320" height="232"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y5l-Ve-HQz">
+                                <rect key="frame" x="0.0" y="135" width="320" height="237"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ResultsListCell" rowHeight="92" id="AIS-Ww-ftj">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="92"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ResultsListCell" rowHeight="105" id="AIS-Ww-ftj">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" image="icon.jpeg" id="cia-lX-CCc">
-                                                    <rect key="frame" x="12" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" id="QVh-AV-HqF">
-                                                    <rect key="frame" x="62" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" id="neJ-QR-bsj">
-                                                    <rect key="frame" x="112" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" id="wPT-Ce-qn4">
-                                                    <rect key="frame" x="165" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" id="gD3-hl-pCg">
-                                                    <rect key="frame" x="215" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="105" contentMode="scaleToFill" id="Rkq-Ct-Anh">
-                                                    <rect key="frame" x="265" y="9" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="200" contentMode="left" text="Nopalito" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tCY-dm-WuN">
-                                                    <rect key="frame" x="12" y="50" width="288" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" text="Mexican - 0.3 mi - $$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JpY-uU-I8D">
-                                                    <rect key="frame" x="12" y="70" width="162" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="UAt-VW-LEq" kind="push" identifier="segueVenue" id="bPc-NA-6Yf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BuB-ky-qDY" id="YN7-ZP-bc5"/>
+                                    <outlet property="delegate" destination="BuB-ky-qDY" id="Rt6-Oc-XuR"/>
                                 </connections>
                             </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="4US-S9-aYo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="x6A-kz-TP8"/>
                     <connections>
-                        <outlet property="mapView" destination="GjV-H7-sVX" id="OVY-RH-rzb"/>
-                        <outlet property="searchDisplayController" destination="FY7-aV-8Pd" id="NaD-Kd-VhF"/>
+                        <outlet property="mapView" destination="4US-S9-aYo" id="K6S-cQ-p8J"/>
                         <outlet property="tableView" destination="Y5l-Ve-HQz" id="BhG-ZT-vMY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTb-Og-JB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="FY7-aV-8Pd">
-                    <connections>
-                        <outlet property="delegate" destination="BuB-ky-qDY" id="b9x-Fy-LEq"/>
-                        <outlet property="searchContentsController" destination="BuB-ky-qDY" id="cpC-Rz-PwI"/>
-                        <outlet property="searchResultsDelegate" destination="BuB-ky-qDY" id="crZ-FB-52m"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1405" y="-238"/>
         </scene>
@@ -253,22 +209,25 @@
             <objects>
                 <viewController id="GCN-yW-l5D" customClass="HugoProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ljx-Dz-thU">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ruR-N5-Oq7">
-                                <rect key="frame" x="0.0" y="70" width="320" height="297"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="390"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ProfileCell" id="AHJ-6H-rix">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileCell" id="AHJ-6H-rix">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="H2d-WO-Bdw" kind="push" identifier="segueComments2" id="REX-LL-Vfl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -529,11 +488,11 @@
             <objects>
                 <viewController id="H2d-WO-Bdw" customClass="HugoCommentsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NEV-bA-2ZO">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="y9D-5N-RoN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="323"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cJB-zS-N1R" detailTextLabel="6Ox-FB-Kyz" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="Whv-Sd-Dtw">
@@ -591,7 +550,7 @@
                                 </connections>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yFa-fd-akE">
-                                <rect key="frame" x="0.0" y="323" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" id="RLW-ya-JO1">
@@ -634,11 +593,11 @@
             <objects>
                 <viewController id="UAt-VW-LEq" customClass="HugoVenueViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X2J-aV-aSe">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="T5V-Y7-pUa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.95435104927007308" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -759,6 +718,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="bPc-NA-6Yf"/>
         <segue reference="ZZV-Zk-B9S"/>
+        <segue reference="REX-LL-Vfl"/>
     </inferredMetricsTieBreakers>
 </document>

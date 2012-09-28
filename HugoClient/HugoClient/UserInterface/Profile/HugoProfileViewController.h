@@ -14,7 +14,12 @@
     UITableView *tableView;
     UIImageView *profile;
     UIView *header;
+    NSString *profileId;
+    NSString *source;
 }
+
+@property (nonatomic, retain) NSString *profileId;
+@property (nonatomic, retain) NSString *source;
 
 @property (nonatomic, retain) IBOutlet UIImageView *profile;
 @property (nonatomic, retain) IBOutlet UIView *header;

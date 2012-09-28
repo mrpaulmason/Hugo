@@ -182,6 +182,7 @@
             for(NSString *imgURL in imageSet)
             {
                 if (i > 7) break;
+                
 
                 UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 25, 25)];
                 img1.layer.cornerRadius = 5.0;
@@ -190,6 +191,37 @@
                 
                 [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
                 [view addSubview:img1];
+                
+                NSString *author_id = [[[result objectForKey:@"authors"] objectAtIndex:i] stringValue];
+                NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
+                UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+12.5+i*35, 33.f+12.5, 15, 15)];
+
+                if ([spot_statuses objectForKey:author_id])
+                {
+                    NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+                    
+                    if ([status isEqualToString:@"here"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeHere.png"]];
+                    else if ([status isEqualToString:@"been"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+                    else if ([status isEqualToString:@"go"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeGo.png"]];
+                    else if ([status isEqualToString:@"like"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeLike.png"]];
+                    else if ([status isEqualToString:@"meh"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeMeh.png"]];
+                    else if ([status isEqualToString:@"nah"])
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeNah.png"]];
+                    else
+                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+
+                }
+                else
+                {
+                    [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+                }
+                [view addSubview:imgStatus];
+                
                 i++;
                 
             }
@@ -245,9 +277,9 @@
     [labelPhone sizeToFit];
     [view addSubview:labelPhone];
     
-    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:[spotData objectForKey:@"statuses"] andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:nil];
-    [socialView setTag:1];
-    [self.scrollView addSubview:socialView];
+//    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:[spotData objectForKey:@"statuses"] andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:nil];
+//    [socialView setTag:1];
+  //  [self.scrollView addSubview:socialView];
     
     _offset = _offset + 80.0f;
 }

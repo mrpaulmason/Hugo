@@ -12,6 +12,7 @@
 @interface HugoSocialView : UIView
 {
     BOOL expanded;
+    BOOL sentiment;
     UIImageView *expandedBar;
     UIButton *closedBar;
     NSMutableArray *statuses;
@@ -19,6 +20,7 @@
     id _delegate;
 }
 
+- (id)initWithFrame:(CGRect)frame andStatuses:(NSArray *)aStatuses andPlace:(NSString *)place andSentiment:(BOOL)bSentiment withDelegate:(id)delegate;
 - (id)initWithFrame:(CGRect)frame andStatuses:(NSArray*)aStatuses andPlace:(NSString*)place withDelegate:(id)delegate;
 
 @property (atomic) BOOL expanded;
@@ -26,6 +28,6 @@
 @property (nonatomic, retain) UIImageView *expandedBar;
 @property (nonatomic, retain) UIButton *closedBar;
 @property (nonatomic, retain) NSString *placeId;
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id _delegate;
 
 @end
