@@ -32,6 +32,7 @@
     [tmp insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Current Location", @"formatted_address", nil] atIndex:0];
     self.searchResults = tmp;
 
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -48,7 +49,10 @@
     {
         id appDelegate = [[UIApplication sharedApplication] delegate];
         desiredLocation = [appDelegate lastLocation];
+        currentText = @"Current Location";
     }
+
+    [self updateSearchColor];
     
     NSLog(@"desired location after refresh %@", desiredLocation);
 
@@ -138,16 +142,58 @@
 
 #pragma mark - Search
 
+- (void)updateSearchColor
+{
+    if (self.searchDisplayController.isActive){
+        if ([self.searchDisplayController.searchBar.text isEqualToString:@"Current Location"])
+        {
+            UITextField *searchField = [self.searchDisplayController.searchBar valueForKey:@"_searchField"];
+            searchField.textColor = [UIColor blueColor]; //You can put any color here.
+        }
+        else
+        {
+            UITextField *searchField = [self.searchDisplayController.searchBar valueForKey:@"_searchField"];
+            searchField.textColor = [UIColor blackColor]; //You can put any color here.
+        }
+    }
+    else
+    {
+        if ([currentText isEqualToString:@"Current Location"])
+        {
+            UITextField *searchField = [self.searchDisplayController.searchBar valueForKey:@"_searchField"];
+            searchField.textColor = [UIColor blueColor]; //You can put any color here.
+        }
+        else
+        {
+            UITextField *searchField = [self.searchDisplayController.searchBar valueForKey:@"_searchField"];
+            searchField.textColor = [UIColor blackColor]; //You can put any color here.
+        }
+    }
+
+}
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar{
     [self.searchDisplayController setActive:NO animated:YES];
     self.searchDisplayController.searchBar.text = currentText;
+    
+    [self updateSearchColor];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [self.searchDisplayController setActive:NO animated:YES];
+    self.searchDisplayController.searchBar.text = currentText;    
+    [self updateSearchColor];
 
 }
+
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView:(UITableView *)tableView
 {
     NSLog(@"did load search display controller");
-    [self.searchDisplayController.searchResultsTableView reloadData];    
+    [self.searchDisplayController setActive:YES animated:YES];
+    self.searchDisplayController.searchBar.text = currentText;
+    self.searchDisplayController.searchBar.placeholder = @"Search or Address";
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -168,6 +214,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
+    
+    [self updateSearchColor];
     
     return YES;
 }
