@@ -15,6 +15,7 @@
 #import <MapKit/MapKit.h>
 #import "MKMapView+ZoomLevel.h"
 #import "AddressAnnotation.h"
+#import "HQuery.h"
 
 @interface HugoVenueViewController ()
 
@@ -74,11 +75,19 @@
     [self.scrollView addSubview:view];
     
     UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.0f,235.0f,13.f)];
-    [labelVenue setText:[spotData objectForKey:@"spot_name"]];
     
     [labelVenue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
     [labelVenue setTextColor:[UIColor blackColor]];
-    [labelVenue sizeToFit];
+    NSString *currentString = [spotData objectForKey:@"spot_name"];
+    NSArray *firstWords = [currentString componentsSeparatedByString:@" "];
+    int numWords = [firstWords count];
+    
+    do {
+        [labelVenue setText:[[firstWords subarrayWithRange:NSMakeRange(0,numWords)] componentsJoinedByString:@" "]];
+        [labelVenue sizeToFit];
+        numWords--;
+    } while (labelVenue.frame.size.width > 235.0f);
+
     [view addSubview:labelVenue];
     
     UILabel *labelCategories = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,28.0f,235.0f,13.0f)];
@@ -138,6 +147,7 @@
 - (void)initializeFriends
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
     
     UIView *view = [UIView new];
     [view setFrame:CGRectMake(10.0f, 10.0f+_offset, 300.0f, 70.0f)];
@@ -148,7 +158,6 @@
     view.layer.masksToBounds = YES;
     [self.scrollView addSubview:view];
     
-    NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
     
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.0f,235.0f,13.f)];
     [labelTitle setText:@"Friends who have been here"];
@@ -157,6 +166,37 @@
     [labelTitle setTextColor:[UIColor blackColor]];
     [labelTitle sizeToFit];
     [view addSubview:labelTitle];
+
+    CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[locationData objectForKey:@"latitude"] doubleValue] longitude:[[locationData objectForKey:@"longitude"] doubleValue]];
+    
+    CLLocationCoordinate2D coord = [locA coordinate];
+    HQuery *hQuery = [[HQuery alloc] init];
+    [hQuery queryResults:coord andCategory:@"" andPlace:[spotData objectForKey:@"fb_place_id"] withCallback:^(id JSON, NSError *error) {
+        if (error == nil)
+        {
+            NSLog(@"Received results! %@", JSON);
+            NSDictionary *result = [JSON objectAtIndex:0];
+            NSSet *imageSet = [NSSet setWithArray:[result objectForKey:@"pics"]];
+
+            int i = 0;
+            for(NSString *imgURL in imageSet)
+            {
+                if (i > 7) break;
+
+                UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 25, 25)];
+                img1.layer.cornerRadius = 5.0;
+                img1.layer.masksToBounds = YES;
+                img1.hidden = NO;
+                
+                [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
+                [view addSubview:img1];
+                i++;
+                
+            }
+
+            
+        }
+    }];
     
     [self.scrollView addSubview:view];
     
@@ -212,6 +252,8 @@
     _offset = _offset + 80.0f;
 }
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -225,8 +267,8 @@
 
     
     CGRect frame = self.scrollView.frame;
-    frame.size.height = _offset > frame.size.height ? _offset : frame.size.height;
-    self.scrollView.frame = frame;
+    frame.size.height = _offset+10;
+    [self.scrollView setContentSize:frame.size];
 }
 
 - (void)didReceiveMemoryWarning

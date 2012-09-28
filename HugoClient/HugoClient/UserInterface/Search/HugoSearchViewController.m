@@ -10,6 +10,7 @@
 #import "HQuery.h"
 #import "AppDelegate.h"
 #import "HugoResultsListViewController.h"
+#import "SBJson.h"
 
 @interface HugoSearchViewController ()
 
@@ -17,7 +18,7 @@
 
 @implementation HugoSearchViewController
 
-@synthesize categories, tableView;
+@synthesize categories, tableView, desiredLocation, searchResults;
 
 - (void)viewDidLoad
 {
@@ -27,6 +28,10 @@
     
     [self.navigationItem setTitle:@"Categories"];
     
+    NSMutableArray *tmp = [NSMutableArray array];
+    [tmp insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Current Location", @"formatted_address", nil] atIndex:0];
+    self.searchResults = tmp;
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -37,11 +42,19 @@
 
 - (void)refresh
 {
-    id appDelegate = [[UIApplication sharedApplication] delegate];
-    CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+    NSLog(@"desired location before refresh %@", desiredLocation);
+
+    if (desiredLocation  == nil)
+    {
+        id appDelegate = [[UIApplication sharedApplication] delegate];
+        desiredLocation = [appDelegate lastLocation];
+    }
+    
+    NSLog(@"desired location after refresh %@", desiredLocation);
+
 
     HQuery *hQuery = [[HQuery alloc] init];
-    [hQuery queryCategories:coord withCallback:^(id JSON, NSError *error) {
+    [hQuery queryCategories:[desiredLocation coordinate] withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
@@ -65,19 +78,92 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Google Geocoding API
+
+- (void) searchCoordinatesForAddress:(NSString *)inAddress
+{
+    //Build the string to Query Google Maps.
+    NSMutableString *urlString = [NSMutableString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=true",inAddress];
+    
+    //Replace Spaces with a '+' character.
+    [urlString setString:[urlString stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    
+    //Create NSURL string from a formate URL string.
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    //Setup and start an async download.
+    //Note that we should test for reachability!.
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    //The string received from google's servers
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+
+    //JSON Framework magic to obtain a dictionary from the jsonString.
+    NSDictionary *results = [parser objectWithString:jsonString];
+    
+    //Now we need to obtain our coordinate
+    
+    NSMutableArray *placemark  = [[results objectForKey:@"results"] mutableCopy];
+    
+    if (placemark == nil)
+    {
+        placemark = [NSMutableArray array];
+    }
+    
+    [placemark insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Current Location", @"formatted_address", nil] atIndex:0];
+    
+    self.searchResults = placemark;
+    
+//    NSLog(@"%@", jsonString);
+    
+    [self.searchDisplayController.searchResultsTableView reloadData];
+        
+//    NSArray *coordinates = [[placemark objectAtIndex:0] valueForKeyPath:@"Point.coordinates"];
+    
+    //I put my coordinates in my array.
+//    double longitude = [[coordinates objectAtIndex:0] doubleValue];
+  //  double latitude = [[coordinates objectAtIndex:1] doubleValue];
+    
+    //Debug.
+    //NSLog(@"Latitude - Longitude: %f %f", latitude, longitude);
+    
+    //I zoom my map to the area in question.
+}
+
 #pragma mark - Search
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar{
+    [self.searchDisplayController setActive:NO animated:YES];
+    self.searchDisplayController.searchBar.text = currentText;
+
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView:(UITableView *)tableView
+{
+    NSLog(@"did load search display controller");
+    [self.searchDisplayController.searchResultsTableView reloadData];    
+}
+
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
-                                    searchText];
-
-    searchResults = [categories filteredArrayUsingPredicate:resultPredicate];
+    [self searchCoordinatesForAddress:searchText];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString
 {
+    if(!controller.isActive){
+        controller.searchResultsTableView.hidden = YES;
+        return NO;
+    }
+    
+    controller.searchResultsTableView.hidden = NO;
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
@@ -85,6 +171,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     return YES;
 }
+
 
 #pragma mark - Table view data source
 
@@ -117,7 +204,11 @@ shouldReloadTableForSearchString:(NSString *)searchString
     }
 
     if (sTableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"formatted_address"];
+        
+        if ([cell.textLabel.text isEqualToString:@"Current Location"])
+            cell.textLabel.textColor = [UIColor blueColor];
+
     } else {
         cell.textLabel.text = [categories objectAtIndex:indexPath.row];
     }
@@ -126,44 +217,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -185,7 +238,30 @@ shouldReloadTableForSearchString:(NSString *)searchString
      */
     
     if (sTableView == self.searchDisplayController.searchResultsTableView) {
-        [self performSegueWithIdentifier:@"HResults" sender:[searchResults objectAtIndex:indexPath.row]];
+        [self.searchDisplayController setActive:NO animated:YES];
+        self.searchDisplayController.searchBar.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"formatted_address"];
+        
+        currentText = self.searchDisplayController.searchBar.text;
+        
+        NSLog(@"why is nothing happening?");
+        
+        @try {
+            NSDictionary *latlng = [[[searchResults objectAtIndex:indexPath.row] objectForKey:@"geometry"] objectForKey:@"location"];
+            NSLog(@"%@", latlng);
+            CLLocation *cl = [[CLLocation alloc] initWithLatitude:[[latlng objectForKey:@"lat"] doubleValue] longitude:[[latlng objectForKey:@"lng"] doubleValue]];
+            self.desiredLocation = cl;
+            NSLog(@"desired location updated %@", desiredLocation);
+        }
+        @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+            id appDelegate = [[UIApplication sharedApplication] delegate];
+            self.desiredLocation = [appDelegate lastLocation];
+            NSLog(@"desired location updated [exception] %@", desiredLocation);
+        }
+        @finally {
+            [self refresh];
+        }
+        
     } else {
         [self performSegueWithIdentifier:@"HResults" sender:[categories objectAtIndex:indexPath.row]];
     }

@@ -154,7 +154,7 @@
     
 }
 
-- (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category withCallback:(void (^)(id, NSError*))callback
+- (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -162,7 +162,12 @@
     
     NSURL *url = [NSURL URLWithString:@"http://hurricane.gethugo.com/places"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString *parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category];
+    NSString *parameters;
+    
+    if (place == nil)
+        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category];
+    else
+        parameters = [NSString stringWithFormat:@"lat=%f&long=%f&hugo_id=%@&category=%@&fb_place_id=%@", location.latitude, location.longitude, [defaults objectForKey:@"hugo_id"], category, place];
     
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[NSData dataWithBytes:[parameters UTF8String] length:strlen([parameters UTF8String])]];

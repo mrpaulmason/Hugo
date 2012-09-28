@@ -41,7 +41,7 @@
     [mapView setShowsUserLocation:YES];
     
     HQuery *hQuery = [[HQuery alloc] init];
-    [hQuery queryResults:coord andCategory:categoryFilter withCallback:^(id JSON, NSError *error) {
+    [hQuery queryResults:coord andCategory:categoryFilter andPlace:nil withCallback:^(id JSON, NSError *error) {
         if (error == nil)
         {
             NSLog(@"Received results!");
@@ -139,7 +139,9 @@
     }
     
     int c = 0;
-    for(NSString *imgURL in pics)
+    NSSet *imageSet = [NSSet setWithArray:pics];
+
+    for(NSString *imgURL in imageSet)
     {
         UIImageView * img1 = (UIImageView *) [cell viewWithTag:100+c];
         img1.layer.cornerRadius = 5.0;
