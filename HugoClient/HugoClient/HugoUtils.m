@@ -13,7 +13,7 @@
 @implementation HugoUtils
 
 
-+ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date
++ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date withDelegate:(id)delegate
 {
     // Query our web server
     NSLog(@"HAuthRequest: %@ %.0f", access_token, [date timeIntervalSince1970]);
@@ -33,6 +33,7 @@
         [defaults setObject:[JSON objectForKey:@"user_id"] forKey:@"hugo_id"];
         [defaults setObject:[JSON objectForKey:@"name"] forKey:@"name"];
         [defaults synchronize];
+        [delegate performSegueWithIdentifier:@"UserLoginSuccess" sender:delegate];    
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"HURRICANE: FAILURE");
         NSLog(@"HURRICANE: %@ %@ %@", error, response, JSON);

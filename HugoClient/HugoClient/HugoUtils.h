@@ -10,6 +10,6 @@
 
 @interface HugoUtils : NSObject
 
-+ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date;
++ (void)HAuthRequest:(NSString*)access_token andExpiration:(NSDate*)date withDelegate:(id)delegate;
 
 @end

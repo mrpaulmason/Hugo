@@ -81,7 +81,8 @@
                                  @"user_relationships",@"user_birthday",@"user_location", @"friends_location", @"email", @"publish_checkins", @"offline_access", @"friends_status", @"user_status", @"user_photos", @"friends_photos", nil];
     
     NSLog(@"Facebook connect started");
-    
+    [sender setEnabled:NO];
+
     // Log in
     [PFFacebookUtils logInWithPermissions:permissionsArray
                                     block:^(PFUser *user, NSError *error) {
@@ -91,18 +92,18 @@
                                             } else { // An error occurred
                                                 NSLog(@"Uh oh. An error occurred: %@", error);
                                             }
+                                            [sender setEnabled:YES];
                                         } else if (user.isNew) { // Success - a new user was created
                                             NSLog(@"User with facebook signed up and logged in!");
 
-                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate]];
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate] withDelegate:self];
+                                            [sender setEnabled:NO];
 
-                                            [self performSegueWithIdentifier:@"UserLoginSuccess" sender:self];
                                         } else { // Success - an existing user logged in
                                             NSLog(@"User with facebook logged in!");
 
-                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate]];
-                                            
-                                            [self performSegueWithIdentifier:@"UserLoginSuccess" sender:self];
+                                            [HugoUtils HAuthRequest:[[PFFacebookUtils session] accessToken] andExpiration:[[PFFacebookUtils session] expirationDate] withDelegate:self];
+                                            [sender setEnabled:NO];                                            
                                         }
                                     }];
 }

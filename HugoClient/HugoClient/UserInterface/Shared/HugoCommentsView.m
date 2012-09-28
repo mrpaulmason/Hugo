@@ -35,9 +35,8 @@
         _offset = _offset + _padding + frame.size.height;
         [self addSubview:bubble];
     }
-    _offset += 10.0f;
     
-    self.frame = CGRectMake(0, 0, 320, _offset);
+    self.frame = CGRectMake(0, 0, 320, _offset+10.0f);
     
     return self;
 }
@@ -172,7 +171,7 @@
     _offset = _offset + _padding + frame.size.height;
     [self addSubview:bubble];
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, _offset);
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, _offset+10.0f);
 }
 
 

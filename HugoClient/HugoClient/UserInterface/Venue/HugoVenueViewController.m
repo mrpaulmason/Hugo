@@ -135,6 +135,36 @@
     _offset = _offset + 105.0f;
 }
 
+- (void)initializeFriends
+{
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    
+    UIView *view = [UIView new];
+    [view setFrame:CGRectMake(10.0f, 10.0f+_offset, 300.0f, 70.0f)];
+    view.layer.cornerRadius = 5.0f;
+    view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
+    view.layer.borderWidth = 0.5f;
+    view.backgroundColor = [UIColor whiteColor];
+    view.layer.masksToBounds = YES;
+    [self.scrollView addSubview:view];
+    
+    NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
+    
+    UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.0f,235.0f,13.f)];
+    [labelTitle setText:@"Friends who have been here"];
+    
+    [labelTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
+    [labelTitle setTextColor:[UIColor blackColor]];
+    [labelTitle sizeToFit];
+    [view addSubview:labelTitle];
+    
+    [self.scrollView addSubview:view];
+    
+    
+    _offset = _offset + 80.0f;
+}
+
+
 - (void)initializeAddress
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -190,6 +220,7 @@
     
     [self initializeMap];
     [self initializeHeader];
+    [self initializeFriends];
     [self initializeAddress];
 
     
