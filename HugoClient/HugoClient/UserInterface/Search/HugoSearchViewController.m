@@ -114,7 +114,7 @@
     //Now we need to obtain our coordinate
     
     NSMutableArray *placemark  = [[results objectForKey:@"results"] mutableCopy];
-    
+        
     if (placemark == nil)
     {
         placemark = [NSMutableArray array];

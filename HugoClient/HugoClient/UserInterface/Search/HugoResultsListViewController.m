@@ -31,13 +31,22 @@
 }
 
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    [mapView setHidden:YES];
+
+
+    return self;
+}
 
 - (void)viewDidLoad
 {
     CLLocationCoordinate2D coord = [desiredLocation coordinate];
-    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
-    
     [mapView setShowsUserLocation:YES];
+    [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
+    [mapView setHidden:NO];
+
     
     HQuery *hQuery = [[HQuery alloc] init];
     [hQuery queryResults:coord andCategory:categoryFilter andPlace:nil withCallback:^(id JSON, NSError *error) {
