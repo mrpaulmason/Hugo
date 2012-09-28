@@ -16,6 +16,7 @@
 }
 
 - (void)postComment:(id)post_id withType:(NSString*)type andMessage:(NSString*)message withCallback:(void (^)(id, NSError*))callback;
+- (void)queryProfile:(id)hugo_id withCallback:(void (^)(id, NSError*))callback;
 - (void)queryComments:(id)post_id withCallback:(void (^)(id, NSError*))callback;
 - (void)queryCategories:(CLLocationCoordinate2D)location withCallback:(void (^)(id, NSError*))callback;
 - (void)queryResults:(CLLocationCoordinate2D)location andCategory:(NSString*)category andPlace:(NSString*)place withCallback:(void (^)(id, NSError*))callback;

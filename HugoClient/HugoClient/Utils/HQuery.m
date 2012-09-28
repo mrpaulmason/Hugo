@@ -51,6 +51,38 @@
     [operation start];
 }
 
+- (void)queryProfile:(id)hugo_id withCallback:(void (^)(id, NSError*))callback
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hurricane.gethugo.com/auth?user_id=%@",hugo_id]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    _completionHandler = [callback copy];
+    
+    [request setHTTPMethod:@"GET"];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        // Call completion handler.
+        _completionHandler(JSON, nil);
+        
+        // Clean up.
+        _completionHandler = nil;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"HURRICANE: FAILURE");
+        // Call completion handler.
+        _completionHandler(JSON, error);
+        
+        // Clean up.
+        _completionHandler = nil;
+        
+        
+        NSLog(@"HURRICANE: %@", error);
+    }];
+    
+    NSLog(@"Starting POST to hurricane! %@", hugo_id);
+    [operation start];
+}
+
+
 - (void)queryComments:(id)post_id withCallback:(void (^)(id, NSError*))callback
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://hurricane.gethugo.com/comments?fb_post_id=%@",post_id]];

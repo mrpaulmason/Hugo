@@ -286,6 +286,10 @@
                     <navigationItem key="navigationItem" id="jCL-zA-tht"/>
                     <connections>
                         <outlet property="header" destination="Xhx-qB-IK4" id="5HY-V4-9tC"/>
+                        <outlet property="label1" destination="tWv-C4-sh4" id="lbF-An-fPC"/>
+                        <outlet property="label2" destination="D4p-Oq-X54" id="l4B-Zf-hoW"/>
+                        <outlet property="label3" destination="A4Y-9N-6JN" id="32R-Dw-h6h"/>
+                        <outlet property="labelFriends" destination="bWb-1k-tgE" id="Qmx-yD-YTV"/>
                         <outlet property="profile" destination="S96-Zp-FYj" id="jd5-wx-aYF"/>
                         <outlet property="tableView" destination="ruR-N5-Oq7" id="QSD-OT-Zxh"/>
                     </connections>
@@ -685,6 +689,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoProfileViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="header" candidateClass="UIView"/>
+                <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="label2" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="label3" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelFriends" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profile" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>

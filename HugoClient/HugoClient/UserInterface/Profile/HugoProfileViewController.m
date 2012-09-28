@@ -20,7 +20,7 @@
 @end
 
 @implementation HugoProfileViewController
-@synthesize results, tableView, header, profile, source, profileId;
+@synthesize results, tableView, header, profile, source, profileId, label1, label2, label3, labelFriends;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,16 +40,33 @@
     header.layer.shadowOffset = CGSizeMake(0, 1.0);
     header.layer.shadowOpacity = 0.3;
     
+    
     HQuery *hQuery = [[HQuery alloc] init];
     
     if (!source)
     {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
         [hQuery queryNewsfeed:@"user" withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
                 NSLog(@"Profile Received results!");
                 self.results = JSON;
                 [tableView reloadData];
+            }
+        }];
+        
+        HQuery *hQueryProfile = [[HQuery alloc] init];
+        [hQueryProfile queryProfile:[defaults objectForKey:@"hugo_id"] withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received profile information:");
+                NSLog(@"%@", JSON);
+                [profile setImageWithURL:[JSON objectForKey:@"picture"]];
+                [label1 setText:[JSON objectForKey:@"name"]];
+//                SBJsonParser *parser = [[SBJsonParser alloc] init];
+//                NSDictionary *locationData = [parser objectWithString:[JSON objectForKey:@"current_location"]];
+
             }
         }];
     }
@@ -63,6 +80,18 @@
                 [tableView reloadData];
             }
         }];
+        
+        HQuery *hQueryProfile = [[HQuery alloc] init];
+        [hQueryProfile queryProfile:profileId withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received profile information:");
+                NSLog(@"%@", JSON);
+                [profile setImageWithURL:[JSON objectForKey:@"picture"]];
+                [label1 setText:[JSON objectForKey:@"name"]];
+            }
+        }];
+
     }
     else // get data from facebook
     {
@@ -239,7 +268,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
-    NSLog(@"%@", [results objectAtIndex:indexPath.row]);
     
     int photo_width = 0;
     int photo_height = 0;
