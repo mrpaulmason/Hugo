@@ -76,7 +76,7 @@
     
     if ([item objectForKey:@"name"])
     {
-        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,_width-20.0f,30.f)];
+        UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(25.0f,7.f,_width-30.0f,30.f)];
         NSString *name = [item objectForKey:@"name"];
         
         if ([[item objectForKey:@"comment_type"] isEqual:@"chat"])
@@ -94,7 +94,7 @@
         [labelName sizeToFit];
         [messageView addSubview:labelName];
         
-        [labelView setFrame:CGRectMake(25.0f,7, _width-20.0f, 30.0f)];
+        [labelView setFrame:CGRectMake(25.0f,7, _width-30.0f, 30.0f)];
         NSString *tmp = @"";
         
         while ([tmp sizeWithFont:[UIFont fontWithName:@"Helvetica" size:13.0f]].width < [labelName frame].size.width)
@@ -109,7 +109,7 @@
     }
     else
     {
-        [labelView setFrame:CGRectMake(7.5f,7, _width-20.0f, 15.0f)];
+        [labelView setFrame:CGRectMake(7.5f,7, _width-30.0f, 15.0f)];
         [labelView setText:[item objectForKey:@"comment_message"]];
         
     }
@@ -143,7 +143,7 @@
         [img setImage:[UIImage imageNamed:@"assets/newsfeed/commentHere.png"]];
     [messageView addSubview:img];
     
-    CGSize sz = [labelView sizeThatFits:CGSizeMake(_width-20.0f, 1024.0f)];
+    CGSize sz = [labelView sizeThatFits:CGSizeMake(_width-30.0f, 1024.0f)];
     [messageView setFrame:CGRectMake(10.0f, 0.0f, _width, 14.0f+sz.height)];
     
     
