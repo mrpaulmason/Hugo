@@ -20,7 +20,7 @@
 @end
 
 @implementation HugoProfileViewController
-@synthesize results, tableView, header, profile, source, profileId, label1, label2, label3, labelFriends;
+@synthesize results, tableView, header, profile, source, profileId, label1, label2, label3, labelFriends, friendPickerController, hugoId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +31,18 @@
     return self;
 }
 
-
+- (void)inviteFriends
+{
+    if (!self.friendPickerController) {
+        self.friendPickerController = [[PF_FBFriendPickerViewController alloc]
+                                       initWithNibName:nil bundle:nil];
+        self.friendPickerController.title = @"Select friends";
+    }
+    
+    [self.friendPickerController loadData];
+    [self.navigationController pushViewController:self.friendPickerController
+                                         animated:true];
+}
 
 - (void)viewDidLoad
 {
@@ -42,6 +53,7 @@
     
     
     HQuery *hQuery = [[HQuery alloc] init];
+
     
     if (!source)
     {
@@ -62,8 +74,10 @@
             {
                 NSLog(@"Received profile information:");
                 NSLog(@"%@", JSON);
-                [profile setImageWithURL:[JSON objectForKey:@"picture"]];
+                [profile setImageWithURL:[NSURL URLWithString:[JSON objectForKey:@"picture"]]];
                 [label1 setText:[JSON objectForKey:@"name"]];
+                [self.navigationItem setTitle:[JSON objectForKey:@"name"]];
+                [labelFriends setText:[[JSON objectForKey:@"friends"] stringValue]];
 //                SBJsonParser *parser = [[SBJsonParser alloc] init];
 //                NSDictionary *locationData = [parser objectWithString:[JSON objectForKey:@"current_location"]];
 
@@ -81,21 +95,51 @@
             }
         }];
         
+        PF_FBRequest *request = [PF_FBRequest requestForGraphPath:[NSString stringWithFormat:@"%@?fields=name,location,picture", profileId]];
+        [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+            if (!error) {
+                NSLog(@"%@", result);
+                [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
+                [label1 setText:[result objectForKey:@"name"]];
+                [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
+                [label3 setText:@"Hugo member"];
+                [self.navigationItem setTitle:[result objectForKey:@"name"]];
+                
+            }
+        }];
+        
         HQuery *hQueryProfile = [[HQuery alloc] init];
         [hQueryProfile queryProfile:profileId withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
                 NSLog(@"Received profile information:");
                 NSLog(@"%@", JSON);
-                [profile setImageWithURL:[JSON objectForKey:@"picture"]];
-                [label1 setText:[JSON objectForKey:@"name"]];
+                [labelFriends setText:[JSON objectForKey:@"friends"]];
             }
         }];
 
     }
     else // get data from facebook
     {
-        
+        NSString *urlStr = [NSString stringWithFormat:@"%@?fields=%@", profileId, @"name,location,picture"];
+        PF_FBRequest *request = [PF_FBRequest requestForGraphPath:urlStr];
+        [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+            NSLog(@"%@",urlStr);
+            if (!error) {
+                NSLog(@"%@", result);
+                [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
+                [label1 setText:[result objectForKey:@"name"]];
+                [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
+                [label3 setText:@"Facebook friend"];
+                [self.navigationItem setTitle:[result objectForKey:@"name"]];
+                [labelFriends setText:@"N/A"];
+                
+            }
+        }];
     }
     
     [[self navigationItem] setTitle:@"Serena Wu"];
@@ -109,7 +153,7 @@
     }
 
     UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]
-                                      initWithCustomView:[self buttonFromImage:@"assets/profile/addFriend.png" withHighlight:@"assets/profile/addFriendB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
+                                      initWithCustomView:[self buttonFromImage:@"assets/profile/addFriend.png" withHighlight:@"assets/profile/addFriendB.png" selector:@selector(inviteFriends) andFrame:CGRectMake(0, 0, 40, 30)]];
     self.navigationItem.rightBarButtonItem = addFriend;
     
     profile.layer.borderColor = [[UIColor lightGrayColor] CGColor];

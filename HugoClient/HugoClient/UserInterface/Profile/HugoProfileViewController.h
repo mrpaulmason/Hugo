@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface HugoProfileViewController : UIViewController
 {
@@ -15,15 +16,20 @@
     UIImageView *profile;
     UIView *header;
     NSString *profileId;
+    NSString *hugoId;
     NSString *source;
     UILabel *label1;
     UILabel *label2;
     UILabel *label3;
     UILabel *labelFriends;
+    PF_FBFriendPickerViewController *friendPicker;
     
 }
 
+@property (strong, nonatomic) PF_FBFriendPickerViewController *friendPickerController;
+
 @property (nonatomic, retain) NSString *profileId;
+@property (nonatomic, retain) NSString *hugoId;
 @property (nonatomic, retain) NSString *source;
 
 @property (nonatomic, retain) IBOutlet UIImageView *profile;
