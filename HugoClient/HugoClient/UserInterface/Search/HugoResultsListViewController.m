@@ -207,7 +207,7 @@
         if (i > 7) break;
         
         
-        UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 10.0f, 25, 25)];
+        UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 10.0f, 30, 30)];
         img1.layer.cornerRadius = 5.0;
         img1.layer.masksToBounds = YES;
         img1.hidden = NO;
@@ -217,7 +217,7 @@
         
         NSString *author_id = [[[spotData objectForKey:@"authors"] objectAtIndex:i] stringValue];
         NSDictionary *spot_statuses = [spotData objectForKey:@"spot_statuses"];
-        UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+12.5+i*35, 10.0f+12.5, 15, 15)];
+        UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 10.0f+17.5, 15, 15)];
         
         if ([spot_statuses objectForKey:author_id])
         {
@@ -276,7 +276,7 @@
     
     double miles = distance * 0.000621371;
     
-    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,68.0f,235.0f,13.f)];
+    UILabel *labelStreet = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,63.0f,235.0f,13.f)];
     
     if ([[locationData objectForKey:@"street"] isEqualToString:@""])
     {
@@ -302,7 +302,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    float sz = 105.f;
+    float sz = 100.f;
     return sz;
 }
 

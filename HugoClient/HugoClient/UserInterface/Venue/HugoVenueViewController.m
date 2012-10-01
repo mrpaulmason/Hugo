@@ -184,7 +184,7 @@
                 if (i > 7) break;
                 
 
-                UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 25, 25)];
+                UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 30, 30)];
                 img1.layer.cornerRadius = 5.0;
                 img1.layer.masksToBounds = YES;
                 img1.hidden = NO;
@@ -194,7 +194,7 @@
                 
                 NSString *author_id = [[[result objectForKey:@"authors"] objectAtIndex:i] stringValue];
                 NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
-                UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+12.5+i*35, 33.f+12.5, 15, 15)];
+                UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
 
                 if ([spot_statuses objectForKey:author_id])
                 {
