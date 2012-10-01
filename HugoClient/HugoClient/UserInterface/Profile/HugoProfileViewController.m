@@ -22,6 +22,9 @@
 @implementation HugoProfileViewController
 @synthesize results, tableView, header, profile, source, profileId, label1, label2, label3, labelFriends, friendPickerController, hugoId;
 
+@synthesize searchBar = _searchBar;
+@synthesize searchText = _searchText;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,14 +37,29 @@
 - (void)inviteFriends
 {
     if (!self.friendPickerController) {
+        
         self.friendPickerController = [[PF_FBFriendPickerViewController alloc]
-                                       initWithNibName:nil bundle:nil];
-        self.friendPickerController.title = @"Select friends";
+                                       init];
+        self.friendPickerController.title = @"Invite friends";
+        self.friendPickerController.delegate = self;
+        NSSet *fields = [NSSet setWithObjects:@"installed",@"devices", nil];
+        self.friendPickerController.fieldsForRequest = fields;
+        
     }
     
     [self.friendPickerController loadData];
-    [self.navigationController pushViewController:self.friendPickerController
-                                         animated:true];
+    [self.friendPickerController clearSelection];
+    [self presentViewController:self.friendPickerController
+                       animated:YES
+                     completion:^(void){
+                         [self addSearchBarToFriendPickerView];
+                     }
+     ];
+}
+
+- (void) handlePickerDone
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -178,7 +196,9 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    self.searchBar = nil;
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -589,5 +609,96 @@
     
 }
 
+#pragma mark - FB Friend Picker View Controller Delegate
+- (void)addSearchBarToFriendPickerView
+{
+    if (self.searchBar == nil) {
+        CGFloat searchBarHeight = 44.0;
+        self.searchBar =
+        [[UISearchBar alloc]
+         initWithFrame:
+         CGRectMake(0,0,
+                    self.view.bounds.size.width,
+                    searchBarHeight)];
+        self.searchBar.autoresizingMask = self.searchBar.autoresizingMask |
+        UIViewAutoresizingFlexibleWidth;
+        self.searchBar.delegate = self;
+        self.searchBar.showsCancelButton = YES;
+        
+        [self.friendPickerController.canvasView addSubview:self.searchBar];
+        CGRect newFrame = self.friendPickerController.view.bounds;
+        newFrame.size.height -= searchBarHeight;
+        newFrame.origin.y = searchBarHeight;
+        self.friendPickerController.tableView.frame = newFrame;
+    }
+}
+
+- (void) handleSearch:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    self.searchText = searchBar.text;
+    [self.friendPickerController updateView];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    self.searchText = searchBar.text;
+    [self.friendPickerController updateView];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar*)searchBar
+{
+    [self handleSearch:searchBar];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
+    self.searchText = nil;
+    [searchBar resignFirstResponder];
+}
+
+// show friends who are not on Hugo
+-(BOOL)friendPickerViewController:(PF_FBFriendPickerViewController *)friendPicker shouldIncludeUser:(id<PF_FBGraphUser>)user{
+    BOOL installed = [user objectForKey:@"installed"] != nil;
+    BOOL iPhoneUser = false;
+    NSArray *devices = [user objectForKey:@"devices"];
+    
+    for (NSDictionary *entry in devices)
+    {
+        if ([[entry objectForKey:@"os"] isEqualToString:@"iOS"])
+        {
+            iPhoneUser = true;
+        }
+    }
+    
+    BOOL condition = !installed && iPhoneUser;
+
+    
+    if (self.searchText && ![self.searchText isEqualToString:@""]) {
+        NSRange result = [user.name
+                          rangeOfString:self.searchText
+                          options:NSCaseInsensitiveSearch];
+        if (result.location != NSNotFound) {
+            return condition;
+        } else {
+            return NO;
+        }
+    } else {
+        return condition;
+    }
+    return condition;
+}
+
+- (void)facebookViewControllerCancelWasPressed:(id)sender
+{
+    NSLog(@"Friend selection cancelled.");
+    [self handlePickerDone];
+}
+
+- (void)facebookViewControllerDoneWasPressed:(id)sender
+{
+    for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {
+        NSLog(@"Friend selected: %@", user.name);
+    }
+    [self handlePickerDone];
+}
 
 @end

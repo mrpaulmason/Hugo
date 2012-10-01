@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface HugoProfileViewController : UIViewController
+@interface HugoProfileViewController : UIViewController <PF_FBFriendPickerDelegate, UISearchBarDelegate>
 {
     NSArray *results;
     UITableView *tableView;
@@ -25,6 +25,10 @@
     PF_FBFriendPickerViewController *friendPicker;
     
 }
+
+@property (retain, nonatomic) UISearchBar *searchBar;
+@property (retain, nonatomic) NSString *searchText;
+
 
 @property (strong, nonatomic) PF_FBFriendPickerViewController *friendPickerController;
 
