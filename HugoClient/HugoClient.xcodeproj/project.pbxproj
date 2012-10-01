@@ -88,7 +88,7 @@
 		551D18E7160A593B000C15D0 /* HugoSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSocialView.m; path = UserInterface/Shared/HugoSocialView.m; sourceTree = "<group>"; };
 		551D18E9160B070B000C15D0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		551D18EB160B0710000C15D0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		553D9AD915EC24AD00989F07 /* HugoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HugoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		553D9AD915EC24AD00989F07 /* Hugo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hugo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553D9ADD15EC24AD00989F07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553D9ADF15EC24AD00989F07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		553D9AE115EC24AD00989F07 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -248,7 +248,7 @@
 		553D9ADA15EC24AD00989F07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				553D9AD915EC24AD00989F07 /* HugoClient.app */,
+				553D9AD915EC24AD00989F07 /* Hugo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -514,7 +514,7 @@
 			);
 			name = HugoClient;
 			productName = HugoClient;
-			productReference = 553D9AD915EC24AD00989F07 /* HugoClient.app */;
+			productReference = 553D9AD915EC24AD00989F07 /* Hugo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -700,7 +700,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hugo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -720,7 +720,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hugo;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};

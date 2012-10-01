@@ -100,7 +100,7 @@
     [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
     [mapView setHidden:NO];
     
-    mapView.clipsToBounds = NO;
+//    mapView.clipsToBounds = NO;
     mapView.layer.shadowOpacity = 0.8f;
     mapView.layer.shadowOffset = CGSizeMake(0,0.0);
     mapView.layer.shadowColor = [[UIColor blackColor] CGColor];
