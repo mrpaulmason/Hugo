@@ -623,7 +623,24 @@
         self.searchBar.autoresizingMask = self.searchBar.autoresizingMask |
         UIViewAutoresizingFlexibleWidth;
         self.searchBar.delegate = self;
-        self.searchBar.showsCancelButton = YES;
+        self.searchBar.placeholder = @"Search for a user";
+
+        
+        for (UIView *searchBarSubview in [self.searchBar subviews]) {
+            
+            if ([searchBarSubview conformsToProtocol:@protocol(UITextInputTraits)]) {
+                
+                @try {
+                    
+                    [(UITextField *)searchBarSubview setReturnKeyType:UIReturnKeyDone];
+                    [(UITextField *)searchBarSubview setKeyboardAppearance:UIKeyboardAppearanceAlert];
+                }
+                @catch (NSException * e) {
+                    
+                    // ignore exception
+                }
+            }
+        }
         
         [self.friendPickerController.canvasView addSubview:self.searchBar];
         CGRect newFrame = self.friendPickerController.view.bounds;
@@ -640,7 +657,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+{    
     self.searchText = searchBar.text;
     [self.friendPickerController updateView];
 }
