@@ -76,6 +76,8 @@
                 NSLog(@"%@", JSON);
                 [profile setImageWithURL:[NSURL URLWithString:[JSON objectForKey:@"picture"]]];
                 [label1 setText:[JSON objectForKey:@"name"]];
+                [label2 setText:@"San Francisco, CA"];
+                [label3 setText:@"Hugo member"];
                 [self.navigationItem setTitle:[JSON objectForKey:@"name"]];
                 [labelFriends setText:[[JSON objectForKey:@"friends"] stringValue]];
 //                SBJsonParser *parser = [[SBJsonParser alloc] init];
