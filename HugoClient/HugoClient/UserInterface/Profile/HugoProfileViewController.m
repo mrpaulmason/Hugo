@@ -76,13 +76,23 @@
                 NSLog(@"%@", JSON);
                 [profile setImageWithURL:[NSURL URLWithString:[JSON objectForKey:@"picture"]]];
                 [label1 setText:[JSON objectForKey:@"name"]];
-                [label2 setText:@"San Francisco, CA"];
                 [label3 setText:@"Hugo member"];
                 [self.navigationItem setTitle:[JSON objectForKey:@"name"]];
                 [labelFriends setText:[[JSON objectForKey:@"friends"] stringValue]];
 //                SBJsonParser *parser = [[SBJsonParser alloc] init];
 //                NSDictionary *locationData = [parser objectWithString:[JSON objectForKey:@"current_location"]];
 
+            }
+        }];
+        
+        NSString *urlStr = [NSString stringWithFormat:@"me?fields=%@", @"name,location,picture"];
+        PF_FBRequest *request = [PF_FBRequest requestForGraphPath:urlStr];
+        [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+            NSLog(@"%@",urlStr);
+            if (!error) {
+                [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];                
             }
         }];
     }
@@ -102,7 +112,6 @@
                                               id result,
                                               NSError *error) {
             if (!error) {
-                NSLog(@"%@", result);
                 [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
                 [label1 setText:[result objectForKey:@"name"]];
                 [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
@@ -117,7 +126,6 @@
             if (error == nil)
             {
                 NSLog(@"Received profile information:");
-                NSLog(@"%@", JSON);
                 [labelFriends setText:[JSON objectForKey:@"friends"]];
             }
         }];
@@ -130,9 +138,7 @@
         [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,
                                               id result,
                                               NSError *error) {
-            NSLog(@"%@",urlStr);
             if (!error) {
-                NSLog(@"%@", result);
                 [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
                 [label1 setText:[result objectForKey:@"name"]];
                 [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
