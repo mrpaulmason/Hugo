@@ -58,6 +58,22 @@
     
     NSLog(@"desired location after refresh %@", desiredLocation);
 
+    for (UIView *searchBarSubview in [self.searchDisplayController.searchBar subviews]) {
+        
+        if ([searchBarSubview conformsToProtocol:@protocol(UITextInputTraits)]) {
+            
+            @try {
+                
+                [(UITextField *)searchBarSubview setReturnKeyType:UIReturnKeyDone];
+                [(UITextField *)searchBarSubview setKeyboardAppearance:UIKeyboardAppearanceAlert];
+            }
+            @catch (NSException * e) {
+                
+                // ignore exception
+            }
+        }
+    }
+    
 
     HQuery *hQuery = [[HQuery alloc] init];
     [hQuery queryCategories:[desiredLocation coordinate] withCallback:^(id JSON, NSError *error) {
@@ -296,7 +312,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
         
         currentText = self.searchDisplayController.searchBar.text;
         
-        NSLog(@"why is nothing happening?");
         
         @try {
             NSDictionary *latlng = [[[searchResults objectAtIndex:indexPath.row] objectForKey:@"geometry"] objectForKey:@"location"];
@@ -317,10 +332,12 @@ shouldReloadTableForSearchString:(NSString *)searchString
             NSLog(@"%@", exception);
             id appDelegate = [[UIApplication sharedApplication] delegate];
             self.desiredLocation = [appDelegate lastLocation];
+            currentText = @"Current Location";
             NSLog(@"desired location updated [exception] %@", desiredLocation);
         }
         @finally {
             [self refresh];
+            [self updateSearchColor];
         }
         
     } else {

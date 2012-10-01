@@ -327,7 +327,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="FhO-lS-XKx">
-                                        <rect key="frame" x="0.0" y="74" width="320" height="293"/>
+                                        <rect key="frame" x="0.0" y="44" width="320" height="323"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -384,28 +384,14 @@
                                             <outlet property="dataSource" destination="beN-Vp-P1q" id="PHP-Nh-ybV"/>
                                         </connections>
                                     </tableView>
-                                    <searchBar contentMode="redraw" id="gaS-Rd-Mlm">
+                                    <searchBar contentMode="redraw" text="Current Location" placeholder="Search or Address" id="Gyv-yO-0sM">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <scopeButtonTitles>
-                                            <string>Nearby</string>
-                                            <string>Recent Views</string>
-                                            <string>Recent Visits</string>
-                                        </scopeButtonTitles>
                                         <connections>
-                                            <outlet property="delegate" destination="beN-Vp-P1q" id="OT5-oe-Xy8"/>
+                                            <outlet property="delegate" destination="beN-Vp-P1q" id="6bl-P8-x1O"/>
                                         </connections>
                                     </searchBar>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ddX-OT-Xat">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <segments>
-                                            <segment title="Nearby"/>
-                                            <segment title="Recent"/>
-                                        </segments>
-                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -414,18 +400,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xqf-FK-pds"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="wo7-oi-zna" id="5DP-nN-vAu"/>
+                        <outlet property="searchDisplayController" destination="bTf-cT-15p" id="vgF-Lf-1la"/>
                         <outlet property="tableView" destination="FhO-lS-XKx" id="OzJ-oP-3r2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTJ-ZT-yYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="wo7-oi-zna">
+                <searchDisplayController id="bTf-cT-15p">
                     <connections>
-                        <outlet property="delegate" destination="beN-Vp-P1q" id="K0o-1M-jUG"/>
-                        <outlet property="searchBar" destination="gaS-Rd-Mlm" id="Bob-as-2ad"/>
-                        <outlet property="searchContentsController" destination="beN-Vp-P1q" id="oZ5-rW-3eR"/>
-                        <outlet property="searchResultsDataSource" destination="beN-Vp-P1q" id="iTW-Pg-Y9k"/>
-                        <outlet property="searchResultsDelegate" destination="beN-Vp-P1q" id="mxu-t6-HOX"/>
+                        <outlet property="delegate" destination="beN-Vp-P1q" id="JQr-Cv-EzA"/>
+                        <outlet property="searchBar" destination="Gyv-yO-0sM" id="FzQ-wT-0f5"/>
+                        <outlet property="searchContentsController" destination="beN-Vp-P1q" id="rLs-cB-DLK"/>
+                        <outlet property="searchResultsDataSource" destination="beN-Vp-P1q" id="sFE-yO-viv"/>
+                        <outlet property="searchResultsDelegate" destination="beN-Vp-P1q" id="YuL-cT-mBQ"/>
                     </connections>
                 </searchDisplayController>
             </objects>

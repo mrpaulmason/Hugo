@@ -7,15 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface HugoLocationViewController : UIViewController
+@interface HugoLocationViewController : UIViewController <UISearchBarDelegate>
 {
     NSArray *results;
     UITableView *tableView;
+    NSString *currentText;
+    CLLocation *desiredLocation;
+    NSArray *searchResults;
 }
+
+@property (nonatomic, retain) CLLocation *desiredLocation;
 
 @property (nonatomic, retain) NSArray *results;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSArray* searchResults;
 
 
 @end

@@ -190,7 +190,7 @@
     NSDictionary *spotData = [results objectAtIndex:indexPath.row];
     
     UIView *view = [UIView new];
-    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 95.f)];
+    [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 90.f)];
     view.layer.cornerRadius = 5.0f;
     view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
     view.layer.borderWidth = 0.5f;
