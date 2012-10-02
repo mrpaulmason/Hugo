@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		551BEBFD161AC12600381112 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */; };
 		551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E116092F2D000C15D0 /* HugoProfileViewController.m */; };
-		551D18E5160934F0000C15D0 /* followers.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E4160934F0000C15D0 /* followers.png */; };
 		551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E7160A593B000C15D0 /* HugoSocialView.m */; };
 		551D18EA160B070B000C15D0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E9160B070B000C15D0 /* Default.png */; };
 		551D18EC160B0710000C15D0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18EB160B0710000C15D0 /* Default@2x.png */; };
@@ -87,7 +86,6 @@
 		551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		551D18E016092F2D000C15D0 /* HugoProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoProfileViewController.h; path = UserInterface/Profile/HugoProfileViewController.h; sourceTree = "<group>"; };
 		551D18E116092F2D000C15D0 /* HugoProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoProfileViewController.m; path = UserInterface/Profile/HugoProfileViewController.m; sourceTree = "<group>"; };
-		551D18E4160934F0000C15D0 /* followers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = followers.png; path = ../../../../Desktop/followers.png; sourceTree = "<group>"; };
 		551D18E6160A593B000C15D0 /* HugoSocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSocialView.h; path = UserInterface/Shared/HugoSocialView.h; sourceTree = "<group>"; };
 		551D18E7160A593B000C15D0 /* HugoSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSocialView.m; path = UserInterface/Shared/HugoSocialView.m; sourceTree = "<group>"; };
 		551D18E9160B070B000C15D0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				554F9360161044A200836B13 /* dash.jpeg */,
-				551D18E4160934F0000C15D0 /* followers.png */,
 				557350A915FAB6B100EB6A82 /* assets */,
 				5580948E15F40D60009C7D9A /* main.png */,
 				553D9B2A15EC57D700989F07 /* icon.jpeg */,
@@ -566,7 +563,6 @@
 				557350AF15FFE48B00EB6A82 /* arrow.png in Resources */,
 				558D83E01602B9DF00ACDF9A /* Icon@2x.png in Resources */,
 				558D83E31602B9E500ACDF9A /* Icon.png in Resources */,
-				551D18E5160934F0000C15D0 /* followers.png in Resources */,
 				551D18EA160B070B000C15D0 /* Default.png in Resources */,
 				551D18EC160B0710000C15D0 /* Default@2x.png in Resources */,
 				554F9361161044A200836B13 /* dash.jpeg in Resources */,
