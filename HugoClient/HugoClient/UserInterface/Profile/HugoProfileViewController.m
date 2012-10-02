@@ -311,7 +311,7 @@
     
     for (NSMutableDictionary *item in results)
     {
-        if ([[[item objectForKey:@"id"] stringValue] isEqualToString:post_id])
+        if ([[NSString stringWithFormat:@"%@",[item objectForKey:@"id"]] isEqualToString:post_id])
             itemMatch = item;
     }
     
@@ -368,7 +368,7 @@
     float offset = 0;
     
     
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"] length] > 5)
     {
         photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
         photo_width = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_width"] integerValue];
@@ -552,7 +552,7 @@
     [view setFrame:vFrame];
     
     
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"] length] > 5)
     {
         UIImageView *imgPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 75.f, 320.f, photo_height*scale)];
         imgPhoto.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
@@ -580,7 +580,7 @@
     if (indexPath.row == [results count]-1)
         sz += 10;
 
-    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"type"] isEqual:@"photo"])
+    if ([[[results objectAtIndex:indexPath.row] objectForKey:@"photo_src"] length] > 5)
     {
         int photo_height = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_height"] integerValue];
         int photo_width = [[[results objectAtIndex:indexPath.row] objectForKey:@"photo_width"] integerValue];

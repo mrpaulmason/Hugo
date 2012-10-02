@@ -226,7 +226,7 @@
                 [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
                 [view addSubview:img1];
                 
-                NSString *author_id = [[[result objectForKey:@"authors"] objectAtIndex:i] stringValue];
+                NSString *author_id = [NSString stringWithFormat:@"%@",[[result objectForKey:@"authors"] objectAtIndex:i]];
                 NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
                 UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
 
