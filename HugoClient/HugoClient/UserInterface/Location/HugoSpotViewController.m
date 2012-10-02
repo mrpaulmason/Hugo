@@ -32,7 +32,7 @@
 
 - (void)initHeader
 {
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(savePost:)]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(savePost:)]];
     
     UITableViewCell *tableCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"nosuchthing"];
     
@@ -43,27 +43,59 @@
     tableCell.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
     tableCell.layer.borderWidth = 0.5f;
     
-    [tableCell.textLabel setText:[spotData objectForKey:@"name"]];
-    [tableCell.detailTextLabel setText:[spotData objectForKey:@"category"]];
+    if ([spotData objectForKey:@"fb_place_id"])
+    {
+        NSString *requestPath = [NSString stringWithFormat:@"%@?fields=location,picture,name,category", [spotData objectForKey:@"fb_place_id"]];
+        NSLog(@"%@ response", requestPath);
+        PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
+        [request setSession:[PFFacebookUtils session]];
+        [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+            if (!error)
+            {
+                self.spotData = result;
+                NSLog(@"Query succeeded with %@", spotData);
+                [tableCell.textLabel setText:[spotData objectForKey:@"name"]];
+                [tableCell.detailTextLabel setText:[spotData objectForKey:@"category"]];
+            }
+        }];
+    }
+    else
+    {
+        [tableCell.textLabel setText:[spotData objectForKey:@"name"]];
+        [tableCell.detailTextLabel setText:[spotData objectForKey:@"category"]];
+    }
     
     [self.scrollView addSubview:tableCell];
     _offset += 60.0f;
 
 }
 
-- (void)beenThere:(id)sender
+- (void)unselectChildrenFromParent:(UIButton*)sender
 {
-    
+    for (UIButton *btn in [[sender superview] subviews])
+    {
+        [btn setSelected:NO];
+    }
+}
+
+- (void)beenThere:(UIButton*)sender
+{
+    [self unselectChildrenFromParent:sender];
+    [sender setSelected:YES];
 }
 
 - (void)hereNow:(id)sender
 {
+    [self unselectChildrenFromParent:sender];
+    [sender setSelected:YES];
     
 }
 
 - (void)wanaGo:(id)sender
 {
-    
+    [self unselectChildrenFromParent:sender];
+    [sender setSelected:YES];
+
 }
 
 - (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB selector:(SEL) sel andFrame:(CGRect)frame
@@ -138,13 +170,14 @@
     expandedBar.userInteractionEnabled = YES;
     [commentBox addSubview:expandedBar];
     
-    UIButton *buttonBeenThere = [self buttonFromImage:@"assets/newsfeed/optionsBeen.png" withHighlight:@"assets/newsfeed/optionsBeenB.png" selector:@selector(beenThere:) andFrame:CGRectMake(0, 0, 65, 50)];
+    UIButton *buttonBeenThere = [self buttonFromImage:@"assets/newsfeed/optionsBeen.png" withHighlight:@"assets/newsfeed/optionsBeenB.png" withSelected:@"assets/newsfeed/optionsBeenB.png" selector:@selector(beenThere:) andFrame:CGRectMake(0, 0, 65, 50)];
     [expandedBar addSubview:buttonBeenThere];
     
-    UIButton *buttonHereNow = [self buttonFromImage:@"assets/newsfeed/optionsHere.png" withHighlight:@"assets/newsfeed/optionsHereB.png" selector:@selector(hereNow:) andFrame:CGRectMake(65, 0, 65, 50)];
+    UIButton *buttonHereNow = [self buttonFromImage:@"assets/newsfeed/optionsHere.png" withHighlight:@"assets/newsfeed/optionsHereB.png" withSelected:@"assets/newsfeed/optionsHereB.png" selector:@selector(hereNow:) andFrame:CGRectMake(65, 0, 65, 50)];
+    [buttonHereNow setSelected:YES];
     [expandedBar addSubview:buttonHereNow];
     
-    UIButton *buttonWanaGo = [self buttonFromImage:@"assets/newsfeed/optionsGo.png" withHighlight:@"assets/newsfeed/optionsGoB.png" selector:@selector(wanaGo:) andFrame:CGRectMake(130, 0, 65, 50)];
+    UIButton *buttonWanaGo = [self buttonFromImage:@"assets/newsfeed/optionsGo.png" withHighlight:@"assets/newsfeed/optionsGoB.png" withSelected:@"assets/newsfeed/optionsGoB.png" selector:@selector(wanaGo:) andFrame:CGRectMake(130, 0, 65, 50)];
     [expandedBar addSubview:buttonWanaGo];
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 70.f, 280.0f, 95.0f)];

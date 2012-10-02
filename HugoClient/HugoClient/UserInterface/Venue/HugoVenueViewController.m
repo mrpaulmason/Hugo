@@ -8,6 +8,7 @@
 
 #import "HugoVenueViewController.h"
 #import "HugoSocialView.h"
+#import "HugoSpotViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import "SBJson.h"
@@ -78,6 +79,16 @@
     return button;
 }
 
+- (void)addSpot:(id)sender
+{
+    [self performSegueWithIdentifier:@"segueAddSpot" sender:spotData];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    HugoSpotViewController *vc = [segue destinationViewController];
+    [vc setSpotData:sender];
+}
 
 - (void)initializeHeader
 {
@@ -154,8 +165,8 @@
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
     
-    UIButton *addTip = [self buttonFromImage:@"assets/venue/addTip.png" withHighlight:@"assets/venue/addTipB.png" selector:nil andFrame:CGRectMake(0, 0, 150, 25)];
-    UIButton *addPhoto = [self buttonFromImage:@"assets/venue/addPhoto.png" withHighlight:@"assets/venue/addPhotoB.png" selector:nil andFrame:CGRectMake(150, 0, 150, 25)];
+    UIButton *addTip = [self buttonFromImage:@"assets/venue/addTip.png" withHighlight:@"assets/venue/addTipB.png" selector:@selector(addSpot:) andFrame:CGRectMake(0, 0, 150, 25)];
+    UIButton *addPhoto = [self buttonFromImage:@"assets/venue/addPhoto.png" withHighlight:@"assets/venue/addPhotoB.png" selector:@selector(addSpot:) andFrame:CGRectMake(150, 0, 150, 25)];
 
     [bottomBar addSubview:addTip];
     [bottomBar addSubview:addPhoto];
