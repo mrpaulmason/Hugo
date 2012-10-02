@@ -110,7 +110,7 @@
         [hQueryProfile queryProfile:[defaults objectForKey:@"hugo_id"] withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
-                NSLog(@"Received profile information:");
+                NSLog(@"1: Received profile information:");
                 NSLog(@"%@", JSON);
                 [profile setImageWithURL:[NSURL URLWithString:[JSON objectForKey:@"picture"]]];
                 [label1 setText:[JSON objectForKey:@"name"]];
@@ -163,8 +163,8 @@
         [hQueryProfile queryProfile:profileId withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
-                NSLog(@"Received profile information:");
-                [labelFriends setText:[JSON objectForKey:@"friends"]];
+                NSLog(@"2: Received profile information: %@", JSON);
+                [labelFriends setText:[[JSON objectForKey:@"friends"] stringValue]];
             }
         }];
 

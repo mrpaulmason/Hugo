@@ -291,13 +291,13 @@
         if ([spotData objectForKey:@"author_hugo_id"])
         {
             [vc setSource:@"hugo"];
-            [vc setProfileId:[[spotData objectForKey:@"author_uid"] stringValue]];
+            [vc setProfileId:[NSString stringWithFormat:@"%@",[spotData objectForKey:@"author_uid"]]];
             [vc setHugoId:[spotData objectForKey:@"author_hugo_id"]];
         }
         else
         {
             [vc setSource:@"facebook"];
-            [vc setProfileId:[[spotData objectForKey:@"author_uid"] stringValue]];
+            [vc setProfileId:[NSString stringWithFormat:@"%@",[spotData objectForKey:@"author_uid"]]];
         }
     }
 }
