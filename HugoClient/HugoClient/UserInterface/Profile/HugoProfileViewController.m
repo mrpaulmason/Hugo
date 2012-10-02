@@ -136,10 +136,10 @@
     }
     else if ([source isEqualToString:@"hugo"])
     {
-        [hQuery queryNewsfeed:@"user" andHugoId:profileId withCallback:^(id JSON, NSError *error) {
+        [hQuery queryNewsfeed:@"user" andHugoId:hugoId withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
-                NSLog(@"Profile Received results!");
+                NSLog(@"Profile Received results! %@", JSON);
                 self.results = JSON;
                 [tableView reloadData];
             }
@@ -160,7 +160,7 @@
         }];
         
         HQuery *hQueryProfile = [[HQuery alloc] init];
-        [hQueryProfile queryProfile:profileId withCallback:^(id JSON, NSError *error) {
+        [hQueryProfile queryProfile:hugoId withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
                 NSLog(@"2: Received profile information: %@", JSON);
