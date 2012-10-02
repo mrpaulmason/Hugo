@@ -204,7 +204,7 @@
     int i = 0;
     for(NSString *imgURL in pics)
     {
-        if (i > 7) break;
+        if (i > 6) break;
         
         
         UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 10.0f, 30, 30)];

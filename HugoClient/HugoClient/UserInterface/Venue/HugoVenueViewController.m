@@ -210,10 +210,10 @@
         {
             NSLog(@"Received results! %@", JSON);
             NSDictionary *result = [JSON objectAtIndex:0];
-            NSSet *imageSet = [NSSet setWithArray:[result objectForKey:@"pics"]];
+            NSArray *images = [result objectForKey:@"pics"];
 
             int i = 0;
-            for(NSString *imgURL in imageSet)
+            for(NSString *imgURL in images)
             {
                 if (i > 7) break;
                 
@@ -230,9 +230,12 @@
                 NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
                 UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
 
+                
                 if ([spot_statuses objectForKey:author_id])
                 {
                     NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+                    
+                    NSLog(@"%@ %d %@ %@", author_id, i, spot_statuses, imgURL);
                     
                     if ([status isEqualToString:@"here"])
                         [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeHere.png"]];

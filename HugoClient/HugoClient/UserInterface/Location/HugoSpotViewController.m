@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 #import "UIImageView+AFNetworking.h"
+#import "HugoSocialView.h"
 
 @interface HugoSpotViewController ()
 
@@ -18,6 +19,10 @@
 
 @implementation HugoSpotViewController
 @synthesize scrollView, spotData;
+
+@synthesize imagePicker = _imagePicker;
+@synthesize selectedPhoto = _selectedPhoto;
+@synthesize imageView = _imageView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,6 +73,11 @@
     [self.scrollView addSubview:tableCell];
     _offset += 60.0f;
 
+}
+
+- (void) refresh
+{
+    
 }
 
 - (void)unselectChildrenFromParent:(UIButton*)sender
@@ -164,21 +174,10 @@
         }
     }];
     
-    UIImageView *expandedBar = [[UIImageView alloc] initWithFrame:CGRectMake(80, 10, 195, 50)];
-    [expandedBar setImage:[UIImage imageNamed:@"assets/newsfeed/addOptions.png"]];
-    [expandedBar setTag:2];
-    expandedBar.userInteractionEnabled = YES;
-    [commentBox addSubview:expandedBar];
-    
-    UIButton *buttonBeenThere = [self buttonFromImage:@"assets/newsfeed/optionsBeen.png" withHighlight:@"assets/newsfeed/optionsBeenB.png" withSelected:@"assets/newsfeed/optionsBeenB.png" selector:@selector(beenThere:) andFrame:CGRectMake(0, 0, 65, 50)];
-    [expandedBar addSubview:buttonBeenThere];
-    
-    UIButton *buttonHereNow = [self buttonFromImage:@"assets/newsfeed/optionsHere.png" withHighlight:@"assets/newsfeed/optionsHereB.png" withSelected:@"assets/newsfeed/optionsHereB.png" selector:@selector(hereNow:) andFrame:CGRectMake(65, 0, 65, 50)];
-    [buttonHereNow setSelected:YES];
-    [expandedBar addSubview:buttonHereNow];
-    
-    UIButton *buttonWanaGo = [self buttonFromImage:@"assets/newsfeed/optionsGo.png" withHighlight:@"assets/newsfeed/optionsGoB.png" withSelected:@"assets/newsfeed/optionsGoB.png" selector:@selector(wanaGo:) andFrame:CGRectMake(130, 0, 65, 50)];
-    [expandedBar addSubview:buttonWanaGo];
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:nil andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:self];
+    [socialView setTag:1];
+    [self.scrollView addSubview:socialView];
+
     
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 70.f, 280.0f, 95.0f)];
     
@@ -208,6 +207,75 @@
 
 - (void)addPhoto:(id)sender
 {
+    if (!self.imagePicker) {
+        self.imagePicker = [[UIImagePickerController alloc] init];
+        self.imagePicker.delegate = self;
+        
+        // In a real app, we would probably let the user
+        // either pick an image or take one using the camera.
+        // For sample purposes in the simulator, the camera is not available.
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    [self presentModalViewController:self.imagePicker
+                                animated:true];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    self.selectedPhoto = image;
+    
+    [self dismissModalViewControllerAnimated:true];
+    
+    [self updatePhoto];
+}
+
+- (void)updatePhoto
+{
+    NSLog(@"has photo! %@", NSStringFromCGSize( self.selectedPhoto.size));
+    
+    if (self.imageView == nil)
+    {
+        self.imageView = [[UIImageView alloc] initWithImage:self.selectedPhoto];
+
+        self.imageView.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
+        self.imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        self.imageView.layer.borderWidth = 3.0f;
+        self.imageView.layer.shadowOpacity = 0.3f;
+        self.imageView.layer.shadowOffset = CGSizeMake(0,0.0);
+        self.imageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        self.imageView.layer.shadowRadius = 3.0f;
+
+        
+        float scale = 320/self.selectedPhoto.size.width;
+        UIButton *addPicture =  (UIButton*)[self.scrollView viewWithTag:100];
+        [self.imageView setFrame:CGRectMake(0, addPicture.frame.origin.y, 320.0f, scale*self.selectedPhoto.size.height)];
+        
+        for (UIView *view in self.scrollView.subviews)
+        {
+            if (view.frame.origin.y >= self.imageView.frame.origin.y)
+            {
+                CGRect frame = view.frame;
+                frame.origin.y += scale*self.selectedPhoto.size.height+10;
+                [view setFrame:frame];
+            }
+        }
+        _offset +=  scale*self.selectedPhoto.size.height+10;
+        
+        [self.scrollView addSubview:self.imageView];
+
+        CGRect frame = self.scrollView.frame;
+        frame.size.height = _offset+10;
+        [self.scrollView setContentSize:frame.size];
+    }
+    else
+    {
+        [self.imageView setImage:self.selectedPhoto];
+    }
+    
+    
+    
     
 }
 
@@ -224,6 +292,7 @@
 - (void)initButtons
 {
     UIButton *btnAddPicture = [self buttonFromImage:@"assets/post/addPhoto.png" withHighlight:@"assets/post/addPhotoB.png" selector:@selector(addPhoto:) andFrame:CGRectMake(10.0f, _offset+10, 300.0f, 41.f)];
+    btnAddPicture.tag = 100;
     
     [self.scrollView addSubview:btnAddPicture];
     _offset += 51;

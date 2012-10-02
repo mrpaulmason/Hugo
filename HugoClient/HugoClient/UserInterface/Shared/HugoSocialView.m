@@ -19,7 +19,8 @@
         // Initialization code
         self.userInteractionEnabled = YES;
         self.clipsToBounds = YES;
-        self.statuses = [aStatuses mutableCopy];
+        if (aStatuses != nil)
+            self.statuses = [aStatuses mutableCopy];
         self.placeId = place;
         sentiment = bSentiment;
         [self initializeButtons];
@@ -176,7 +177,10 @@
     
     int timestamp = 0;
     NSString *sMax;
-        
+    
+    if (statuses == nil)
+        sMax = @"here";
+
     for (NSDictionary *item in statuses)
     {
         if ([[item objectForKey:@"timestamp"] intValue] > timestamp)

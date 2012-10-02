@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HugoSpotViewController : UIViewController <UITextViewDelegate>
+@interface HugoSpotViewController : UIViewController <UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     UIScrollView *scrollView;
     NSMutableDictionary *spotData;
     int _offset;
 }
+
+
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIImagePickerController* imagePicker;
+@property (strong, nonatomic) UIImage* selectedPhoto;
 
 @property (nonatomic, retain) NSString *placeId;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
