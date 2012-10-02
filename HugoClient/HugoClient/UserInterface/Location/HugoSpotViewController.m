@@ -12,6 +12,8 @@
 #import <Parse/Parse.h>
 #import "UIImageView+AFNetworking.h"
 #import "HugoSocialView.h"
+#import "UIImage+fixOrientation.h"
+
 
 @interface HugoSpotViewController ()
 
@@ -78,6 +80,52 @@
 - (void) refresh
 {
     
+}
+
+- (void)postPhotoThenOpenGraphAction
+{
+    PF_FBRequestConnection *connection = [[PF_FBRequestConnection alloc] init];
+    
+    // First request uploads the photo.
+    PF_FBRequest *request1 = [PF_FBRequest
+                           requestForUploadPhoto:[self.selectedPhoto fixOrientation]];
+    [connection addRequest:request1
+         completionHandler:
+     ^(PF_FBRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+         }
+     }
+            batchEntryName:@"photopost"
+     ];
+    
+    // Second request retrieves photo information for just-created
+    // photo so we can grab its source.
+    PF_FBRequest *request2 = [PF_FBRequest
+                           requestForGraphPath:@"{result=photopost:$.id}"];
+    [connection addRequest:request2
+         completionHandler:
+     ^(PF_FBRequestConnection *connection, id result, NSError *error) {
+         if (!error &&
+             result) {
+             NSLog(@"%@", result);
+             // width, height
+             NSString *source = [result objectForKey:@"source"];
+             // Pass up fb_place_id
+             // Pass up author_id / hugo_id
+             // Pass up comment
+             // Pass up photo url
+             NSLog(@"%@", source);
+         }
+     }
+     ];
+    
+    [connection start];
+}
+
+- (void)savePost:(id)sender
+{
+    [sender setEnabled:NO];
+    [self postPhotoThenOpenGraphAction];
 }
 
 - (void)unselectChildrenFromParent:(UIButton*)sender
@@ -284,10 +332,7 @@
     [sender setSelected:![sender isSelected]];
 }
 
-- (void)savePost:(id)sender
-{
-    
-}
+
 
 - (void)initButtons
 {

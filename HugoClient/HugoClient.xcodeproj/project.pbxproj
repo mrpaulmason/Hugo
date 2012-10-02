@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551BEBFD161AC12600381112 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */; };
 		551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E116092F2D000C15D0 /* HugoProfileViewController.m */; };
 		551D18E5160934F0000C15D0 /* followers.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E4160934F0000C15D0 /* followers.png */; };
 		551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E7160A593B000C15D0 /* HugoSocialView.m */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		551BEBFB161AC12600381112 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
 		551D18E016092F2D000C15D0 /* HugoProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoProfileViewController.h; path = UserInterface/Profile/HugoProfileViewController.h; sourceTree = "<group>"; };
 		551D18E116092F2D000C15D0 /* HugoProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoProfileViewController.m; path = UserInterface/Profile/HugoProfileViewController.m; sourceTree = "<group>"; };
 		551D18E4160934F0000C15D0 /* followers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = followers.png; path = ../../../../Desktop/followers.png; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 				553D9B3415EC5E0300989F07 /* HugoUtils.h */,
 				553D9B8515EDB66B00989F07 /* HQuery.h */,
 				553D9B8615EDB66B00989F07 /* HQuery.m */,
+				551BEBFB161AC12600381112 /* UIImage+fixOrientation.h */,
+				551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */,
 			);
 			name = "Hugo Utils";
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				55B491FA16102967009D6E9F /* HugoCommentsView.m in Sources */,
 				555AC50D161041540064DC59 /* HugoVenueViewController.m in Sources */,
 				55FD0649161A5423001D31FB /* HugoSpotViewController.m in Sources */,
+				551BEBFD161AC12600381112 /* UIImage+fixOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
