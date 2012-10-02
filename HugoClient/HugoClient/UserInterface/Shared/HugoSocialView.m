@@ -10,7 +10,7 @@
 #import "HQuery.h"
 
 @implementation HugoSocialView
-@synthesize expanded, closedBar, expandedBar, statuses, placeId, _delegate;
+@synthesize expanded, closedBar, expandedBar, statuses, placeId, _delegate, currentStatus;
 
 - (id)initWithFrame:(CGRect)frame andStatuses:(NSArray *)aStatuses andPlace:(NSString *)place andSentiment:(BOOL)bSentiment withDelegate:(id)delegate
 {
@@ -89,6 +89,9 @@
         }
     }];
     
+    self.currentStatus = @"been";
+
+    
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/been.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/beenB.png"];
     [self.closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
@@ -117,6 +120,9 @@
 
         }
     }];
+    
+    self.currentStatus = @"here";
+
     
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/here.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/hereB.png"];
@@ -147,6 +153,9 @@
 
         }
     }];
+    
+    self.currentStatus = @"go";
+
     
     UIImage *buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/go.png"];
     UIImage *buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/goB.png"];
@@ -197,16 +206,19 @@
     {
         buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/go.png"];
         buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/goB.png"];
+        self.currentStatus = @"go";
     }
     else if ([sMax isEqualToString:@"been"])
     {
         buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/been.png"];
         buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/beenB.png"];
+        self.currentStatus = @"been";
     }
     else if ([sMax isEqualToString:@"here"])
     {
         buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/here.png"];
         buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/hereB.png"];
+        self.currentStatus = @"here";
     }
     else
     {

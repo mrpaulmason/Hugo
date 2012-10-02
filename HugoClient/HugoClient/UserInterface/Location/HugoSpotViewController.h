@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HugoSocialView.h"
 
 @interface HugoSpotViewController : UIViewController <UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
@@ -15,6 +16,8 @@
     int _offset;
 }
 
+@property (strong, nonatomic) HugoSocialView *socialView;
+@property (strong, nonatomic) UITextView *textView;
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UIImagePickerController* imagePicker;

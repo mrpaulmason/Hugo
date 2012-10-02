@@ -15,6 +15,7 @@
     void (^_completionHandler)(id, NSError*);
 }
 
+- (void)postSpot:(id)place_id withType:(NSString*)type andMessage:(NSString*)message andPhoto:(NSString*)photo andWidth:(int)width andHeight:(int)height withCallback:(void (^)(id, NSError*))callback;
 - (void)postComment:(id)post_id withType:(NSString*)type andMessage:(NSString*)message withCallback:(void (^)(id, NSError*))callback;
 - (void)queryProfile:(id)hugo_id withCallback:(void (^)(id, NSError*))callback;
 - (void)queryComments:(id)post_id withCallback:(void (^)(id, NSError*))callback;

@@ -218,7 +218,6 @@
                            action:@selector(addButton:)
                  forControlEvents:UIControlEventTouchDown];
         
-        closedBar.tag = 1;
         closedBar.frame = CGRectMake(260, 20, 55.0, 50.0);
         [cell addSubview:closedBar];
         

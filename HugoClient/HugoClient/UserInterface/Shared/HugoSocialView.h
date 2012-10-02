@@ -29,5 +29,6 @@
 @property (nonatomic, retain) UIButton *closedBar;
 @property (nonatomic, retain) NSString *placeId;
 @property (nonatomic, retain) id _delegate;
+@property (nonatomic, retain) NSString *currentStatus;
 
 @end

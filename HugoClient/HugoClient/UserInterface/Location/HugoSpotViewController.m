@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "HugoSocialView.h"
 #import "UIImage+fixOrientation.h"
+#import "HQuery.h"
 
 
 @interface HugoSpotViewController ()
@@ -20,7 +21,7 @@
 @end
 
 @implementation HugoSpotViewController
-@synthesize scrollView, spotData;
+@synthesize scrollView, spotData, textView, socialView;
 
 @synthesize imagePicker = _imagePicker;
 @synthesize selectedPhoto = _selectedPhoto;
@@ -52,7 +53,7 @@
     
     if ([spotData objectForKey:@"fb_place_id"])
     {
-        NSString *requestPath = [NSString stringWithFormat:@"%@?fields=location,picture,name,category", [spotData objectForKey:@"fb_place_id"]];
+        NSString *requestPath = [NSString stringWithFormat:@"%@?fields=id,location,picture,name,category", [spotData objectForKey:@"fb_place_id"]];
         NSLog(@"%@ response", requestPath);
         PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
         [request setSession:[PFFacebookUtils session]];
@@ -84,6 +85,20 @@
 
 - (void)postPhotoThenOpenGraphAction
 {
+    if (self.selectedPhoto == nil)
+    {
+        HQuery *hQuery = [[HQuery alloc] init];
+        [hQuery postSpot:[spotData objectForKey:@"id"] withType:[socialView currentStatus] andMessage:[textView text] andPhoto:nil andWidth:0 andHeight:0 withCallback:^(id JSON, NSError *error) {
+            if (error == nil)
+            {
+                NSLog(@"Received post:");
+                NSLog(@"%@", JSON);
+            }
+        }];
+
+        return;
+    }
+    
     PF_FBRequestConnection *connection = [[PF_FBRequestConnection alloc] init];
     
     // First request uploads the photo.
@@ -108,13 +123,18 @@
          if (!error &&
              result) {
              NSLog(@"%@", result);
-             // width, height
              NSString *source = [result objectForKey:@"source"];
-             // Pass up fb_place_id
-             // Pass up author_id / hugo_id
-             // Pass up comment
-             // Pass up photo url
              NSLog(@"%@", source);
+             HQuery *hQuery = [[HQuery alloc] init];
+             [hQuery postSpot:[spotData objectForKey:@"id"] withType:[socialView currentStatus] andMessage:[textView text] andPhoto:source andWidth:[[result objectForKey:@"width"] intValue] andHeight:[[result objectForKey:@"height"] intValue] withCallback:^(id JSON, NSError *error) {
+                 if (error == nil)
+                 {
+                     NSLog(@"Received post:");
+                     NSLog(@"%@", JSON);                     
+                 }
+             }];
+
+             
          }
      }
      ];
@@ -222,12 +242,12 @@
         }
     }];
     
-    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:nil andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:self];
+    self.socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:nil andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:self];
     [socialView setTag:1];
     [self.scrollView addSubview:socialView];
 
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 70.f, 280.0f, 95.0f)];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(10.0f, 70.f, 280.0f, 95.0f)];
     
     textView.layer.borderColor = [[UIColor colorWithWhite:0.90 alpha:1.0] CGColor];
     textView.layer.borderWidth = 1.0f;
