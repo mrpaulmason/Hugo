@@ -70,8 +70,6 @@
     
     messageView.layer.masksToBounds = YES;
     
-    
-    
     UILabel *labelView = [UILabel new];
     
     if ([item objectForKey:@"name"])

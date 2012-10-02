@@ -61,6 +61,24 @@
 
 }
 
+- (UIButton*) buttonFromImage:(NSString*)imgA withHighlight:(NSString*)imgB selector:(SEL) sel andFrame:(CGRect)frame
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor = [UIColor clearColor];
+    UIImage *buttonImageNormal = [UIImage imageNamed:imgA];
+    UIImage *buttonImageDown = [UIImage imageNamed:imgB];
+    [button setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+    
+    [button addTarget:self
+               action:sel
+     forControlEvents:UIControlEventTouchDown];
+    
+    button.frame = frame;
+    return button;
+}
+
+
 - (void)initializeHeader
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -135,7 +153,12 @@
     UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 70.f, 300.0f, 25.f)];
     bottomBar.backgroundColor = [UIColor colorWithWhite:0.94f alpha:1.0f];
     [view addSubview:bottomBar];
+    
+    UIButton *addTip = [self buttonFromImage:@"assets/venue/addTip.png" withHighlight:@"assets/venue/addTipB.png" selector:nil andFrame:CGRectMake(0, 0, 150, 25)];
+    UIButton *addPhoto = [self buttonFromImage:@"assets/venue/addPhoto.png" withHighlight:@"assets/venue/addPhotoB.png" selector:nil andFrame:CGRectMake(150, 0, 150, 25)];
 
+    [bottomBar addSubview:addTip];
+    [bottomBar addSubview:addPhoto];
     
     HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15+_offset, 235, 55) andStatuses:[spotData objectForKey:@"statuses"] andPlace:[spotData objectForKey:@"fb_place_id"] withDelegate:nil];
     [socialView setTag:1];

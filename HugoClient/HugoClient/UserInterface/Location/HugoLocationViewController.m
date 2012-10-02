@@ -11,6 +11,10 @@
 #import "UIImageView+AFNetworking.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
+#import "HugoSocialView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "HugoSpotViewController.h"
+
 
 @interface HugoLocationViewController ()
 
@@ -30,7 +34,7 @@
 
 - (void)refresh
 {
-    NSString *requestPath = [NSString stringWithFormat:@"search?q=*&type=place&center=%f,%f&distance=1000&fields=location,picture,name", desiredLocation.coordinate.latitude, desiredLocation.coordinate.longitude];
+    NSString *requestPath = [NSString stringWithFormat:@"search?q=*&type=place&center=%f,%f&distance=1000&fields=location,picture,name,category", desiredLocation.coordinate.latitude, desiredLocation.coordinate.longitude];
     PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
     [request setSession:[PFFacebookUtils session]];
     [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
@@ -46,6 +50,10 @@
 
 - (void)viewDidLoad
 {
+    tableView.delegate = self;
+    [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+    
+    [self.navigationItem setTitle:@"Add Spots"];
 
     NSMutableArray *tmp = [NSMutableArray array];
     [tmp insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Current Location", @"formatted_address", nil] atIndex:0];
@@ -134,14 +142,90 @@
         static NSString *CellIdentifier = @"LocationListCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
+        SBJsonParser *parser = [[SBJsonParser alloc] init];
+        
+        UIView *view = [UIView new];
+        [view setFrame:CGRectMake(10.0f, 10.0f, 300.0f, 70.f)];
+        view.layer.cornerRadius = 5.0f;
+        view.layer.borderColor = [UIColor colorWithWhite:0.70f alpha:1.0].CGColor;
+        view.layer.borderWidth = 0.5f;
+        view.backgroundColor = [UIColor whiteColor];
+        view.layer.masksToBounds = YES;
+        [cell addSubview:view];
+        
+        UILabel *labelVenue = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.0f,235.0f,13.f)];
+        
+        [labelVenue setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
+        [labelVenue setTextColor:[UIColor blackColor]];
+        NSString *currentString = [[results objectAtIndex:indexPath.row] objectForKey:@"name"];
+        NSArray *firstWords = [currentString componentsSeparatedByString:@" "];
+        int numWords = [firstWords count];
+        
+        do {
+            [labelVenue setText:[[firstWords subarrayWithRange:NSMakeRange(0,numWords)] componentsJoinedByString:@" "]];
+            [labelVenue sizeToFit];
+            numWords--;
+        } while (labelVenue.frame.size.width > 235.0f);
+        
+        [view addSubview:labelVenue];
+        
         UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
         nameLabel.text = [[results objectAtIndex:indexPath.row] objectForKey:@"name"];
-        UILabel *gameLabel = (UILabel *)[cell viewWithTag:101];
-        gameLabel.text = [[[results objectAtIndex:indexPath.row] objectForKey:@"location"] objectForKey:@"street"];
+        
+
+        id appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[[[results objectAtIndex:indexPath.row] objectForKey:@"location"] objectForKey:@"latitude"] doubleValue] longitude:[[[[results objectAtIndex:indexPath.row] objectForKey:@"location"] objectForKey:@"longitude"] doubleValue]];
+        CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+        CLLocation *locB = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        
+        CLLocationDistance distance = [locA distanceFromLocation:locB];
+        
+        double miles = distance * 0.000621371;
+        
+        UILabel *labelMiles = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,28.0f,235.0f,13.f)];
+        [labelMiles setText:[NSString stringWithFormat:@"%@ (%.1f mi)",[[[results objectAtIndex:indexPath.row] objectForKey:@"location"] objectForKey:@"street"], miles]];
+        
+        [labelMiles setFont:[UIFont fontWithName:@"Helvetica" size:13.f]];
+        [labelMiles setTextColor:[UIColor colorWithWhite:0.33f alpha:1.0]];
+        [labelMiles sizeToFit];
+        if ([[results objectAtIndex:indexPath.row] objectForKey:@"location"])
+            [view addSubview:labelMiles];
+        
+        UILabel *labelCategories = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,46.0f,235.0f,13.0f)];
+        
+        [labelCategories setText:[[results objectAtIndex:indexPath.row] objectForKey:@"category"]];
+        
+        [labelCategories setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
+        [labelCategories setTextColor:[UIColor colorWithWhite:0.33f alpha:1.0]];
+        [labelCategories sizeToFit];
+        [view addSubview:labelCategories];
+
+        UIButton *closedBar = [UIButton buttonWithType:UIButtonTypeCustom];
+        closedBar.backgroundColor = [UIColor clearColor];
         
         
-        UIImageView * img1 = (UIImageView *) [cell viewWithTag:200];
-        [img1 setImageWithURL:[NSURL URLWithString:[[[[results objectAtIndex:indexPath.row] objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
+        UIImage *buttonImageNormal;
+        UIImage *buttonImageDown;
+        buttonImageNormal = [UIImage imageNamed:@"assets/newsfeed/add.png"];
+        buttonImageDown = [UIImage imageNamed:@"assets/newsfeed/addB.png"];
+        
+        [closedBar setBackgroundImage:buttonImageNormal forState:UIControlStateNormal];
+        [closedBar setBackgroundImage:buttonImageDown forState:UIControlStateHighlighted];
+        closedBar.tag = indexPath.row;
+        
+        [closedBar addTarget:self
+                           action:@selector(addButton:)
+                 forControlEvents:UIControlEventTouchDown];
+        
+        closedBar.tag = 1;
+        closedBar.frame = CGRectMake(260, 20, 55.0, 50.0);
+        [cell addSubview:closedBar];
+        
+        UIImageView *corner = [[UIImageView alloc] initWithFrame:CGRectMake(310, 15, 5, 55)];
+        [corner setImage:[UIImage imageNamed:@"assets/newsfeed/corner.png"]];
+        [cell addSubview:corner];
+        
     }    
     
     return cell;
@@ -332,9 +416,34 @@ shouldReloadTableForSearchString:(NSString *)searchString
         }
         
     } else {
+        [self performSegueWithIdentifier:@"segueAddSpot" sender:[results objectAtIndex:indexPath.row]];
 //        [self performSegueWithIdentifier:@"HResults" sender:[categories objectAtIndex:indexPath.row]];
     }
     
+}
+
+- (void)addButton:(UIButton*)sender
+{
+
+    [self performSegueWithIdentifier:@"segueAddSpot" sender:[results objectAtIndex:sender.tag]];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    HugoSpotViewController *vc = [segue destinationViewController];
+    [vc setSpotData:sender];
+}
+
+
+- (CGFloat)tableView:(UITableView *)sTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (sTableView == self.searchDisplayController.searchResultsTableView) {
+        return  50.f;
+        
+    } else {
+        
+        return 80.f;
+    }
 }
 
 

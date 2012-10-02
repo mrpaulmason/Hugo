@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface HugoLocationViewController : UIViewController <UISearchBarDelegate>
+@interface HugoLocationViewController : UIViewController <UISearchBarDelegate, UITableViewDelegate>
 {
     NSArray *results;
     UITableView *tableView;

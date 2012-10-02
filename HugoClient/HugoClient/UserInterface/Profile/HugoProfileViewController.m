@@ -36,6 +36,26 @@
 
 - (void)inviteFriends
 {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Check out this awesome app to see where I've been.",  @"message",
+                                   nil];
+    
+    // Initiate a Facebook instance
+    PF_FBSession *session = [PFFacebookUtils session];
+    
+    PF_Facebook *facebook = [[PF_Facebook alloc]
+                             initWithAppId:@"469021446449087"
+                             andDelegate:nil];
+    
+    // Store the Facebook session information
+    facebook.accessToken =  session.accessToken;
+    facebook.expirationDate = session.expirationDate;
+    
+    [facebook dialog:@"apprequests" andParams:params andDelegate:nil];
+    return;
+    
+    // Old Code
+    
     if (!self.friendPickerController) {
         
         self.friendPickerController = [[PF_FBFriendPickerViewController alloc]
@@ -187,7 +207,8 @@
     profile.layer.cornerRadius = 5.0f;
     profile.layer.masksToBounds = YES;
 
-    
+    [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -413,10 +434,12 @@
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70.0f+[label frame].size.width,11.f,200.0f,13.f)];
     
-    if (daysAgo > 30)
-        [label2 setText:@" has been to"];
+    if (hoursAgo < 24)
+        [label2 setText:@" is here now"];
+    else if (daysAgo > 1 && daysAgo < 42)
+        [label2 setText:@" was recently here"];
     else
-        [label2 setText:@" was spotted at"];
+        [label2 setText:@" has been here"];
     
     [label2 setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
     [label2 setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
@@ -686,7 +709,7 @@
         }
     }
     
-    BOOL condition = !installed && iPhoneUser;
+    BOOL condition = YES;//!installed && iPhoneUser;
 
     
     if (self.searchText && ![self.searchText isEqualToString:@""]) {
@@ -713,6 +736,7 @@
 - (void)facebookViewControllerDoneWasPressed:(id)sender
 {
     for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {
+        
         NSLog(@"Friend selected: %@", user.name);
     }
     [self handlePickerDone];

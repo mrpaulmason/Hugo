@@ -116,6 +116,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
+    self.lastLocation = [[CLLocation alloc] initWithLatitude:37.7793 longitude:-122.4192];
+    
     // Set a movement threshold for new events.
     self.locationManager.distanceFilter = 500;
     

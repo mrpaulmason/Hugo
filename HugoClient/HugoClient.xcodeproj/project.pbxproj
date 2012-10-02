@@ -78,6 +78,7 @@
 		55F353C4160D487500DAC447 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C3160D487500DAC447 /* Parse.framework */; };
 		55F353C8160D9A7500DAC447 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C7160D9A7500DAC447 /* libTestFlight.a */; };
 		55F353CA160D9ACC00DAC447 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F353C9160D9ACC00DAC447 /* libz.dylib */; };
+		55FD0649161A5423001D31FB /* HugoSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FD0648161A5423001D31FB /* HugoSpotViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +200,8 @@
 		55F353C6160D9A7500DAC447 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		55F353C7160D9A7500DAC447 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		55F353C9160D9ACC00DAC447 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		55FD0647161A5423001D31FB /* HugoSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSpotViewController.h; path = UserInterface/Location/HugoSpotViewController.h; sourceTree = "<group>"; };
+		55FD0648161A5423001D31FB /* HugoSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSpotViewController.m; path = UserInterface/Location/HugoSpotViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +363,8 @@
 			children = (
 				553D9B7F15EDA51700989F07 /* HugoLocationViewController.h */,
 				553D9B8015EDA51700989F07 /* HugoLocationViewController.m */,
+				55FD0647161A5423001D31FB /* HugoSpotViewController.h */,
+				55FD0648161A5423001D31FB /* HugoSpotViewController.m */,
 			);
 			name = Location;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				55B491F4160FD3A1009D6E9F /* HugoCommentsViewController.m in Sources */,
 				55B491FA16102967009D6E9F /* HugoCommentsView.m in Sources */,
 				555AC50D161041540064DC59 /* HugoVenueViewController.m in Sources */,
+				55FD0649161A5423001D31FB /* HugoSpotViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

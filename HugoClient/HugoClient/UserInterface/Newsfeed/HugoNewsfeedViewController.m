@@ -341,10 +341,12 @@
 
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70.0f+[label frame].size.width,11.f,200.0f,13.f)];
 
-    if (daysAgo > 30)
-        [label2 setText:@" has been to"];
+    if (hoursAgo < 24)
+        [label2 setText:@" is here now"];    
+    else if (daysAgo > 1 && daysAgo < 42)
+        [label2 setText:@" was recently here"];
     else
-        [label2 setText:@" was spotted at"];
+        [label2 setText:@" has been here"];
         
     [label2 setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
     [label2 setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
