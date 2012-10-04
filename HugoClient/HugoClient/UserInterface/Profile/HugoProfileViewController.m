@@ -149,7 +149,7 @@
                 NSLog(@"%@", JSON);
                 [profile setImageWithURL:[NSURL URLWithString:[JSON objectForKey:@"picture"]]];
                 [label1 setText:[JSON objectForKey:@"name"]];
-                [label3 setText:@"Hugo member"];
+                [label3 setText:@"Hugonaut"];
                 [self.navigationItem setTitle:[JSON objectForKey:@"name"]];
                 [labelFriends setText:[[JSON objectForKey:@"friends"] stringValue]];
 //                SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -190,7 +190,7 @@
                 [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
                 [label1 setText:[result objectForKey:@"name"]];
                 [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
-                [label3 setText:@"Hugo member"];
+                [label3 setText:@"Hugo and Facebook friend"];
                 [self.navigationItem setTitle:[result objectForKey:@"name"]];
                 
             }
@@ -219,7 +219,7 @@
                 [profile setImageWithURL:[NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]]];
                 [label1 setText:[result objectForKey:@"name"]];
                 [label2 setText:[[result objectForKey:@"location"] objectForKey:@"name"]];
-                [label3 setText:@"Facebook friend"];
+                [label3 setText:@"Facebook friend not on Hugo"];
                 [self.navigationItem setTitle:[result objectForKey:@"name"]];
                 [labelFriends setText:@"N/A"];
                 
@@ -472,14 +472,27 @@
     
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(70.0f+[label frame].size.width,11.f,200.0f,13.f)];
-    
-    if (hoursAgo < 24)
-        [label2 setText:@" is here now"];
-    else if (daysAgo > 1 && daysAgo < 42)
-        [label2 setText:@" was recently here"];
-    else
+
+    if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_type"] && [[[results objectAtIndex:indexPath.row] objectForKey:@"spot_type"] isEqualToString:@"go"])
+    {
+        [label2 setText:@" wants to go here"];
+        
+    }
+    else if ([[results objectAtIndex:indexPath.row] objectForKey:@"spot_type"] && [[[results objectAtIndex:indexPath.row] objectForKey:@"spot_type"] isEqualToString:@"been"])
+    {
         [label2 setText:@" has been here"];
-    
+    }
+    else
+    {
+        if (hoursAgo < 24)
+            [label2 setText:@" is here now"];
+        else if (daysAgo > 1 && daysAgo < 42)
+            [label2 setText:@" was recently here"];
+        else
+            [label2 setText:@" has been here"];
+    }
+
+        
     [label2 setFont:[UIFont fontWithName:@"Helvetica" size:13.0f]];
     [label2 setTextColor:[UIColor colorWithWhite:0.53f alpha:1.0]];
     [label2 sizeToFit];
@@ -523,15 +536,15 @@
     UILabel *milesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.f,5.0f,200.0f,25.f)];
     
     if (yearsAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d year%@ ago, %0.1f miles away",yearsAgo,yearsAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"year%@ ago, %0.1f miles away",yearsAgo==1?@"":@"s", miles]];
     else if (monthsAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d month%@ ago, %0.1f miles away",monthsAgo,monthsAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"month%@ ago, %0.1f miles away",monthsAgo==1?@"":@"s", miles]];
     else if (daysAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d day%@ ago, %0.1f miles away",daysAgo,daysAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"day%@ ago, %0.1f miles away",daysAgo==1?@"":@"s", miles]];
     else if (hoursAgo > 0)
-        [milesLabel setText:[NSString stringWithFormat:@"%d hour%@ ago, %0.1f miles away",hoursAgo,hoursAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"hour%@ ago, %0.1f miles away",hoursAgo==1?@"":@"s", miles]];
     else
-        [milesLabel setText:[NSString stringWithFormat:@"%d minute%@ ago, %0.1f miles away",minutesAgo,minutesAgo==1?@"":@"s", miles]];
+        [milesLabel setText:[NSString stringWithFormat:@"minute%@ ago, %0.1f miles away",minutesAgo==1?@"":@"s", miles]];
     
     NSLog(@"miles: %@, %@ %@", name, [milesLabel text], NSStringFromCGRect(milesLabel.frame));
     

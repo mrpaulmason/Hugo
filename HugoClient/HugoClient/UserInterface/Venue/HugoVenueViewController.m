@@ -195,7 +195,7 @@
     
     
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(10.0f,10.0f,235.0f,13.f)];
-    [labelTitle setText:@"Friends who have been here"];
+    [labelTitle setText:@"Spot Friends"];
     
     [labelTitle setFont:[UIFont fontWithName:@"Helvetica-Bold" size:13.0f]];
     [labelTitle setTextColor:[UIColor blackColor]];
@@ -331,7 +331,7 @@
     [Flurry logEvent:@"hugo.view.venue"];
 
     
-    [[self navigationItem] setTitle:@"Venue Details"];
+    [[self navigationItem] setTitle:@"Place Details"];
     
     [self initializeMap];
     [self initializeHeader];
