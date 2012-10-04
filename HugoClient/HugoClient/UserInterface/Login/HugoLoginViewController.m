@@ -9,6 +9,7 @@
 #import "HugoLoginViewController.h"
 #import "HugoUtils.h"
 #import <Parse/Parse.h> 
+#import "Flurry.h"
 
 @interface HugoLoginViewController ()
 
@@ -34,7 +35,8 @@
     [button addTarget:self
                action:@selector(facebookConnect:)
      forControlEvents:UIControlEventTouchUpInside];
-    
+
+    [Flurry logEvent:@"hugo.view.Login"];
 }
 
 - (void) viewDidAppear:(BOOL)animated

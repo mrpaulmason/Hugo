@@ -14,6 +14,7 @@
 #import "HugoSocialView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "HugoSpotViewController.h"
+#import "Flurry.h"
 
 
 @interface HugoLocationViewController ()
@@ -27,6 +28,9 @@
 {
     tableView.delegate = self;
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+    
+    [Flurry logEvent:@"hugo.view.location"];
+
     
     [self.navigationItem setTitle:@"Add Spots"];
     

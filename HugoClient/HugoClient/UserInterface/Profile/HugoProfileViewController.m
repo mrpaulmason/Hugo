@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HugoCommentsViewController.h"
 #import "HugoSocialView.h"
+#import "Flurry.h"
 
 @interface HugoProfileViewController ()
 
@@ -120,7 +121,7 @@
     header.layer.shadowOffset = CGSizeMake(0, 1.0);
     header.layer.shadowOpacity = 0.3;
     
-    
+
     HQuery *hQuery = [[HQuery alloc] init];
 
     
@@ -128,6 +129,9 @@
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+        [Flurry logEvent:@"hugo.view.self.profile"];
+
+        
         [hQuery queryNewsfeed:@"user" withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
@@ -167,6 +171,8 @@
     }
     else if ([source isEqualToString:@"hugo"])
     {
+        [Flurry logEvent:@"hugo.view.other.profile"];
+
         [hQuery queryNewsfeed:@"user" andHugoId:hugoId withCallback:^(id JSON, NSError *error) {
             if (error == nil)
             {
@@ -202,6 +208,8 @@
     }
     else // get data from facebook
     {
+        [Flurry logEvent:@"hugo.view.other.profile"];
+
         NSString *urlStr = [NSString stringWithFormat:@"%@?fields=%@", profileId, @"name,location,picture"];
         PF_FBRequest *request = [PF_FBRequest requestForGraphPath:urlStr];
         [request startWithCompletionHandler:^(PF_FBRequestConnection *connection,

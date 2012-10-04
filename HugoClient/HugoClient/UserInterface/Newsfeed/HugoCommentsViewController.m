@@ -15,6 +15,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "HugoNewsfeedViewController.h"
 #import "HugoProfileViewController.h"
+#import "Flurry.h"
 
 @interface HugoCommentsViewController ()
 
@@ -109,6 +110,9 @@
 {
     [super viewDidLoad];
     NSLog(@"%@", spotData);
+    
+    [Flurry logEvent:@"hugo.view.comments"];
+
     
 	// Do any additional setup after loading the view.
 

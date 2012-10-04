@@ -15,6 +15,7 @@
 #import "HugoSocialView.h"
 #import "HugoVenueViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Flurry.h"
 
 @interface HugoResultsListViewController ()
 
@@ -99,6 +100,9 @@
     [mapView setShowsUserLocation:YES];
     [mapView setCenterCoordinate:coord zoomLevel:11 animated:NO];
     [mapView setHidden:NO];
+    
+    [Flurry logEvent:@"hugo.view.results"];
+
     
 //    mapView.clipsToBounds = NO;
     mapView.layer.shadowOpacity = 0.8f;

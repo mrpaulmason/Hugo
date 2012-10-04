@@ -17,6 +17,7 @@
 #import "MKMapView+ZoomLevel.h"
 #import "AddressAnnotation.h"
 #import "HQuery.h"
+#import "Flurry.h"
 
 @interface HugoVenueViewController ()
 
@@ -326,6 +327,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"hugo.view.venue"];
+
     
     [[self navigationItem] setTitle:@"Venue Details"];
     

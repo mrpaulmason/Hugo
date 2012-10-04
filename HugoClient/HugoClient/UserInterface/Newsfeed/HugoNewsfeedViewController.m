@@ -13,6 +13,7 @@
 #import "HugoCommentsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SBJson.h"
+#import "Flurry.h"
 
 @interface HugoNewsfeedViewController ()
 
@@ -24,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    [Flurry logEvent:@"hugo.view.newsfeed"];
+
     UIImage *selectedImage0 = [UIImage imageNamed:@"assets/generic/menu/homeB.png"];
     UIImage *unselectedImage0 = [UIImage imageNamed:@"assets/generic/menu/homeA.png"];
     

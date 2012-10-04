@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "HugoResultsListViewController.h"
 #import "SBJson.h"
+#import "Flurry.h"
 
 @interface HugoSearchViewController ()
 
@@ -25,6 +26,9 @@
 //    [self startLoading];
 
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"hugo.view.search"];
+
     
     precision = 6;
     

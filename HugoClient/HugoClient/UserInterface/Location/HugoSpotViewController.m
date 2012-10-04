@@ -14,7 +14,7 @@
 #import "HugoSocialView.h"
 #import "UIImage+fixOrientation.h"
 #import "HQuery.h"
-
+#import "Flurry.h"
 
 @interface HugoSpotViewController ()
 
@@ -186,9 +186,9 @@
     [connection start];
 }
 
-- (void)savePost:(id)sender
+- (void)savePost:(UIBarButtonItem*)sender
 {
-    [sender setHidden:YES];
+    self.navigationItem.rightBarButtonItem = nil;
     [self postPhotoThenOpenGraphAction];
 }
 
@@ -419,6 +419,8 @@
 {
     [super viewDidLoad];
     
+    [Flurry logEvent:@"hugo.view.spot"];
+
     [[self navigationItem] setTitle:@"Spot Update"];
     [scrollView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
     
