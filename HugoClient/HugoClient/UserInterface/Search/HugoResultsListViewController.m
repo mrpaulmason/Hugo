@@ -166,14 +166,26 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSLog(@"call out tapped");
     [self performSegueWithIdentifier:@"segueVenue" sender:[results objectAtIndex:view.tag]];
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {    
-    NSLog(@"call out tapped did select");
-//    if (view.selected)
+}
+
+- (void)toggleMap:(UIBarButtonItem*)sender
+{
+    NSLog(@"%f", mapView.frame.size.height);
+    if (mapView.frame.size.height < 135)
+    {
+        [mapView setFrame:CGRectMake(0, 0, 320, 400)];
+        [sender setTitle:@"Map"];
+    }
+    else{
+        [mapView setFrame:CGRectMake(0, 0, 320, 134)];
+        [sender setTitle:@"List"];
+    }
+
 }
 
 - (void)viewDidLoad
@@ -194,6 +206,9 @@
 
     
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(toggleMap:)];
+    
 //    [mapView setFrame:CGRectMake(0, 0, 320, 160)];
 
     NSLog(@"%@ %@", NSStringFromCGRect([tableView frame]), NSStringFromCGRect([mapView frame]));
