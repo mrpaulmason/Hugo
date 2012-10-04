@@ -82,8 +82,76 @@
                 minLongitude = MIN(location.longitude, minLongitude);
                 maxLongitude = MAX(location.longitude, maxLongitude);
                 
+                NSObject<MKAnnotation> *annotation = [[AddressAnnotation alloc] initWithCoordinate:location withTitle:[item objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]];
                 
-                [mapView addAnnotation:[[AddressAnnotation alloc] initWithCoordinate:location withTitle:[item objectForKey:@"spot_name"] andSubtitle:[NSString stringWithFormat:@"%@\n%@, %@ %@", [locationData objectForKey:@"street"], [locationData objectForKey:@"city"], [locationData objectForKey:@"state"], [locationData objectForKey:@"zip"]]]];
+                [mapView addAnnotation:annotation];
+                MKAnnotationView *annView = [mapView viewForAnnotation:annotation];
+                
+                NSArray *user_statuses = [item objectForKey:@"statuses"];
+                
+                NSString *comment = nil;
+                int maxTime = 0;
+                
+                for (NSDictionary *status in user_statuses)
+                {
+                    if ([[status objectForKey:@"timestamp"] intValue] > maxTime)
+                    {
+                        maxTime = [[status objectForKey:@"timestamp"] intValue];
+                        comment = [status objectForKey:@"comment_message"];
+                    }
+                }
+                                
+                if (comment)
+                {
+                    if ([comment isEqualToString:@"here"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinHereU.png"];
+                    else if ([comment isEqualToString:@"been"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinBeenU.png"];
+                    else if ([comment isEqualToString:@"go"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinGoU.png"];
+                    else if ([comment isEqualToString:@"like"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinLikeU.png"];
+                    else if ([comment isEqualToString:@"meh"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinMehU.png"];
+                    else if ([comment isEqualToString:@"nah"])
+                        annView.image = [UIImage imageNamed:@"assets/map/pinNahU.png"];
+                    else
+                        annView.image = [UIImage imageNamed:@"assets/map/pinBeenU.png"];
+                    
+                }
+                else
+                {
+                    NSString *author_id = [NSString stringWithFormat:@"%@",[[item objectForKey:@"authors"] objectAtIndex:0]];
+                    NSDictionary *spot_statuses = [item objectForKey:@"spot_statuses"];
+                    
+                    if ([spot_statuses objectForKey:author_id])
+                    {
+                        NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+                        
+                        if ([status isEqualToString:@"here"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinHere.png"];
+                        else if ([status isEqualToString:@"been"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinBeen.png"];
+                        else if ([status isEqualToString:@"go"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinGo.png"];
+                        else if ([status isEqualToString:@"like"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinLike.png"];
+                        else if ([status isEqualToString:@"meh"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinMeh.png"];
+                        else if ([status isEqualToString:@"nah"])
+                            annView.image = [UIImage imageNamed:@"assets/map/pinNah.png"];
+                        else
+                            annView.image = [UIImage imageNamed:@"assets/map/pinBeen.png"];
+                        
+                    }
+                    else
+                    {
+                        annView.image = [UIImage imageNamed:@"assets/map/pinBeen.png"];
+                    }
+                }
+                
+                annView.canShowCallout = YES;
+                
                 
             }
             
