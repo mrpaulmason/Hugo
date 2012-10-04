@@ -212,11 +212,11 @@
             <objects>
                 <viewController id="GCN-yW-l5D" customClass="HugoProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ljx-Dz-thU">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ruR-N5-Oq7">
-                                <rect key="frame" x="0.0" y="70" width="320" height="390"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="302"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -447,11 +447,11 @@
             <objects>
                 <viewController id="H2d-WO-Bdw" customClass="HugoCommentsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NEV-bA-2ZO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="y9D-5N-RoN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="328"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="cJB-zS-N1R" detailTextLabel="6Ox-FB-Kyz" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="Whv-Sd-Dtw">
@@ -509,7 +509,7 @@
                                 </connections>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yFa-fd-akE">
-                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="327" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" id="RLW-ya-JO1">
@@ -580,7 +580,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bMh-N9-AOa"/>
+                    <navigationItem key="navigationItem" id="bMh-N9-AOa">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="qoa-qL-fe4">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hlr-Gd-GDz">
+                                <rect key="frame" x="244" y="6" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="GCN-yW-l5D" kind="push" identifier="segueProfile" id="qan-F0-UwN"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="T5V-Y7-pUa" id="HQE-Ht-PaU"/>
                     </connections>
@@ -616,11 +634,11 @@
             <objects>
                 <viewController id="mhS-gQ-lva" customClass="HugoSpotViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c61-ZM-V9t">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="g9Y-zR-bld">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.95435104930000003" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -743,8 +761,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="bPc-NA-6Yf"/>
-        <segue reference="BDU-jx-2Yi"/>
+        <segue reference="Dey-St-0GG"/>
+        <segue reference="qan-F0-UwN"/>
         <segue reference="REX-LL-Vfl"/>
-        <segue reference="ZZV-Zk-B9S"/>
     </inferredMetricsTieBreakers>
 </document>

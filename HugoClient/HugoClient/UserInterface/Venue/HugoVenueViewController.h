@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HugoVenueViewController : UIViewController
+@interface HugoVenueViewController : UIViewController <UIGestureRecognizerDelegate>
 {
     UIScrollView *scrollView;
     NSMutableDictionary *spotData;
+    NSDictionary *result;
     int _offset;
 }
 
+@property (nonatomic, retain) NSDictionary *result;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSMutableDictionary *spotData;
 

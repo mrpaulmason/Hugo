@@ -371,7 +371,8 @@
     NSDictionary *locationData = [parser objectWithString:[[results objectAtIndex:indexPath.row] objectForKey:@"spot_location"]  error:nil];
     
     CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[locationData objectForKey:@"latitude"] doubleValue] longitude:[[locationData objectForKey:@"longitude"] doubleValue]];
-    CLLocationCoordinate2D coord = [[appDelegate lastLocation] coordinate];
+    
+    CLLocationCoordinate2D coord = [desiredLocation coordinate];
     CLLocation *locB = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
     
     CLLocationDistance distance = [locA distanceFromLocation:locB];

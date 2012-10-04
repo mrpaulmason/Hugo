@@ -18,13 +18,14 @@
 #import "AddressAnnotation.h"
 #import "HQuery.h"
 #import "Flurry.h"
+#import "HugoProfileViewController.h"
 
 @interface HugoVenueViewController ()
 
 @end
 
 @implementation HugoVenueViewController
-@synthesize scrollView, spotData;
+@synthesize scrollView, spotData, result;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -129,6 +130,8 @@
     
     [self.scrollView addSubview:mapView];
     
+    [scrollView setUserInteractionEnabled:YES];
+    
     _offset += 100.0f;
 
 }
@@ -157,8 +160,30 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    HugoSpotViewController *vc = [segue destinationViewController];
-    [vc setSpotData:sender];
+    if ([segue.identifier isEqualToString:@"segueAddSpot"])
+    {
+        HugoSpotViewController *vc = [segue destinationViewController];
+        [vc setSpotData:sender];
+    }
+    else if ([[segue identifier] isEqualToString:@"segueProfile"])
+    {
+        NSLog(@"Segue to venue page");
+        HugoProfileViewController *vc = [segue destinationViewController];
+        
+        for (NSArray* item in [result objectForKey:@"authors_hugo"])
+        {
+            if ([[item objectAtIndex:0] isEqualToString:sender])
+            {
+                [vc setSource:@"hugo"];
+                [vc setProfileId:sender];
+                [vc setHugoId:[NSString stringWithFormat:@"%@",[item objectAtIndex:1]]];
+                return;
+            }
+        }
+        
+        [vc setSource:@"facebook"];
+        [vc setProfileId:sender];
+    }
 }
 
 - (void)initializeHeader
@@ -249,6 +274,25 @@
     _offset = _offset + 105.0f;
 }
 
+-(void)tapProfile:(UITapGestureRecognizer*)sender
+{
+    UIView* view = sender.view;
+    CGPoint loc = [sender locationInView:view];
+    UIView* subview = [view hitTest:loc withEvent:nil];
+    
+    NSString *author_id = [NSString stringWithFormat:@"%@",[[result objectForKey:@"authors"] objectAtIndex:subview.tag]];
+    NSLog(@"tap! %@",author_id);
+    [self performSegueWithIdentifier:@"segueProfile" sender:author_id];
+    
+
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldReceiveTouch:(UITouch *)touch {
+    NSLog(@"gesture reocgnizer");
+    return YES;
+}
+
 - (void)initializeFriends
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -280,7 +324,7 @@
         if (error == nil)
         {
             NSLog(@"Received results! %@", JSON);
-            NSDictionary *result = [JSON objectAtIndex:0];
+            self.result = [JSON objectAtIndex:0];
             NSArray *images = [result objectForKey:@"pics"];
 
             int i = 0;
@@ -300,7 +344,14 @@
                 NSString *author_id = [NSString stringWithFormat:@"%@",[[result objectForKey:@"authors"] objectAtIndex:i]];
                 NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
                 UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
-
+                
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                    action:@selector(tapProfile:)];
+                singleTap.numberOfTapsRequired = 1;
+                img1.tag = i;
+                [img1 setUserInteractionEnabled:YES];
+                singleTap.delegate = self;
+                [img1 addGestureRecognizer:singleTap];
                 
                 if ([spot_statuses objectForKey:author_id])
                 {
