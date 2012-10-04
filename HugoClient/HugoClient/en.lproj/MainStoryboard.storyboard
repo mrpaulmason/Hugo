@@ -174,6 +174,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="4US-S9-aYo">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BuB-ky-qDY" id="f7Q-co-glz"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -549,11 +552,11 @@
             <objects>
                 <viewController id="UAt-VW-LEq" customClass="HugoVenueViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X2J-aV-aSe">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="T5V-Y7-pUa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Qm-Tt-9Kq">
@@ -739,9 +742,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="bPc-NA-6Yf"/>
         <segue reference="BDU-jx-2Yi"/>
-        <segue reference="ZZV-Zk-B9S"/>
         <segue reference="REX-LL-Vfl"/>
-        <segue reference="vDV-6b-FvK"/>
+        <segue reference="ZZV-Zk-B9S"/>
     </inferredMetricsTieBreakers>
 </document>

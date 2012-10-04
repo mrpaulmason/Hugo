@@ -150,7 +150,9 @@
                     }
                 }
                 
+                annView.tag = c-2;
                 annView.canShowCallout = YES;
+                annView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
                 
                 
             }
@@ -160,6 +162,18 @@
         }
     }];
 
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSLog(@"call out tapped");
+    [self performSegueWithIdentifier:@"segueVenue" sender:[results objectAtIndex:view.tag]];
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{    
+    NSLog(@"call out tapped did select");
+//    if (view.selected)
 }
 
 - (void)viewDidLoad

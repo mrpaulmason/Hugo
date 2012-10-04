@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface HugoResultsListViewController : UIViewController
+@interface HugoResultsListViewController : UIViewController <MKMapViewDelegate>
 {
     NSArray *results;
     UITableView *tableView;
