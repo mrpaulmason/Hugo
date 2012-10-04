@@ -120,7 +120,7 @@
     if ([[item objectForKey:@"comment_type"] isEqual:@"center"])
     {
         labelView.font = [UIFont fontWithName:@"Helvetica-Bold" size:13.0f];
-        [labelView setTextAlignment:NSTextAlignmentCenter];
+        [labelView setTextAlignment:UITextAlignmentCenter];
     }
     else
     {

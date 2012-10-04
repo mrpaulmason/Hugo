@@ -222,6 +222,7 @@
                 [label3 setText:@"Facebook friend not on Hugo"];
                 [self.navigationItem setTitle:[result objectForKey:@"name"]];
                 [labelFriends setText:@"N/A"];
+                [tableView reloadData];
                 
             }
         }];
@@ -275,6 +276,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([results count] == 0)
+    {
+        return 1;
+    }
     // Return the number of rows in the section.
     return [results count];
 }
@@ -389,6 +394,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)sTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([results count] == 0)
+    {
+        static NSString *CellIdentifier = @"NewsCell";
+        UITableViewCell *cell = [[UITableViewCell alloc]
+                                 initWithStyle:UITableViewStylePlain
+                                 reuseIdentifier:CellIdentifier];
+
+        if ([source isEqualToString:@"facebook"])
+        {
+            UIButton *buttonInvite = [self buttonFromImage:@"assets/profile/invite.png" withHighlight:@"assets/profile/inviteB.png" selector:@selector(inviteFriends) andFrame:CGRectMake(9, 10, 302, 32)];
+            [buttonInvite setTitle:[NSString stringWithFormat:@"Invite %@ to Hugo", [[[label1 text] componentsSeparatedByString:@" "] objectAtIndex:0]] forState:UIControlStateNormal];
+            [buttonInvite setTitleColor:[UIColor colorWithWhite:0.30 alpha:1.0f] forState:UIControlStateNormal];
+            [cell addSubview:buttonInvite];
+        }
+        else
+        {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9, 10, 302, 32)];
+            [label setFont:[UIFont fontWithName:@"Helvetica" size:12.f]];
+            [label setTextAlignment:UITextAlignmentCenter];
+            [label setText:@"No checkins on Facebook, add your spots on Hugo!"];
+            [cell addSubview:label];
+    
+        }
+        
+        return cell;
+    }
+    
     static NSString *CellIdentifier = @"ProfileCell";
     id appDelegate = [[UIApplication sharedApplication] delegate];
     SBJsonParser *parser = [[SBJsonParser alloc] init];

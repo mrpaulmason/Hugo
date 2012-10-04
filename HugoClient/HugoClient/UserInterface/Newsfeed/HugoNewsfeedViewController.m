@@ -145,6 +145,7 @@
 
 - (NSInteger)tableView:(UITableView *)sTableView numberOfRowsInSection:(NSInteger)section
 {
+
     return [results count];
 }
 
@@ -259,6 +260,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)sTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"NewsCell";
     id appDelegate = [[UIApplication sharedApplication] delegate];
     SBJsonParser *parser = [[SBJsonParser alloc] init];
