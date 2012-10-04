@@ -661,6 +661,8 @@
 {
     float sz = 105;
     
+    if ([results count] == 0) return sz;
+    
     if (indexPath.row == [results count]-1)
         sz += 10;
 

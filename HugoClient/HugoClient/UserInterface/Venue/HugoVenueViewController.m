@@ -43,6 +43,7 @@
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 100.0f)];
+    
     NSDictionary *locationData = [parser objectWithString:[spotData objectForKey:@"spot_location"]];
     
     CLLocation *locA = [[CLLocation alloc] initWithLatitude:[[locationData objectForKey:@"latitude"] doubleValue] longitude:[[locationData objectForKey:@"longitude"] doubleValue]];
@@ -60,6 +61,18 @@
     
     NSString *comment = nil;
     int maxTime = 0;
+    
+    NSArray *authors_hugo = [spotData objectForKey:@"authors_hugo"];
+    
+    for( NSArray *author_bundle in authors_hugo)
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([[NSString stringWithFormat:@"%@",[author_bundle objectAtIndex:1]] isEqualToString:[NSString stringWithFormat:@"%@",[defaults objectForKey:@"hugo_id"]]])
+        {
+            maxTime = [[spotData objectForKey:@"timestamp"] intValue];
+            comment = @"been";
+        }
+    }
     
     for (NSDictionary *status in user_statuses)
     {
@@ -122,7 +135,7 @@
     annView.canShowCallout = NO;
 
     
-    mapView.clipsToBounds = NO;
+    mapView.clipsToBounds = YES;
     mapView.layer.shadowOpacity = 0.8f;
     mapView.layer.shadowOffset = CGSizeMake(0,0.0);
     mapView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -324,65 +337,69 @@
         if (error == nil)
         {
             NSLog(@"Received results! %@", JSON);
-            self.result = [JSON objectAtIndex:0];
-            NSArray *images = [result objectForKey:@"pics"];
-
-            int i = 0;
-            for(NSString *imgURL in images)
+            
+            if ([JSON count] > 0)
             {
-                if (i > 7) break;
-                
+                self.result = [JSON objectAtIndex:0];
+                NSArray *images = [result objectForKey:@"pics"];
 
-                UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 30, 30)];
-                img1.layer.cornerRadius = 5.0;
-                img1.layer.masksToBounds = YES;
-                img1.hidden = NO;
-                
-                [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
-                [view addSubview:img1];
-                
-                NSString *author_id = [NSString stringWithFormat:@"%@",[[result objectForKey:@"authors"] objectAtIndex:i]];
-                NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
-                UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
-                
-                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                    action:@selector(tapProfile:)];
-                singleTap.numberOfTapsRequired = 1;
-                img1.tag = i;
-                [img1 setUserInteractionEnabled:YES];
-                singleTap.delegate = self;
-                [img1 addGestureRecognizer:singleTap];
-                
-                if ([spot_statuses objectForKey:author_id])
+                int i = 0;
+                for(NSString *imgURL in images)
                 {
-                    NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+                    if (i > 7) break;
                     
-                    NSLog(@"%@ %d %@ %@", author_id, i, spot_statuses, imgURL);
+
+                    UIImageView * img1 = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+i*35, 33.f, 30, 30)];
+                    img1.layer.cornerRadius = 5.0;
+                    img1.layer.masksToBounds = YES;
+                    img1.hidden = NO;
                     
-                    if ([status isEqualToString:@"here"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeHere.png"]];
-                    else if ([status isEqualToString:@"been"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
-                    else if ([status isEqualToString:@"go"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeGo.png"]];
-                    else if ([status isEqualToString:@"like"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeLike.png"]];
-                    else if ([status isEqualToString:@"meh"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeMeh.png"]];
-                    else if ([status isEqualToString:@"nah"])
-                        [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeNah.png"]];
+                    [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
+                    [view addSubview:img1];
+                    
+                    NSString *author_id = [NSString stringWithFormat:@"%@",[[result objectForKey:@"authors"] objectAtIndex:i]];
+                    NSDictionary *spot_statuses = [result objectForKey:@"spot_statuses"];
+                    UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 33.f+17.5, 15, 15)];
+                    
+                    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(tapProfile:)];
+                    singleTap.numberOfTapsRequired = 1;
+                    img1.tag = i;
+                    [img1 setUserInteractionEnabled:YES];
+                    singleTap.delegate = self;
+                    [img1 addGestureRecognizer:singleTap];
+                    
+                    if ([spot_statuses objectForKey:author_id])
+                    {
+                        NSString *status = [[spot_statuses objectForKey:author_id] objectAtIndex:1];
+                        
+                        NSLog(@"%@ %d %@ %@", author_id, i, spot_statuses, imgURL);
+                        
+                        if ([status isEqualToString:@"here"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeHere.png"]];
+                        else if ([status isEqualToString:@"been"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+                        else if ([status isEqualToString:@"go"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeGo.png"]];
+                        else if ([status isEqualToString:@"like"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeLike.png"]];
+                        else if ([status isEqualToString:@"meh"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeMeh.png"]];
+                        else if ([status isEqualToString:@"nah"])
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeNah.png"]];
+                        else
+                            [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
+
+                    }
                     else
+                    {
                         [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
-
+                    }
+                    [view addSubview:imgStatus];
+                    
+                    i++;
+                    
                 }
-                else
-                {
-                    [imgStatus setImage:[UIImage imageNamed:@"assets/venue/badgeBeen.png"]];
-                }
-                [view addSubview:imgStatus];
-                
-                i++;
-                
             }
 
             

@@ -83,7 +83,16 @@
         if (!error)
         {
             NSLog(@"Query succeeded with %@", result);
-            self.results = [result objectForKey:@"data"];
+            NSMutableArray *filter = [NSMutableArray array];
+            
+            for (NSDictionary *item in [[result objectForKey:@"data"] mutableCopy])
+            {
+                if ([[item objectForKey:@"location"] objectForKey:@"street"])
+                {
+                    [filter addObject:item];
+                }
+            }
+            self.results = filter;
             [tableView reloadData];
         }
         [self stopLoading];

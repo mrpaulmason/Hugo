@@ -92,6 +92,18 @@
                 NSString *comment = nil;
                 int maxTime = 0;
                 
+                NSArray *authors_hugo = [item objectForKey:@"authors_hugo"];
+                
+                for( NSArray *author_bundle in authors_hugo)
+                {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    if ([[NSString stringWithFormat:@"%@",[author_bundle objectAtIndex:1]] isEqualToString:[NSString stringWithFormat:@"%@",[defaults objectForKey:@"hugo_id"]]])
+                    {
+                        maxTime = [[item objectForKey:@"timestamp"] intValue];
+                        comment = @"been";
+                    }
+                }
+                
                 for (NSDictionary *status in user_statuses)
                 {
                     if ([[status objectForKey:@"timestamp"] intValue] > maxTime)
@@ -179,11 +191,11 @@
     if (mapView.frame.size.height < 135)
     {
         [mapView setFrame:CGRectMake(0, 0, 320, 400)];
-        [sender setTitle:@"Map"];
+        [sender setTitle:@"List"];
     }
     else{
         [mapView setFrame:CGRectMake(0, 0, 320, 134)];
-        [sender setTitle:@"List"];
+        [sender setTitle:@"Map"];
     }
 
 }
