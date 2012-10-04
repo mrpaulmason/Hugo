@@ -38,7 +38,7 @@
 - (void)inviteFriends
 {
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Check out this awesome app to see where I've been.",  @"message",
+                                   @"Check out this awesome app for finding places to go through your friends.",  @"message",
                                    nil];
     
     // Initiate a Facebook instance
