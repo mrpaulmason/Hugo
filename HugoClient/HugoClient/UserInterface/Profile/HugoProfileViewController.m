@@ -82,6 +82,37 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        NSLog(@"Logout");
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:@"fb_auth_key"];
+        [defaults removeObjectForKey:@"fb_expires"];
+        [defaults removeObjectForKey:@"hugo_id"];
+        [defaults removeObjectForKey:@"name"];
+        [defaults synchronize];
+        [PFUser logOut];
+        [self.navigationController dismissModalViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if (buttonIndex == 1)
+    {
+        NSLog(@"Support");
+        NSString* launchUrl = @"mailto://support@gethugo.com";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+    }
+    NSLog(@"button press: %d", buttonIndex);
+}
+
+- (void) settings:(id)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Settings" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Support", nil];
+    
+    [sheet showFromTabBar:self.tabBarController.tabBar];
+}
+
 - (void)viewDidLoad
 {
     header.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -188,15 +219,15 @@
         }];
     }
     
-    [[self navigationItem] setTitle:@"Serena Wu"];
+    [[self navigationItem] setTitle:@"    "];
 
     // TODO-HACK: if only 1 viewcontroller, you are viewing your own profile
-   /* if ([[self.navigationController viewControllers] count] == 1)
+    if ([[self.navigationController viewControllers] count] == 1)
     {
         UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc]
-                                   initWithCustomView:[self buttonFromImage:@"assets/profile/options.png" withHighlight:@"assets/profile/optionsB.png" selector:nil andFrame:CGRectMake(0, 0, 40, 30)]];
+                                          initWithCustomView:[self buttonFromImage:@"assets/profile/options.png" withHighlight:@"assets/profile/optionsB.png" selector:@selector(settings:) andFrame:CGRectMake(0, 0, 40, 30)]];
         self.navigationItem.leftBarButtonItem = optionsButton;
-    }*/
+    }
 
     UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]
                                       initWithCustomView:[self buttonFromImage:@"assets/profile/addFriend.png" withHighlight:@"assets/profile/addFriendB.png" selector:@selector(inviteFriends) andFrame:CGRectMake(0, 0, 40, 30)]];

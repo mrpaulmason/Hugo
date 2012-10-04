@@ -10,8 +10,6 @@
 		551BEBFD161AC12600381112 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 551BEBFC161AC12600381112 /* UIImage+fixOrientation.m */; };
 		551D18E216092F2D000C15D0 /* HugoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E116092F2D000C15D0 /* HugoProfileViewController.m */; };
 		551D18E8160A593B000C15D0 /* HugoSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551D18E7160A593B000C15D0 /* HugoSocialView.m */; };
-		551D18EA160B070B000C15D0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18E9160B070B000C15D0 /* Default.png */; };
-		551D18EC160B0710000C15D0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 551D18EB160B0710000C15D0 /* Default@2x.png */; };
 		553D9ADE15EC24AD00989F07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADD15EC24AD00989F07 /* UIKit.framework */; };
 		553D9AE015EC24AD00989F07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9ADF15EC24AD00989F07 /* Foundation.framework */; };
 		553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553D9AE115EC24AD00989F07 /* CoreGraphics.framework */; };
@@ -65,6 +63,7 @@
 		553D9BB415EDBEEE00989F07 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB315EDBEEE00989F07 /* MKMapView+ZoomLevel.m */; };
 		553D9BB915EDBFC500989F07 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 553D9BB815EDBFC500989F07 /* AddressAnnotation.m */; };
 		554F9361161044A200836B13 /* dash.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 554F9360161044A200836B13 /* dash.jpeg */; };
+		5553B824161D1D6300E6F7D5 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5553B823161D1D6300E6F7D5 /* libFlurry.a */; };
 		555AC50D161041540064DC59 /* HugoVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AC50C161041540064DC59 /* HugoVenueViewController.m */; };
 		557108BD16067AB30097AE29 /* HugoNewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 557108BC16067AB30097AE29 /* HugoNewsfeedViewController.m */; };
 		557350AA15FAB6B100EB6A82 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 557350A915FAB6B100EB6A82 /* assets */; };
@@ -85,6 +84,8 @@
 		55FF7827161D11BD00E62462 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FF7821161D11BD00E62462 /* Icon-Small-50@2x.png */; };
 		55FF7828161D11BD00E62462 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FF7822161D11BD00E62462 /* Icon-Small.png */; };
 		55FF7829161D11BD00E62462 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FF7823161D11BD00E62462 /* Icon-Small@2x.png */; };
+		55FF782C161D124800E62462 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FF782A161D124800E62462 /* Default.png */; };
+		55FF782D161D124800E62462 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FF782B161D124800E62462 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,8 +95,6 @@
 		551D18E116092F2D000C15D0 /* HugoProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoProfileViewController.m; path = UserInterface/Profile/HugoProfileViewController.m; sourceTree = "<group>"; };
 		551D18E6160A593B000C15D0 /* HugoSocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoSocialView.h; path = UserInterface/Shared/HugoSocialView.h; sourceTree = "<group>"; };
 		551D18E7160A593B000C15D0 /* HugoSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoSocialView.m; path = UserInterface/Shared/HugoSocialView.m; sourceTree = "<group>"; };
-		551D18E9160B070B000C15D0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		551D18EB160B0710000C15D0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		553D9AD915EC24AD00989F07 /* Hugo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hugo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553D9ADD15EC24AD00989F07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553D9ADF15EC24AD00989F07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -188,6 +187,8 @@
 		553D9BB715EDBFC400989F07 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		553D9BB815EDBFC500989F07 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 		554F9360161044A200836B13 /* dash.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dash.jpeg; sourceTree = "<group>"; };
+		5553B822161D1D6300E6F7D5 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		5553B823161D1D6300E6F7D5 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		555AC50B161041530064DC59 /* HugoVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoVenueViewController.h; path = UserInterface/Venue/HugoVenueViewController.h; sourceTree = "<group>"; };
 		555AC50C161041540064DC59 /* HugoVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HugoVenueViewController.m; path = UserInterface/Venue/HugoVenueViewController.m; sourceTree = "<group>"; };
 		557108BB16067AB30097AE29 /* HugoNewsfeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HugoNewsfeedViewController.h; path = UserInterface/Newsfeed/HugoNewsfeedViewController.h; sourceTree = "<group>"; };
@@ -215,6 +216,8 @@
 		55FF7821161D11BD00E62462 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "../Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		55FF7822161D11BD00E62462 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../Icon-Small.png"; sourceTree = "<group>"; };
 		55FF7823161D11BD00E62462 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../Icon-Small@2x.png"; sourceTree = "<group>"; };
+		55FF782A161D124800E62462 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		55FF782B161D124800E62462 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,7 @@
 				553D9AE215EC24AD00989F07 /* CoreGraphics.framework in Frameworks */,
 				55F353C4160D487500DAC447 /* Parse.framework in Frameworks */,
 				55F353C8160D9A7500DAC447 /* libTestFlight.a in Frameworks */,
+				5553B824161D1D6300E6F7D5 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +252,7 @@
 		553D9ACE15EC24AD00989F07 = {
 			isa = PBXGroup;
 			children = (
+				5553B821161D1D6300E6F7D5 /* Flurry */,
 				55F353C5160D9A5E00DAC447 /* Testflight */,
 				553D9B8815EDBCAB00989F07 /* SBJSON */,
 				553D9B3715EC5E3300989F07 /* AFNetworking */,
@@ -318,6 +323,8 @@
 		553D9AFA15EC3E6500989F07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55FF782A161D124800E62462 /* Default.png */,
+				55FF782B161D124800E62462 /* Default@2x.png */,
 				55FF781E161D11BD00E62462 /* Icon-72.png */,
 				55FF781F161D11BD00E62462 /* Icon-72@2x.png */,
 				55FF7820161D11BD00E62462 /* Icon-Small-50.png */,
@@ -326,8 +333,6 @@
 				55FF7823161D11BD00E62462 /* Icon-Small@2x.png */,
 				55FF781C161D119E00E62462 /* Icon.png */,
 				55FF7819161D119900E62462 /* Icon@2x.png */,
-				551D18EB160B0710000C15D0 /* Default@2x.png */,
-				551D18E9160B070B000C15D0 /* Default.png */,
 				554F9360161044A200836B13 /* dash.jpeg */,
 				557350A915FAB6B100EB6A82 /* assets */,
 				5580948E15F40D60009C7D9A /* main.png */,
@@ -493,6 +498,15 @@
 			name = SBJSON;
 			sourceTree = "<group>";
 		};
+		5553B821161D1D6300E6F7D5 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				5553B822161D1D6300E6F7D5 /* Flurry.h */,
+				5553B823161D1D6300E6F7D5 /* libFlurry.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		555AC511161041A60064DC59 /* Venue */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,8 +593,6 @@
 				5580948F15F40D60009C7D9A /* main.png in Resources */,
 				557350AA15FAB6B100EB6A82 /* assets in Resources */,
 				557350AF15FFE48B00EB6A82 /* arrow.png in Resources */,
-				551D18EA160B070B000C15D0 /* Default.png in Resources */,
-				551D18EC160B0710000C15D0 /* Default@2x.png in Resources */,
 				554F9361161044A200836B13 /* dash.jpeg in Resources */,
 				55FF781A161D119900E62462 /* Icon@2x.png in Resources */,
 				55FF781D161D119E00E62462 /* Icon.png in Resources */,
@@ -590,6 +602,8 @@
 				55FF7827161D11BD00E62462 /* Icon-Small-50@2x.png in Resources */,
 				55FF7828161D11BD00E62462 /* Icon-Small.png in Resources */,
 				55FF7829161D11BD00E62462 /* Icon-Small@2x.png in Resources */,
+				55FF782C161D124800E62462 /* Default.png in Resources */,
+				55FF782D161D124800E62462 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +735,7 @@
 		553D9AF815EC24AD00989F07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -731,6 +746,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Hugo;
 				WRAPPER_EXTENSION = app;
@@ -740,6 +756,7 @@
 		553D9AF915EC24AD00989F07 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -751,6 +768,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Hugo;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

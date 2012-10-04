@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "PullRefreshTableViewController.h"
 
-@interface HugoLocationViewController : UIViewController <UISearchBarDelegate, UITableViewDelegate>
+@interface HugoLocationViewController : PullRefreshTableViewController <UISearchBarDelegate, UITableViewDelegate>
 {
     NSArray *results;
     UITableView *tableView;

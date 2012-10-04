@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="main.png" id="G0s-E6-hGG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Default.png" id="G0s-E6-hGG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -318,47 +318,34 @@
         <scene sceneID="2MJ-gW-SaA">
             <objects>
                 <viewController id="beN-Vp-P1q" customClass="HugoLocationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PMS-7R-pLH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="FhO-lS-XKx">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="Xrm-Cb-ZPi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="FhO-lS-XKx">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="323"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LocationListCell" rowHeight="80" id="QtZ-yt-MJ4">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="80"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="beN-Vp-P1q" id="PHP-Nh-ybV"/>
-                                        </connections>
-                                    </tableView>
-                                    <searchBar contentMode="redraw" text="Current Location" placeholder="Search or Address" id="Gyv-yO-0sM">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="beN-Vp-P1q" id="6bl-P8-x1O"/>
-                                        </connections>
-                                    </searchBar>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="Current Location" placeholder="Search or Address" id="Gyv-yO-0sM">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="beN-Vp-P1q" id="6bl-P8-x1O"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LocationListCell" rowHeight="80" id="QtZ-yt-MJ4">
+                                <rect key="frame" x="0.0" y="66" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="beN-Vp-P1q" id="PHP-Nh-ybV"/>
+                            <outlet property="delegate" destination="beN-Vp-P1q" id="45x-C6-Q7L"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" id="Xqf-FK-pds">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="uNo-0Z-7AX">
                             <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RwF-x2-j5B">
@@ -380,7 +367,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="bTf-cT-15p" id="vgF-Lf-1la"/>
-                        <outlet property="tableView" destination="FhO-lS-XKx" id="OzJ-oP-3r2"/>
+                        <outlet property="tableView" destination="FhO-lS-XKx" id="dpz-Tq-it6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTJ-ZT-yYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,7 +381,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="958" y="349"/>
+            <point key="canvasLocation" x="984" y="363"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="Iht-Ws-DE8">
@@ -626,11 +613,11 @@
             <objects>
                 <viewController id="mhS-gQ-lva" customClass="HugoSpotViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c61-ZM-V9t">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="g9Y-zR-bld">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.95435104930000003" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -644,104 +631,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K08-9y-hVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1412" y="402"/>
+            <point key="canvasLocation" x="1618" y="349"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Default.png" width="320" height="480"/>
         <image name="assets/login/fbA.png" width="16" height="16"/>
         <image name="assets/login/fbB.png" width="16" height="16"/>
         <image name="assets/profile/friendsBox.png" width="16" height="16"/>
         <image name="icon.jpeg" width="180" height="119"/>
-        <image name="main.png" width="640" height="920"/>
     </resources>
-    <classes>
-        <class className="HugoCommentsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoCommentsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeModal:"/>
-                <relationship kind="action" name="comment:"/>
-                <relationship kind="outlet" name="barButtonItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButtonItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="profilePicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="spottingDetails" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="textInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="HugoLocationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLocationViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoLoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoLoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="facebookConnect:"/>
-                <relationship kind="action" name="helloWorld"/>
-                <relationship kind="outlet" name="button" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="HugoNavigationBar" superclassName="UINavigationBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNavigationBar.h"/>
-        </class>
-        <class className="HugoNewsfeedViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoNewsfeedViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoProfileViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoProfileViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="header" candidateClass="UIView"/>
-                <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="label2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="label3" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="labelFriends" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profile" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoResultsListViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoResultsListViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoSearchViewController" superclassName="PullRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="HugoSpotViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoSpotViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="HugoVenueViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HugoVenueViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="PullRefreshTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullRefreshTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Dey-St-0GG"/>
-        <segue reference="vDV-6b-FvK"/>
-        <segue reference="REX-LL-Vfl"/>
+        <segue reference="BDU-jx-2Yi"/>
         <segue reference="ZZV-Zk-B9S"/>
+        <segue reference="REX-LL-Vfl"/>
+        <segue reference="vDV-6b-FvK"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "Flurry.h"
 #import "TestFlight.h"
 
 @implementation AppDelegate
@@ -29,6 +30,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     [PFFacebookUtils initializeWithApplicationId:@"469021446449087"];
     
     [TestFlight takeOff:@"f3546c22df22ac707f487b814315fd87_MTM0OTQwMjAxMi0wOS0yMiAwMzowMTo0NS41NjA4MjU"];
+    
+    [Flurry startSession:@"TDFXBX9KRC739CFN25M5"];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 

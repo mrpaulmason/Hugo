@@ -16,6 +16,8 @@
     int _offset;
 }
 
+@property (strong, nonatomic) UIActivityIndicatorView *refreshSpinner;
+
 @property (strong, nonatomic) HugoSocialView *socialView;
 @property (strong, nonatomic) UITextView *textView;
 

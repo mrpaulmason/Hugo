@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "HugoClient/UserInterface/Location/HugoSpotViewController.m"
-         timestampString = "370864321.874548"
+         timestampString = "371011716.777049"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "258"
-         endingLineNumber = "258"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "-initCommentBox"
          landmarkType = "5">
       </FileBreakpoint>

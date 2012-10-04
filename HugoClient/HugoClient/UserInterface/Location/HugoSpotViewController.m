@@ -21,7 +21,7 @@
 @end
 
 @implementation HugoSpotViewController
-@synthesize scrollView, spotData, textView, socialView;
+@synthesize scrollView, spotData, textView, socialView, refreshSpinner;
 
 @synthesize imagePicker = _imagePicker;
 @synthesize selectedPhoto = _selectedPhoto;
@@ -85,6 +85,14 @@
 
 - (void)postPhotoThenOpenGraphAction
 {
+    refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    refreshSpinner.frame = CGRectMake(150,100, 20, 20);
+    refreshSpinner.hidesWhenStopped = YES;
+    [self.view addSubview:refreshSpinner];
+    self.scrollView.layer.opacity = 0.40;
+    [scrollView setUserInteractionEnabled:NO];
+    [refreshSpinner startAnimating];
+    
     if (self.selectedPhoto == nil)
     {
         HQuery *hQuery = [[HQuery alloc] init];
@@ -93,9 +101,26 @@
             {
                 NSLog(@"Received post:");
                 NSLog(@"%@", JSON);
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Success"
+                                      message: @"Your spot update has been posted!"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
             }
+            else{
+                UIAlertView *alert = [[UIAlertView alloc]
+                                     initWithTitle: @"Error!"
+                                     message: @"Unable to post update."
+                                     delegate: nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles:nil];
+                [alert show];
+            }
+            [refreshSpinner stopAnimating];
+            self.scrollView.layer.opacity = 1.00;
         }];
-
         return;
     }
     
@@ -117,6 +142,7 @@
     // photo so we can grab its source.
     PF_FBRequest *request2 = [PF_FBRequest
                            requestForGraphPath:@"{result=photopost:$.id}"];
+    
     [connection addRequest:request2
          completionHandler:
      ^(PF_FBRequestConnection *connection, id result, NSError *error) {
@@ -131,7 +157,25 @@
                  {
                      NSLog(@"Received post:");
                      NSLog(@"%@", JSON);                     
+                     UIAlertView *alert = [[UIAlertView alloc]
+                                           initWithTitle: @"Success"
+                                           message: @"Your spot update has been posted!"
+                                           delegate: nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                     [alert show];
                  }
+                 else{
+                     UIAlertView *alert = [[UIAlertView alloc]
+                                           initWithTitle: @"Error!"
+                                           message: @"Unable to post update."
+                                           delegate: nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                     [alert show];
+                 }
+                 [refreshSpinner stopAnimating];
+                 self.scrollView.layer.opacity = 1.00;
              }];
 
              
@@ -144,7 +188,7 @@
 
 - (void)savePost:(id)sender
 {
-    [sender setEnabled:NO];
+    [sender setHidden:YES];
     [self postPhotoThenOpenGraphAction];
 }
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface HugoProfileViewController : UIViewController <PF_FBFriendPickerDelegate, UISearchBarDelegate>
+@interface HugoProfileViewController : UIViewController <PF_FBFriendPickerDelegate, UISearchBarDelegate, UIActionSheetDelegate>
 {
     NSArray *results;
     UITableView *tableView;

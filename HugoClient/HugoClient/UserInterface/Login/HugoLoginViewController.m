@@ -46,6 +46,7 @@
     if ([defaults valueForKey:@"fb_expires"] == nil)
     {
         NSLog(@"New FB Auth");
+        [button setEnabled:YES];
         // no data exists
     }
     else if ([defaults doubleForKey:@"fb_expires"] > [[NSDate date] timeIntervalSince1970]) // Check if user is linked to Facebook and their session hasn't expired

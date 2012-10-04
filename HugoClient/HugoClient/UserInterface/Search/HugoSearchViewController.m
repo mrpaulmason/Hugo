@@ -47,7 +47,7 @@
 {
     NSLog(@"desired location before refresh %@", desiredLocation);
 
-    if (desiredLocation  == nil)
+    if (desiredLocation  == nil || [currentText isEqualToString:@"Current Location"])
     {
         id appDelegate = [[UIApplication sharedApplication] delegate];
         desiredLocation = [appDelegate lastLocation];

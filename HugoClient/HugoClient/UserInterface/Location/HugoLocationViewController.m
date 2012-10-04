@@ -23,43 +23,29 @@
 @implementation HugoLocationViewController
 @synthesize results, tableView, searchResults, desiredLocation;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)refresh
-{
-    NSString *requestPath = [NSString stringWithFormat:@"search?q=*&type=place&center=%f,%f&distance=1000&fields=location,picture,name,category", desiredLocation.coordinate.latitude, desiredLocation.coordinate.longitude];
-    PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
-    [request setSession:[PFFacebookUtils session]];
-    [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
-        if (!error)
-        {
-            NSLog(@"Query succeeded with %@", result);
-            self.results = [result objectForKey:@"data"];
-            [tableView reloadData];
-        }
-    }];
-
-}
-
 - (void)viewDidLoad
 {
     tableView.delegate = self;
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.89f alpha:1.0f]];
     
     [self.navigationItem setTitle:@"Add Spots"];
-
+    
     NSMutableArray *tmp = [NSMutableArray array];
     [tmp insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Current Location", @"formatted_address", nil] atIndex:0];
     self.searchResults = tmp;
+    
+    
+    [self refresh];
+    
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
 
-    if (desiredLocation  == nil)
+- (void)refresh
+{
+    NSLog(@"desired location before refresh %@", desiredLocation);
+    
+    if (desiredLocation  == nil || [currentText isEqualToString:@"Current Location"])
     {
         id appDelegate = [[UIApplication sharedApplication] delegate];
         desiredLocation = [appDelegate lastLocation];
@@ -67,6 +53,8 @@
     }
     
     [self updateSearchColor];
+    
+    NSLog(@"desired location after refresh %@", desiredLocation);
     
     for (UIView *searchBarSubview in [self.searchDisplayController.searchBar subviews]) {
         
@@ -84,11 +72,22 @@
         }
     }
     
-    [self refresh];
-    
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSString *requestPath = [NSString stringWithFormat:@"search?q=*&type=place&center=%f,%f&distance=1000&fields=location,picture,name,category", desiredLocation.coordinate.latitude, desiredLocation.coordinate.longitude];
+    PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
+    [request setSession:[PFFacebookUtils session]];
+    [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+        if (!error)
+        {
+            NSLog(@"Query succeeded with %@", result);
+            self.results = [result objectForKey:@"data"];
+            [tableView reloadData];
+        }
+        [self stopLoading];
+    }];
+
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -126,13 +125,9 @@
 
     if (sTableView == self.searchDisplayController.searchResultsTableView) {
         static NSString *CellIdentifier = @"LocationCell";
-        cell = [sTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]
-                    initWithStyle:UITableViewCellStyleDefault
-                    reuseIdentifier:CellIdentifier];
-        }
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:CellIdentifier];
         cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] objectForKey:@"formatted_address"];
         
         if ([cell.textLabel.text isEqualToString:@"Current Location"])
@@ -140,7 +135,9 @@
         
     } else {
         static NSString *CellIdentifier = @"LocationListCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:CellIdentifier];
 
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         

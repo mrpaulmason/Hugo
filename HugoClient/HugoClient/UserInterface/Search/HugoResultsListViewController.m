@@ -200,6 +200,7 @@
     
     
     NSArray *pics = [[results objectAtIndex:indexPath.row] objectForKey:@"pics"];
+    NSLog(@"%@",results);
     
     int i = 0;
     for(NSString *imgURL in pics)
@@ -215,7 +216,7 @@
         [img1 setImageWithURL:[NSURL URLWithString:imgURL]];
         [view addSubview:img1];
         
-        NSString *author_id = [[[spotData objectForKey:@"authors"] objectAtIndex:i] stringValue];
+        NSString *author_id = [NSString stringWithFormat:@"%@",[[spotData objectForKey:@"authors"] objectAtIndex:i]];
         NSDictionary *spot_statuses = [spotData objectForKey:@"spot_statuses"];
         UIImageView * imgStatus = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f+17.5+i*35, 10.0f+17.5, 15, 15)];
         
