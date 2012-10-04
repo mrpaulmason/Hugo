@@ -108,6 +108,7 @@
                                       cancelButtonTitle:@"OK"
                                       otherButtonTitles:nil];
                 [alert show];
+                [self postOpenGraphActionWithPhotoURL:nil];
             }
             else{
                 UIAlertView *alert = [[UIAlertView alloc]
@@ -151,6 +152,7 @@
              NSLog(@"%@", result);
              NSString *source = [result objectForKey:@"source"];
              NSLog(@"%@", source);
+             [self postOpenGraphActionWithPhotoURL:source];
              HQuery *hQuery = [[HQuery alloc] init];
              [hQuery postSpot:[spotData objectForKey:@"id"] withType:[socialView currentStatus] andMessage:[textView text] andPhoto:source andWidth:[[result objectForKey:@"width"] intValue] andHeight:[[result objectForKey:@"height"] intValue] withCallback:^(id JSON, NSError *error) {
                  if (error == nil)
@@ -184,6 +186,53 @@
      ];
     
     [connection start];
+}
+
+- (void)postOpenGraphActionWithPhotoURL:(NSString*)photoURL
+{
+    NSMutableDictionary<PF_FBGraphObject> *action = [PF_FBGraphObject graphObject];
+    
+    [action setObject:[NSString stringWithFormat:@"http://hurricane.gethugo.com/place/%@/%@", [spotData objectForKey:@"id"],[[spotData objectForKey:@"name"] stringByReplacingOccurrencesOfString:@" " withString:@"_"]] forKey:@"photo"];
+
+    [action setObject:[spotData objectForKey:@"id"] forKey:@"place"];
+    
+    [action setObject:[textView text] forKey:@"message"];
+
+    if (photoURL) {
+        NSMutableDictionary *image = [[NSMutableDictionary alloc] init];
+        [image setObject:photoURL forKey:@"url"];
+        
+        NSMutableArray *images = [[NSMutableArray alloc] init];
+        [images addObject:image];
+        
+        [action setObject:images forKey:@"image"];
+    }
+    
+    // Create the request and post the action to the
+    // "me/<YOUR_APP_NAMESPACE>:eat" path.
+    [PF_FBRequestConnection startForPostWithGraphPath:@"me/hugo-app:add"
+                                       graphObject:action
+                                 completionHandler:
+     ^(PF_FBRequestConnection *connection, id result, NSError *error) {
+         NSString *alertText;
+         if (!error) {
+             alertText = [NSString stringWithFormat:
+                          @"Posted Open Graph action, id: %@",
+                          [result objectForKey:@"id"]];
+         } else {
+             alertText = [NSString stringWithFormat:
+                          @"error: domain = %@, code = %d",
+                          error.domain, error.code];
+         }
+         NSLog(@"result %@", error);
+/*         [[[UIAlertView alloc] initWithTitle:@"Result"
+                                     message:alertText
+                                    delegate:nil
+                           cancelButtonTitle:@"Thanks!"
+                           otherButtonTitles:nil]
+          show];*/
+     }
+     ];
 }
 
 - (void)savePost:(UIBarButtonItem*)sender
