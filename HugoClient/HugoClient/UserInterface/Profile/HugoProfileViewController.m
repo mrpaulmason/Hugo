@@ -650,7 +650,7 @@
         [cell addSubview:imgPhoto];
     }
     
-    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55) andStatuses:[[results objectAtIndex:indexPath.row] objectForKey:@"statuses"] andPlace:[[results objectAtIndex:indexPath.row] objectForKey:@"fb_place_id"] withDelegate:self];
+    HugoSocialView *socialView = [[HugoSocialView alloc] initWithFrame:CGRectMake(80, 15, 235, 55) andStatuses:[[results objectAtIndex:indexPath.row] objectForKey:@"statuses"] andPlace:[[results objectAtIndex:indexPath.row] objectForKey:@"fb_place_id"] withDelegate:nil];
     [socialView setTag:1];
     [cell addSubview:socialView];
     

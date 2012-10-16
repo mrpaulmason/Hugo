@@ -81,7 +81,7 @@
     // The permissions requested from the user
     NSArray *permissionsArray = [NSArray arrayWithObjects:
                                  @"user_about_me", @"friends_about_me", @"friends_hometown", @"user_hometown",
-                                 @"user_relationships",@"user_birthday",@"user_location", @"friends_location", @"email", @"publish_checkins", @"offline_access", @"friends_status", @"user_status", @"user_photos", @"friends_photos", nil];
+                                 @"user_relationships",@"user_birthday",@"user_location", @"friends_location", @"email", @"publish_checkins", @"offline_access", @"friends_status", @"user_status", @"user_photos", @"friends_photos", @"publish_actions", nil];
     
     NSLog(@"Facebook connect started");
     [sender setEnabled:NO];
